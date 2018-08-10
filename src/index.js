@@ -97,14 +97,14 @@ class HttpResponder extends Error {
 	get payload() {
 		return {
 			statusCode: this.statusCode,
-			error: codeMap.get(this.statusCode),
+			error: (codeMap.has(this.statusCode))? codeMap.get(this.statusCode) : 'Unknown Error',
 			message: this.message,
 			data: (this.data)? this.data : undefined
 		};
 	}
 
-	appendError(error) {
-		return Object.assign(this, error);
+	appendError(err) {
+		return Object.assign(this, err);
 	}
 	static improve(err) {
 		return new HttpResponder(500, err);
