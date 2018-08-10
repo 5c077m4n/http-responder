@@ -12,17 +12,19 @@ To create a custom error: `new hr(statusCode [, options]);`
 
 `options: Error | {}` the options object may be a nodejs error or include:
 
-	1. message: your custom error message.
+1. `message`: your custom error message.
 
-	2. data: whatever data you what to send (also shows up in the payload property) - has to be truthy.
+2. `data`: whatever data you what to send (also shows up in the payload property) - has to be truthy.
 
 
 Porperties:
 ---
 
-	1. status: the same as 'statusCode' - for compability
+1. `status`: the same as 'statusCode' - for compability
 
-	2. payload: holds only a pretty version of the error (ie, no stack), to not leak sensitive information
+2. `payload`: holds only a pretty version of the error (ie, no stack), so no sensitive information will be leaked
+
+3. `isRespError`: a boolean saying if the object is of type HttpResponder
 
 Or, you can create them by the pre-made static functions (`hr.notFound()` for example...):
 

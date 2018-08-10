@@ -75,6 +75,7 @@ class HttpResponder extends Error {
 		Object.assign(this, errorOrOptions);
 		this.statusCode = statusCode;
 		if(!this.data) this.data = undefined;
+		this._isRespError = true;
 	}
 	get status() {
 		return this.statusCode;
@@ -90,6 +91,9 @@ class HttpResponder extends Error {
 			message: this.message,
 			data
 		};
+	}
+	get isRespError() {
+		return this._isRespError;
 	}
 };
 
