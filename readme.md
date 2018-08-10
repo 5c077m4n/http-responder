@@ -27,7 +27,15 @@ Porperties:
 
 3. `isRespError`: a boolean saying if the object is of type HttpResponder
 
-Or, you can create them by the pre-made static functions (`hr.notFound()` for example...):
+Or, you can create them by the pre-made static functions (`hr.notFound()` for example...).
+
+
+Methods:
+----
+
+to append an Error to your custom one: `appendError(error)`.
+
+`error: Error` the error you want to append.
 
 
 Static function list:

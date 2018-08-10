@@ -95,6 +95,9 @@ class HttpResponder extends Error {
 	get isRespError() {
 		return this._isRespError;
 	}
+	appendError(error) {
+		return Object.assign(this, error);
+	}
 };
 
 /**
