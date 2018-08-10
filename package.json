@@ -1,6 +1,6 @@
 {
   "name": "http-responder",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A very simple way to create an error response ang send it only showing what you choose to.",
   "repository": "https://bitbucket.org/5c077m4n/http-response/src/master/",
   "main": "./src/index.js",
