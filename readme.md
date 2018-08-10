@@ -6,7 +6,7 @@ A simple and easy way to create and use HTTP errors (extending the original node
 `const hr = require('http-responder');` => and you're good to go!
 
 
-To create a custom error: `new hr(statusCode, [options]);`
+To create a custom error: `new hr(statusCode [, options]);`
 
 `statusCode: Number` your error's status code.
 
@@ -14,7 +14,7 @@ To create a custom error: `new hr(statusCode, [options]);`
 
 	1. message: your custom error message.
 
-	2. data: whatever data you what to send (also shows up in the payload property).
+	2. data: whatever data you what to send (also shows up in the payload property) - has to be truthy.
 
 
 Porperties:
