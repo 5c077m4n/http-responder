@@ -17,8 +17,17 @@ To create a custom error: `new hr(statusCode, [options]);`
 	2. `data`: whatever data you what to send.
 
 
+Porperties:
+---
+
+	1. `status`: the same as `statusCode` - for compability
+
+	2. `payload`: holds only a pretty version of the error (ie, no stack), to not leak sensitive information
 
 Or, you can create them by the pre-made static functions (`hr.notFound()` for example...):
+
+ Static function list:
+ ----
 
 `hr.continue()`,
 
