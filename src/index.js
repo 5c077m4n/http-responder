@@ -70,11 +70,18 @@ const codeMap = new Map([
  * with getters ang setters.
  */
 class HttpResponder extends Error {
-	constructor(statusCode = 500, errorOrOptions = {}) {
-		super((errorOrOptions.message)? errorOrOptions.message : undefined);
+	constructor(statusCodeOrMessage, errorOrOptions = {}) {
+		super();
 		Object.assign(this, errorOrOptions);
-		this.statusCode = statusCode;
-		if(!errorOrOptions.message) this.message = codeMap.get(statusCode);
+		if(statusCodeOrMessage instanceof String) {
+			this.statusCode = 500;
+			this.message = statusCodeOrMessage;
+		}
+		if(statusCodeOrMessage instanceof Number) {
+			this.statusCode = statusCodeOrMessage;
+			this.message = codeMap.get(statusCodeOrMessage);
+		}
+		if(!this.message) this.message = codeMap.get(statusCodeOrMessage);
 		this._isRespError = true;
 	}
 	get status() {
