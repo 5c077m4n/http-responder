@@ -70,18 +70,18 @@ const codeMap = new Map([
  * with getters ang setters.
  */
 class HttpResponder extends Error {
-	constructor(statusCodeOrMessage, errorOrOptions = {}) {
+	constructor(statusCodeOrMessage = 500, errorOrOptions = {}) {
 		super();
 		Object.assign(this, errorOrOptions);
-		if(statusCodeOrMessage instanceof String) {
-			this.statusCode = 500;
-			this.message = statusCodeOrMessage;
+		if(statusCodeOrMessage instanceof Number) this.statusCode = statusCodeOrMessage;
+		else {
+			if(statusCodeOrMessage instanceof String) {
+				this.statusCode = (errorOrOptions.statusCode)? errorOrOptions.statusCode : 500;
+				this.message = statusCodeOrMessage;
+			}
+			else throw new HttpResponder('The first parameter has to be either a number or a string.');
 		}
-		if(statusCodeOrMessage instanceof Number) {
-			this.statusCode = statusCodeOrMessage;
-			this.message = codeMap.get(statusCodeOrMessage);
-		}
-		if(!this.message) this.message = codeMap.get(statusCodeOrMessage);
+		if(!this.message) this.message = codeMap.get(this.statusCode);
 		this._isRespError = true;
 	}
 	get status() {

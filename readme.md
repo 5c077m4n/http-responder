@@ -5,11 +5,11 @@ A simple and easy way to create and use HTTP errors (extending the original node
 
 `const hr = require('http-responder');` => and you're good to go!
 
-To create a custom error: `new hr(statusCode [, options]);`
+To create a custom error: `new hr(statusCodeOrMessage [, optionsOrError]);`
 
-`statusCode: Number` your error's status code.
+`statusCodeOrMessage: number | string` your error's status code or an error message (in that case a value of 'statusCode' will be looked for in the options param).
 
-`options: Error | {}` the options object may be a nodejs error or include:
+`optionsOrError: Error | {}` the options object may be a nodejs error or include:
 
 1. `message`: your custom error message.
 
@@ -25,7 +25,7 @@ Porperties:
 
 2. `payload`: holds only a pretty version of the error (ie, no stack), so no sensitive information will be leaked
 
-3. `isRespError`: a boolean saying if the object is of type HttpResponder
+3. `isRespError: boolean`: a boolean saying if the object is of type HttpResponder
 
 Or, you can create them by the pre-made static functions (`hr.notFound()` for example).
 
