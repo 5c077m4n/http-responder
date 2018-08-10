@@ -46,12 +46,12 @@ Methods:
 to append an Error to your custom one: `appendError(error: Error)`.
 
 
-Static function list:
+Static functions:
 ----
 
 `hr.isHR(err)`: checks if the err object is of type http-response.
 
-Error functions:
+Static error functions:
 ---
 
 `hr.continue()`,
