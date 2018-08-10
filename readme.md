@@ -11,19 +11,19 @@ To create a custom error: `new hr(statusCode [, optionsOrError]);`
 
 2. `optionsOrError: Error | {}` the options object may be a nodejs error, or include:
 
-	1. `message`: your custom error message.
+	1. `message` your custom error message.
 
-	2. `data`: whatever data you what to send (also shows up in the payload property) - has to be truthy.
+	2. `data` whatever data you what to send (also shows up in the payload property) - has to be truthy.
 
 Also, you can choose to use: `new hr(message [, optionsOrError]);`
 
-1. `message`: your custom error message.
+1. `message` your custom error message.
 
 2. `optionsOrError: {}` the options object may include:
 
-	1. `statusCode: number`: the error's status code
+	1. `statusCode: number` the error's status code.
 
-	2. `data: any`: whatever data you what to send (also shows up in the payload property) - has to be truthy.
+	2. `data: any` whatever data you what to send (also shows up in the payload property) - has to be truthy.
 
 (`new hr();` will give you a 500 status error default.)
 
@@ -31,11 +31,11 @@ Also, you can choose to use: `new hr(message [, optionsOrError]);`
 Porperties:
 ----
 
-1. `status`: the same as 'statusCode' - for compability
+1. `status`: the same as 'statusCode' - for compability.
 
-2. `payload`: holds only a pretty version of the error (ie, no stack), so no sensitive information will be leaked
+2. `payload`: holds only a pretty version of the error (ie, no stack), so no sensitive information will be leaked.
 
-3. `isRespError: boolean`: a boolean saying if the object is of type HttpResponder
+3. `isRespError: boolean`: a boolean saying if the object is of type HttpResponder.
 
 Or, you can create them by the pre-made static functions (`hr.notFound()` for example).
 
