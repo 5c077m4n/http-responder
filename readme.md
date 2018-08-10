@@ -1,10 +1,9 @@
- HTTP Responder
- ----
+HTTP Responder
+----
 
 A simple and easy way to create and use HTTP errors (extending the original node.js Error) whilst giving you the control over what is seen.
 
 `const hr = require('http-responder');` => and you're good to go!
-
 
 To create a custom error: `new hr(statusCode [, options]);`
 
@@ -16,9 +15,11 @@ To create a custom error: `new hr(statusCode [, options]);`
 
 2. `data`: whatever data you what to send (also shows up in the payload property) - has to be truthy.
 
+(`new hr();` will give you a 500 status error default.)
+
 
 Porperties:
----
+----
 
 1. `status`: the same as 'statusCode' - for compability
 
@@ -28,8 +29,9 @@ Porperties:
 
 Or, you can create them by the pre-made static functions (`hr.notFound()` for example...):
 
- Static function list:
- ----
+
+Static function list:
+----
 
 `hr.continue()`,
 
