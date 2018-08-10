@@ -74,6 +74,7 @@ class HttpResponder extends Error {
 		super((errorOrOptions.message)? errorOrOptions.message : undefined);
 		Object.assign(this, errorOrOptions);
 		this.statusCode = statusCode;
+		if(!errorOrOptions.message) this.message = codeMap.get(statusCode);
 		this._isRespError = true;
 	}
 	get status() {
