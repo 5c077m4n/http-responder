@@ -41,6 +41,11 @@ to append an Error to your custom one: `appendError(error)`.
 Static function list:
 ----
 
+`hr.isHR(err)`: checks if the err object is of type http-response.
+---
+
+Error functions:
+
 `hr.continue()`,
 
 `hr.switchingProtocols()`,

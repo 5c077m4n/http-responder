@@ -98,6 +98,10 @@ class HttpResponder extends Error {
 	appendError(error) {
 		return Object.assign(this, error);
 	}
+
+	static isHR(err) {
+		return ((err instanceof HttpResponder) && err.isRespError);
+	}
 };
 
 /**
