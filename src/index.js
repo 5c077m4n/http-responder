@@ -73,9 +73,9 @@ class HttpResponder extends Error {
 	constructor(statusCodeOrMessage = 500, errorOrOptions = {}) {
 		super();
 		Object.assign(this, errorOrOptions);
-		if(statusCodeOrMessage instanceof Number) this.statusCode = statusCodeOrMessage;
+		if(typeof statusCodeOrMessage === 'number') this.statusCode = statusCodeOrMessage;
 		else {
-			if(statusCodeOrMessage instanceof String) {
+			if(typeof statusCodeOrMessage === 'string') {
 				this.statusCode = (errorOrOptions.statusCode)? errorOrOptions.statusCode : 500;
 				this.message = statusCodeOrMessage;
 			}
