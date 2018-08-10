@@ -1,0 +1,19 @@
+{
+  "name": "http-response",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "http",
+    "response",
+    "error"
+  ],
+  "author": "Roee Shapira",
+  "license": "ISC",
+  "dependencies": {
+    "camelcase": "^5.0.0"
+  }
+}
