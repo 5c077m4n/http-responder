@@ -74,7 +74,6 @@ class HttpResponder extends Error {
 		super((errorOrOptions.message)? errorOrOptions.message : undefined);
 		Object.assign(this, errorOrOptions);
 		this.statusCode = statusCode;
-		if(!this.data) this.data = undefined;
 		this._isRespError = true;
 	}
 	get status() {
@@ -84,21 +83,21 @@ class HttpResponder extends Error {
 		this.statusCode = statusCode;
 		return statusCode;
 	}
+	get isRespError() {
+		return this._isRespError;
+	}
 	get payload() {
 		return {
 			statusCode: this.statusCode,
 			error: codeMap.get(this.statusCode),
 			message: this.message,
-			data
+			data: (this.data)? this.data : undefined
 		};
 	}
-	get isRespError() {
-		return this._isRespError;
-	}
+
 	appendError(error) {
 		return Object.assign(this, error);
 	}
-
 	static isHR(err) {
 		return ((err instanceof HttpResponder) && err.isRespError);
 	}
@@ -106,12 +105,12 @@ class HttpResponder extends Error {
 
 /**
  * @function build - adds dynamically all of the codeMap's values as functions.
- * @returns HttpResponder - the class with all functions attached.
+ * @returns HttpResponder - the class with all static functions attached.
  */
 function build() {
 	codeMap.forEach((value, key, map) => {
 		HttpResponder[camelCase(value)] = function(msg, data) {
-			return new HttpResponder({
+			return new HttpResponder(key, {
 				statusCode: key,
 				error: codeMap.get(key),
 				message: msg,
