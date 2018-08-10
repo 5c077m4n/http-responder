@@ -2,7 +2,9 @@
 
 const camelCase = require('camelcase');
 
-
+/**
+ * @param codeMap - a map of status codes.
+ */
 const codeMap = new Map([
 	[100, `Continue`],
 	[101, `Switching Protocols`],
@@ -63,7 +65,11 @@ const codeMap = new Map([
 	[511, `Network Authentication Required`],
 ]);
 
-class HttpResponse extends Error {
+/**
+ * @class HttpResponder - a class containing all static functions that create the responses,
+ * with getters ang setters.
+ */
+class HttpResponder extends Error {
 	constructor(errorOrOptions = {}) {
 		super((errorOrOptions.message)? errorOrOptions.message : undefined);
 		Object.assign(this, errorOrOptions);
@@ -86,10 +92,14 @@ class HttpResponse extends Error {
 	}
 };
 
+/**
+ * @function build - adds dynamically all of the codeMap's values as functions.
+ * @returns HttpResponder - the class with all functions attached.
+ */
 function build() {
 	codeMap.forEach((value, key, map) => {
-		HttpResponse[camelCase(value)] = function(msg, data) {
-			return new HttpResponse({
+		HttpResponder[camelCase(value)] = function(msg, data) {
+			return new HttpResponder({
 				statusCode: key,
 				error: codeMap.get(key),
 				message: msg,
@@ -97,7 +107,7 @@ function build() {
 			});
 		}
 	});
-	return HttpResponse;
+	return HttpResponder;
 }
 
 module.exports = build();
