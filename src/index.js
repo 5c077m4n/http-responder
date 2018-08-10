@@ -76,10 +76,10 @@ class HttpResponder extends Error {
 		if(typeof statusCodeOrMessage === 'number') this.statusCode = statusCodeOrMessage;
 		else {
 			if(typeof statusCodeOrMessage === 'string') {
-				this.statusCode = (errorOrOptions.statusCode)? errorOrOptions.statusCode : 500;
+				this.statusCode = errorOrOptions.statusCode || errorOrOptions.status || 500;
 				this.message = statusCodeOrMessage;
 			}
-			else throw new Error('The first parameter has to be either a number or a string.');
+			else throw new Error('The first parameter must be either a number or a string.');
 		}
 		if(!this.message) this.message = codeMap.get(this.statusCode);
 		this._isRespError = true;
@@ -87,9 +87,9 @@ class HttpResponder extends Error {
 	get status() {
 		return this.statusCode;
 	}
-	set status(statusCode) {
-		this.statusCode = statusCode;
-		return statusCode;
+	set status(code) {
+		this.statusCode = code;
+		return code;
 	}
 	get isRespError() {
 		return this._isRespError;

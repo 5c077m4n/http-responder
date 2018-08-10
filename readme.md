@@ -11,17 +11,17 @@ To create a custom error: `new hr(statusCode [, optionsOrError]);`
 
 2. `optionsOrError: Error | {}` the options object may be a nodejs error, or include:
 
-	1. `message` your custom error message.
+	1. `message: string` your custom error message.
 
-	2. `data` whatever data you what to send (also shows up in the payload property) - has to be truthy.
+	2. `data: any` whatever data you what to send (also shows up in the payload property) - has to be truthy.
 
 Also, you can choose to use: `new hr(message [, options]);`
 
-1. `message` your custom error message.
+1. `message: string` your custom error message.
 
 2. `options: {}` the options object may include:
 
-	1. `statusCode: number` the error's status code.
+	1. `statusCode: number` the error's status code (you can use `status` instead).
 
 	2. `data: any` whatever data you what to send (also shows up in the payload property) - has to be truthy.
 
