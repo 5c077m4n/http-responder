@@ -12,4 +12,7 @@ To create a custom error:
 `atatusCode: Number` your error's status code.
 
 `oprions: {} | Error` the options object may be a nodejs error or include:
-message: your custom error message.
+
+1. `message`: your custom error message.
+
+2. `data`: whatever data you what to send.
