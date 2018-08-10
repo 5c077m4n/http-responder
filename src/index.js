@@ -79,7 +79,7 @@ class HttpResponder extends Error {
 				this.statusCode = (errorOrOptions.statusCode)? errorOrOptions.statusCode : 500;
 				this.message = statusCodeOrMessage;
 			}
-			else throw new HttpResponder('The first parameter has to be either a number or a string.');
+			else throw new Error('The first parameter has to be either a number or a string.');
 		}
 		if(!this.message) this.message = codeMap.get(this.statusCode);
 		this._isRespError = true;
