@@ -3,7 +3,7 @@
 const camelCase = require('camelcase');
 
 /**
- * @param codeMap - a map of status codes.
+ * @param codeMap - a complete map of status codes.
  */
 const codeMap = new Map([
 	[100, `Continue`],
@@ -105,6 +105,9 @@ class HttpResponder extends Error {
 
 	appendError(error) {
 		return Object.assign(this, error);
+	}
+	static improve(err) {
+		return new HttpResponder(500, err);
 	}
 	static isHR(err) {
 		return ((err instanceof HttpResponder) && err.isRespError);

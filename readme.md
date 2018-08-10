@@ -49,7 +49,9 @@ to append an Error to your custom one: `appendError(error: Error)`.
 Static functions:
 ----
 
-`hr.isHR(err)`: checks if the err object is of type http-response.
+`hr.isHR(err)` checks if the err object is of type http-response.
+
+`hr.improve(err)` creates a new HttpResponder based on the `err` param (default statusCode = 500).
 
 Static error functions:
 ---
