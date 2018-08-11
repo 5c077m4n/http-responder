@@ -3,9 +3,14 @@
   "version": "1.0.30",
   "description": "A very simple way to create an error response and send it only showing what you choose to.",
   "repository": "https://bitbucket.org/5c077m4n/http-responder/src/master/",
-  "main": "./src/index.js",
+  "main": "./dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "babel": {
+    "presets": [
+      "env"
+    ]
   },
   "keywords": [
     "http",
@@ -16,5 +21,9 @@
   "license": "ISC",
   "dependencies": {
     "camelcase": "^5.0.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0"
   }
 }
