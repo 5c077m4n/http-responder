@@ -30,7 +30,7 @@ Also, you can choose to use: `new hr(message [, options]);`
 
 	2. `data: any` whatever data you what to send (also shows up in the payload property) - has to be truthy!
 
-(`new hr();` no its own will give you a 500 status error default.)
+(`new hr();` on its own will give you a 500 status error default.)
 
 And then your imagination is the limit, ie.: `res.status(error.statusCode).json(error.payload);` (in express 4.x).
 
