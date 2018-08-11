@@ -51,121 +51,122 @@ Static functions:
 
 `hr.isHR(err)` checks if the err object is of type http-response.
 
-`hr.improve(err)` creates a new HttpResponder based on the `err` param (default statusCode = 500).
+`hr.improve(err)` creates a new HttpResponder based on the `err: Error` param (default statusCode is 500).
 
-Static error functions:
+
+Static response functions:
 ---
 
-`hr.continue()`,
+`hr.continue()` (statusCode: 100),
 
-`hr.switchingProtocols()`,
+`hr.switchingProtocols()` (statusCode: 101),
 
-`hr.processing()`,
+`hr.processing()` (statusCode: 102),
 
-`hr.ok()`,
+`hr.ok()` (statusCode: 200),
 
-`hr.created()`,
+`hr.created()` (statusCode: 201),
 
-`hr.accepted()`,
+`hr.accepted()` (statusCode: 202),
 
-`hr.nonAuthoritativeInformation()`,
+`hr.nonAuthoritativeInformation()` (statusCode: 203),
 
-`hr.noContent()`,
+`hr.noContent()` (statusCode: 204),
 
-`hr.resetContent()`,
+`hr.resetContent()` (statusCode: 205),
 
-`hr.partialContent()`,
+`hr.partialContent()` (statusCode: 206),
 
-`hr.multiStatus()`,
+`hr.multiStatus()` (statusCode: 207),
 
-`hr.multipleChoices()`,
+`hr.multipleChoices()` (statusCode: 300),
 
-`hr.movedPermanently()`,
+`hr.movedPermanently()` (statusCode: 301),
 
-`hr.movedTemporarily()`,
+`hr.movedTemporarily()` (statusCode: 302),
 
-`hr.seeOther()`,
+`hr.seeOther()` (statusCode: 303),
 
-`hr.notModified()`,
+`hr.notModified()` (statusCode: 304),
 
-`hr.useProxy()`,
+`hr.useProxy()` (statusCode: 305),
 
-`hr.temporaryRedirect()`,
+`hr.temporaryRedirect()` (statusCode: 307),
 
-`hr.badRequest()`,
+`hr.badRequest()` (statusCode: 400),
 
-`hr.unauthorized()`,
+`hr.unauthorized()` (statusCode: 401),
 
-`hr.paymentRequired()`,
+`hr.paymentRequired()` (statusCode: 402),
 
-`hr.forbidden()`,
+`hr.forbidden()` (statusCode: 403),
 
-`hr.notFound()`,
+`hr.notFound()` (statusCode: 404),
 
-`hr.methodNotAllowed()`,
+`hr.methodNotAllowed()` (statusCode: 405),
 
-`hr.notAcceptable()`,
+`hr.notAcceptable()` (statusCode: 406),
 
-`hr.proxyAuthenticationRequired()`,
+`hr.proxyAuthenticationRequired()` (statusCode: 407),
 
-`hr.requestTimeOut()`,
+`hr.requestTimeOut()` (statusCode: 408),
 
-`hr.conflict()`,
+`hr.conflict()` (statusCode: 409),
 
-`hr.gone()`,
+`hr.gone()` (statusCode: 410),
 
-`hr.lengthRequired()`,
+`hr.lengthRequired()` (statusCode: 411),
 
-`hr.preconditionFailed()`,
+`hr.preconditionFailed()` (statusCode: 412),
 
-`hr.requestEntityTooLarge()`,
+`hr.requestEntityTooLarge()` (statusCode: 413),
 
-`hr.requestUriTooLarge()`,
+`hr.requestUriTooLarge()` (statusCode: 414),
 
-`hr.unsupportedMediaType()`,
+`hr.unsupportedMediaType()` (statusCode: 415),
 
-`hr.requestedRangeNotSatisfiable()`,
+`hr.requestedRangeNotSatisfiable()` (statusCode: 416),
 
-`hr.expectationFailed()`,
+`hr.expectationFailed()` (statusCode: 417),
 
-`hr.iAmATeapot()`,
+`hr.iAmATeapot()` (statusCode: 418),
 
-`hr.unprocessableEntity()`,
+`hr.unprocessableEntity()` (statusCode: 422),
 
-`hr.locked()`,
+`hr.locked()` (statusCode: 423),
 
-`hr.failedDependency()`,
+`hr.failedDependency()` (statusCode: 424),
 
-`hr.unorderedCollection()`,
+`hr.unorderedCollection()` (statusCode: 425),
 
-`hr.upgradeRequired()`,
+`hr.upgradeRequired()` (statusCode: 426),
 
-`hr.preconditionRequired()`,
+`hr.preconditionRequired()` (statusCode: 428),
 
-`hr.tooManyRequests()`,
+`hr.tooManyRequests()` (statusCode: 429),
 
-`hr.requestHeaderFieldsTooLarge()`,
+`hr.requestHeaderFieldsTooLarge()` (statusCode: 431),
 
-`hr.unavailableForLegalReasons()`,
+`hr.unavailableForLegalReasons()` (statusCode: 451),
 
-`hr.internalServerError()`,
+`hr.internalServerError()` (statusCode: 500),
 
-`hr.notImplemented()`,
+`hr.notImplemented()` (statusCode: 501),
 
-`hr.badGateway()`,
+`hr.badGateway()` (statusCode: 502),
 
-`hr.serviceUnavailable()`,
+`hr.serviceUnavailable()` (statusCode: 503),
 
-`hr.gatewayTimeOut()`,
+`hr.gatewayTimeOut()` (statusCode: 504),
 
-`hr.httpVersionNotSupported()`,
+`hr.httpVersionNotSupported()` (statusCode: 505),
 
-`hr.variantAlsoNegotiates()`,
+`hr.variantAlsoNegotiates()` (statusCode: 506),
 
-`hr.insufficientStorage()`,
+`hr.insufficientStorage()` (statusCode: 507),
 
-`hr.bandwidthLimitExceeded()`,
+`hr.bandwidthLimitExceeded()` (statusCode: 509),
 
-`hr.notExtended()`,
+`hr.notExtended()` (statusCode: 510),
 
-`hr.networkAuthenticationRequired()`
+`hr.networkAuthenticationRequired()` (statusCode: 511)
