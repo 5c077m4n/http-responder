@@ -21,9 +21,6 @@ describe('HttpResponder source', function() {
 		it('should have a status getter equal to statusCode.', function() {
 			error.should.have.property('statusCode').equal(error.status);
 		});
-		it('should have a payload.', function() {
-			should.exist(error.payload);
-		});
 		describe('test payload', function() {
 			const payload = error.payload;
 			it('should exist.', function() {
@@ -51,9 +48,6 @@ describe('HttpResponder source', function() {
 		it('should have a status getter equal to statusCode.', function() {
 			error.should.have.property('statusCode').equal(error.status);
 		});
-		it('should have a payload.', function() {
-			should.exist(error.payload);
-		});
 		describe('test payload', function() {
 			const payload = error.payload;
 			it('should exist.', function() {
@@ -80,9 +74,6 @@ describe('HttpResponder source', function() {
 		});
 		it('should have a status getter equal to statusCode.', function() {
 			error.should.have.property('statusCode').equal(error.status);
-		});
-		it('should have a payload.', function() {
-			should.exist(error.payload);
 		});
 		describe('test payload', function() {
 			const payload = error.payload;
@@ -114,9 +105,6 @@ describe('HttpResponder distribution version', function() {
 		it('should have a status getter equal to statusCode.', function() {
 			error.should.have.property('statusCode').equal(error.status);
 		});
-		it('should have a payload.', function() {
-			should.exist(error.payload);
-		});
 		describe('test payload', function() {
 			const payload = error.payload;
 			it('should exist.', function() {
@@ -144,9 +132,6 @@ describe('HttpResponder distribution version', function() {
 		it('should have a status getter equal to statusCode.', function() {
 			error.should.have.property('statusCode').equal(error.status);
 		});
-		it('should have a payload.', function() {
-			should.exist(error.payload);
-		});
 		describe('test payload', function() {
 			const payload = error.payload;
 			it('should exist.', function() {
@@ -173,9 +158,6 @@ describe('HttpResponder distribution version', function() {
 		});
 		it('should have a status getter equal to statusCode.', function() {
 			error.should.have.property('statusCode').equal(error.status);
-		});
-		it('should have a payload.', function() {
-			should.exist(error.payload);
 		});
 		describe('test payload', function() {
 			const payload = error.payload;
