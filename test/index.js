@@ -27,7 +27,7 @@ describe('HttpResponder source', function() {
 		describe('test payload', function() {
 			const payload = error.payload;
 			it('should exist.', function() {
-				should.exist(error);
+				should.exist(payload);
 			});
 			it('should have a status code of 500.', function() {
 				payload.should.have.property('statusCode').equal(500);
@@ -120,7 +120,7 @@ describe('HttpResponder distribution version', function() {
 		describe('test payload', function() {
 			const payload = error.payload;
 			it('should exist.', function() {
-				should.exist(error);
+				should.exist(payload);
 			});
 			it('should have a status code of 500.', function() {
 				payload.should.have.property('statusCode').equal(500);
