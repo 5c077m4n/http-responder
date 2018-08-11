@@ -3,7 +3,12 @@ HTTP Responder
 
 A simple and easy way to create and use HTTP errors (extending the original node.js Error) whilst giving you the control over what is seen.
 
-`const hr = require('http-responder');` => and you're good to go!
+`$ npm install http-responder --save` in your terminal, then
+
+`const hr = require('http-responder');` in your code
+
+=> and you're good to go!
+
 
 To create a custom error: `new hr(statusCode [, optionsOrError]);`
 
@@ -45,7 +50,7 @@ Or, you can create them by the pre-made static functions (`hr.notFound()` for ex
 Methods:
 ----
 
-to append an Error to your custom one: `appendError(error: Error)`.
+`appendError(error: Error)` to append an Error to your custom one.
 
 
 Static functions:
