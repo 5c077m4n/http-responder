@@ -27,6 +27,8 @@ Also, you can choose to use: `new hr(message [, options]);`
 
 (`new hr();` will give you a 500 status error default.)
 
+And then your imagination is the limit: ie `res.status(error.statusCode).json(error.payload);` (in express 4.x).
+
 
 Porperties:
 ----
