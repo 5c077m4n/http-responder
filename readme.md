@@ -51,7 +51,7 @@ Static functions:
 
 `hr.isHR(err)` checks if the err object is of type http-response.
 
-`hr.improve(err)` creates a new HttpResponder based on the `err: Error` param (default statusCode is 500).
+`hr.improve(err)` creates a new HttpResponder based on the `err: Error` param (with a status code of 500).
 
 
 Static response functions:
