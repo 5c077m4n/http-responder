@@ -6,6 +6,13 @@ const hrSrc = require('../src/index');
 const hrDist = require('../dist/index');
 
 
+// let hr;
+
+// for(let i = 0; i < 2; i++) {
+// 	if(i === 0) hr = hrSrc;
+// 	if(i === 1) hr = hrDist;
+// }
+
 describe('HttpResponder source', function() {
 	describe('The default error', function() {
 		const error = new hrSrc();
@@ -26,11 +33,11 @@ describe('HttpResponder source', function() {
 			it('should exist.', function() {
 				should.exist(payload);
 			});
-			it('should have a status code of 500.', function() {
-				payload.should.have.property('statusCode').equal(500);
+			it('should have a status code of the original.', function() {
+				payload.should.have.property('statusCode').equal(error.statusCode);
 			});
-			it('should check the default error message.', function() {
-				payload.should.have.property('message').equal('Internal Server Error');
+			it('should check the default error message is equal to the original one.', function() {
+				payload.should.have.property('error').equal(error.message);
 			});
 		});
 	});
@@ -53,10 +60,10 @@ describe('HttpResponder source', function() {
 			it('should exist.', function() {
 				should.exist(payload);
 			});
-			it('should have a status code of 499.', function() {
-				payload.should.have.property('statusCode').equal(499);
+			it('should have a status code of the original.', function() {
+				payload.should.have.property('statusCode').equal(error.statusCode);
 			});
-			it('should check the default error message.', function() {
+			it('should check the default error message is equal to the original one.', function() {
 				payload.should.have.property('error').equal('Unknown Error');
 			});
 		});
@@ -80,11 +87,38 @@ describe('HttpResponder source', function() {
 			it('should exist.', function() {
 				should.exist(payload);
 			});
-			it('should have a status code of 404.', function() {
-				payload.should.have.property('statusCode').equal(404);
+			it('should have a status code of the original.', function() {
+				payload.should.have.property('statusCode').equal(error.statusCode);
 			});
-			it('should check the default error message.', function() {
-				payload.should.have.property('error').equal('Not Found');
+			it('should check the default error message is equal to the original one.', function() {
+				payload.should.have.property('error').equal(error.message);
+			});
+		});
+	});
+	describe('the locked error', function() {
+		const error = hrSrc.locked();
+		it('should exist.', function() {
+			should.exist(error);
+		});
+		it('should have a status code of 423.', function() {
+			error.should.have.property('statusCode').equal(423);
+		});
+		it('should check the default error message.', function() {
+			error.should.have.property('message').equal('Locked');
+		});
+		it('should have a status getter equal to statusCode.', function() {
+			error.should.have.property('statusCode').equal(error.status);
+		});
+		describe('test payload', function() {
+			const payload = error.payload;
+			it('should exist.', function() {
+				should.exist(payload);
+			});
+			it('should have a status code of the original.', function() {
+				payload.should.have.property('statusCode').equal(error.statusCode);
+			});
+			it('should check the default error message is equal to the original one.', function() {
+				payload.should.have.property('error').equal(error.message);
 			});
 		});
 	});
@@ -110,11 +144,11 @@ describe('HttpResponder distribution version', function() {
 			it('should exist.', function() {
 				should.exist(payload);
 			});
-			it('should have a status code of 500.', function() {
-				payload.should.have.property('statusCode').equal(500);
+			it('should have a status code of the original.', function() {
+				payload.should.have.property('statusCode').equal(error.statusCode);
 			});
-			it('should check the default error message.', function() {
-				payload.should.have.property('message').equal('Internal Server Error');
+			it('should check the default error message is equal to the original one.', function() {
+				payload.should.have.property('error').equal(error.message);
 			});
 		});
 	});
@@ -137,10 +171,10 @@ describe('HttpResponder distribution version', function() {
 			it('should exist.', function() {
 				should.exist(payload);
 			});
-			it('should have a status code of 499.', function() {
-				payload.should.have.property('statusCode').equal(499);
+			it('should have a status code of the original.', function() {
+				payload.should.have.property('statusCode').equal(error.statusCode);
 			});
-			it('should check the default error message.', function() {
+			it('should check the default error message is equal to the original one.', function() {
 				payload.should.have.property('error').equal('Unknown Error');
 			});
 		});
@@ -164,11 +198,38 @@ describe('HttpResponder distribution version', function() {
 			it('should exist.', function() {
 				should.exist(payload);
 			});
-			it('should have a status code of 404.', function() {
-				payload.should.have.property('statusCode').equal(404);
+			it('should have a status code of the original.', function() {
+				payload.should.have.property('statusCode').equal(error.statusCode);
 			});
-			it('should check the default error message.', function() {
-				payload.should.have.property('error').equal('Not Found');
+			it('should check the default error message is equal to the original one.', function() {
+				payload.should.have.property('error').equal(error.message);
+			});
+		});
+	});
+	describe('the locked error', function() {
+		const error = hrDist.locked();
+		it('should exist.', function() {
+			should.exist(error);
+		});
+		it('should have a status code of 423.', function() {
+			error.should.have.property('statusCode').equal(423);
+		});
+		it('should check the default error message.', function() {
+			error.should.have.property('message').equal('Locked');
+		});
+		it('should have a status getter equal to statusCode.', function() {
+			error.should.have.property('statusCode').equal(error.status);
+		});
+		describe('test payload', function() {
+			const payload = error.payload;
+			it('should exist.', function() {
+				should.exist(payload);
+			});
+			it('should have a status code of the original.', function() {
+				payload.should.have.property('statusCode').equal(error.statusCode);
+			});
+			it('should check the default error message is equal to the original one.', function() {
+				payload.should.have.property('error').equal(error.message);
 			});
 		});
 	});
