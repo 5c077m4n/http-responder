@@ -42,7 +42,7 @@ const codeMap = new Map([
 	[415, `Unsupported Media Type`],
 	[416, `Requested Range Not Satisfiable`],
 	[417, `Expectation Failed`],
-	[418, `I am a teapot`],
+	[418, `I Am A Teapot`],
 	[422, `Unprocessable Entity`],
 	[423, `Locked`],
 	[424, `Failed Dependency`],
@@ -88,7 +88,8 @@ class HttpResponder extends Error {
 			);
 		}
 		if(!this.message) this.message = codeMap.get(this.statusCode);
-		this._isRespError = true;
+		this.statusDesc = codeMap.get(this.statusCode);
+		this._isHttpRes = true;
 	}
 	get status() {
 		return this.statusCode;
@@ -97,13 +98,10 @@ class HttpResponder extends Error {
 		this.statusCode = code;
 		return code;
 	}
-	get isRespError() {
-		return this._isRespError;
-	}
 	get payload() {
 		return {
 			statusCode: this.statusCode,
-			error: (codeMap.has(this.statusCode))?
+			statusDesc: (codeMap.has(this.statusCode))?
 				codeMap.get(this.statusCode) : 'Unknown Error',
 			message: this.message,
 			data: (this.data)? this.data : undefined
@@ -132,7 +130,7 @@ function build() {
 		HttpResponder[camelCase(value)] = function(msg, data) {
 			return new HttpResponder(key, {
 				statusCode: key,
-				error: codeMap.get(key),
+				statusDesc: codeMap.get(key),
 				message: msg,
 				data
 			});

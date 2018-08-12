@@ -42,9 +42,19 @@ Porperties:
 
 1. `status`: the same as 'statusCode' - for compability.
 
-2. `payload`: holds only a pretty version of the error (ie, no stack), so no sensitive information will be leaked.
+2. `statusDesc` - the default text for the given status code.
 
-3. `isRespError: boolean`: a boolean saying if the object is of type HttpResponder.
+3. `payload`: holds only a pretty version of the error (ie, no stack), so no sensitive information will be leaked, including:
+
+	1. `statusCode` - the original status code.
+
+	2. `statusDesc` - the default status description.
+
+	3. `message` - the given message.
+
+	4. `data` - the given data.
+
+4. All other nodejs's `Error` object properties.
 
 
 Methods:
@@ -56,9 +66,9 @@ Methods:
 Static functions:
 ----
 
-`hr.isHR(err)` checks if the err object is of type http-response.
+`hr.isHR(res)` checks if the res object is of type http-response.
 
-`hr.improve(err)` creates a new HttpResponder based on the `err: Error` param (with a status code of 500).
+`hr.improve(err)` creates a new HttpResponder based on the `err: Error` param (with a status code of 500 unless different in the err object).
 
 
 Static response functions:

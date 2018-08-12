@@ -15,8 +15,8 @@ const knownPayloadTestSiute = error => {
 		it('should have a status code of the original object.', function() {
 			payload.should.have.property('statusCode').equal(error.statusCode);
 		});
-		it('should check the default error message is equal to the original one.', function() {
-			payload.should.have.property('error').equal(error.message);
+		it('should check the default message is equal to the original one.', function() {
+			payload.should.have.property('statusDesc').equal(error.message);
 		});
 	});
 };
@@ -62,8 +62,8 @@ const testSuite = (title, hr) => {
 				it('should have a status code of the original.', function() {
 					payload.should.have.property('statusCode').equal(error.statusCode);
 				});
-				it('should check the default error message is equal to the original one.', function() {
-					payload.should.have.property('error').equal('Unknown Error');
+				it('should check the default message is equal to the original one.', function() {
+					payload.should.have.property('statusDesc').equal('Unknown Error');
 				});
 			});
 		});
