@@ -127,7 +127,7 @@ class HttpResponder extends Error {
 		return new HttpResponder(500, err);
 	}
 	static isHR(err) {
-		return ((err instanceof HttpResponder) && err.isRespError);
+		return ((err instanceof HttpResponder) && err._isHttpRes);
 	}
 }
 

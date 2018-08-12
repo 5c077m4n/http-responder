@@ -23,10 +23,13 @@ const payloadTestSuite = error => {
 		});
 	});
 };
-const responseTestSuite = (title, error, expectedStatus, expectedDefaultMessage, expectedMessage) => {
+const responseTestSuite = (hr, title, error, expectedStatus, expectedDefaultMessage, expectedMessage) => {
 	describe(title, function() {
 		it('should exist', function() {
 			should.exist(error);
+		});
+		it('should be of type HttpResponse', function() {
+			expect(hr.isHR(new hr())).equal(true);
 		});
 		it(`should have a status code of ${expectedStatus}`, function() {
 			error.should.have.property('statusCode').equal(expectedStatus);
@@ -46,11 +49,11 @@ const responseTestSuite = (title, error, expectedStatus, expectedDefaultMessage,
 const testSuite = (title, hr) => {
 	describe(title, function() {
 		[
-			['the default error', new hr(), 500, 'Internal Server Error'],
-			['the default error', new hr('Waka Waka!'), 500, 'Internal Server Error', 'Waka Waka!'],
-			['the custom error', new hr(499), 499, 'Unknown Status Code'],
-			['the not found error', hr.notFound(), 404, 'Not Found'],
-			['the locked error', hr.locked('Can\'t go here!'), 423, 'Locked', 'Can\'t go here!']
+			[hr, 'the default error', new hr(), 500, 'Internal Server Error'],
+			[hr, 'the default error', new hr('Waka Waka!'), 500, 'Internal Server Error', 'Waka Waka!'],
+			[hr, 'the custom error', new hr(499), 499, 'Unknown Status Code'],
+			[hr, 'the not found error', hr.notFound(), 404, 'Not Found'],
+			[hr, 'the locked error', hr.locked('Can\'t go here!'), 423, 'Locked', 'Can\'t go here!']
 		]
 		.forEach(item => responseTestSuite(...item));
 	});
