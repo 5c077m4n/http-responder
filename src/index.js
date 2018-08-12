@@ -62,24 +62,30 @@ const codeMap = new Map([
 	[507, `Insufficient Storage`],
 	[509, `Bandwidth Limit Exceeded`],
 	[510, `Not Extended`],
-	[511, `Network Authentication Required`],
+	[511, `Network Authentication Required`]
 ]);
 
 /**
- * @class HttpResponder - a class containing all static functions that create the responses,
- * with getters ang setters.
+ * @class HttpResponder - a class containing all static
+ * functions that create the responses, with getters and
+ * setters.
  */
 class HttpResponder extends Error {
 	constructor(statusCodeOrMessage = 500, errorOrOptions = {}) {
 		super();
 		Object.assign(this, errorOrOptions);
-		if(typeof statusCodeOrMessage === 'number') this.statusCode = statusCodeOrMessage;
+		if(typeof statusCodeOrMessage === 'number')
+			this.statusCode = statusCodeOrMessage;
 		else {
 			if(typeof statusCodeOrMessage === 'string') {
-				this.statusCode = errorOrOptions.statusCode || errorOrOptions.status || 500;
+				this.statusCode = errorOrOptions.statusCode
+					|| errorOrOptions.status
+					|| 500;
 				this.message = statusCodeOrMessage;
 			}
-			else throw new Error('The first parameter must be either a number or a string.');
+			else throw new Error(
+				'The first parameter must be either a number or a string.'
+			);
 		}
 		if(!this.message) this.message = codeMap.get(this.statusCode);
 		this._isRespError = true;
@@ -97,7 +103,8 @@ class HttpResponder extends Error {
 	get payload() {
 		return {
 			statusCode: this.statusCode,
-			error: (codeMap.has(this.statusCode))? codeMap.get(this.statusCode) : 'Unknown Error',
+			error: (codeMap.has(this.statusCode))?
+				codeMap.get(this.statusCode) : 'Unknown Error',
 			message: this.message,
 			data: (this.data)? this.data : undefined
 		};
@@ -115,8 +122,10 @@ class HttpResponder extends Error {
 };
 
 /**
- * @function build - adds dynamically all of the codeMap's values as functions.
- * @returns HttpResponder - the class with all static functions attached.
+ * @function build - adds dynamically all of the codeMap's
+ * values as functions.
+ * @returns HttpResponder - the class with all static functions
+ * attached.
  */
 function build() {
 	codeMap.forEach((value, key, map) => {
