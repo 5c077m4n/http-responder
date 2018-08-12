@@ -32,6 +32,8 @@ Also, you can choose to use: `new hr(message [, options]);`
 
 (`new hr();` on its own will give you a 500 status error default.)
 
+Or, you can create them by the pre-made static functions (`hr.notFound()` for example) - a full list below.
+
 And then your imagination is the limit, ie.: `res.status(error.statusCode).json(error.payload);` (in express 4.x).
 
 
@@ -43,8 +45,6 @@ Porperties:
 2. `payload`: holds only a pretty version of the error (ie, no stack), so no sensitive information will be leaked.
 
 3. `isRespError: boolean`: a boolean saying if the object is of type HttpResponder.
-
-Or, you can create them by the pre-made static functions (`hr.notFound()` for example).
 
 
 Methods:
