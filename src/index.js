@@ -127,6 +127,10 @@ class HttpResponder extends Error {
 	appendError(err) {
 		return Object.assign(this, err);
 	}
+	/** Return a response to the client (express 4.x) */
+	end(res) {
+		return res.status(this.statusCode).json(this.payload);
+	}
 
 	/** Static functions */
 	static improve(err) {
