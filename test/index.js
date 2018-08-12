@@ -72,8 +72,8 @@ const testSuite = (title, hr) => {
 	});
 };
 
-const hrTestList = [
+const hrTestMap = new Map([
 	['HttpResponder source', hrSrc],
 	['HttpResponder distribution version', hrDist]
-];
-hrTestList.forEach(testItem => testSuite(...testItem));
+]);
+hrTestMap.forEach((testVersion, testTitle) => testSuite(testTitle, testVersion));
