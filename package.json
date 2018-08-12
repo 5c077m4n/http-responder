@@ -1,22 +1,24 @@
 {
   "name": "http-responder",
-  "version": "1.0.41",
+  "version": "1.0.42",
   "description": "A very simple way to create an error response and send it only showing what you choose to.",
   "repository": "https://bitbucket.org/5c077m4n/http-responder/src/master/",
   "main": "./dist/index.js",
   "scripts": {
     "build": "./node_modules/.bin/minify src -d dist",
-	"test": "mocha",
-	"lint": "./node_modules/.bin/eslint ./src/index.js"
+    "test": "mocha",
+    "lint": "./node_modules/.bin/eslint ./src/index.js"
   },
   "eslintConfig": {
-	"env": {
-	  "node": true,
-	  "es6": true
-	},
-	"parserOptions": { "ecmaVersion": 6	},
-	"extends": "eslint:recommended",
-	"rules": {}
+    "env": {
+      "node": true,
+      "es6": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 6
+    },
+    "extends": "eslint:recommended",
+    "rules": {}
   },
   "babel": {
     "presets": [
