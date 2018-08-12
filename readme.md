@@ -2,7 +2,7 @@
 HTTP Responder
 ==================
 
-![Dependency Tests](https://david-dm.org/5c077m4n/http-responder.svg)
+[![Dependency Tests](https://david-dm.org/5c077m4n/http-responder.svg)](https://david-dm.org/)
 [![Greenkeeper badge](https://badges.greenkeeper.io/5c077m4n/http-responder.svg)](https://greenkeeper.io/)
 [![Build Status](https://travis-ci.org/5c077m4n/http-responder.svg?branch=master)](https://travis-ci.org/5c077m4n/http-responder)
 
