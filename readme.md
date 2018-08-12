@@ -3,6 +3,8 @@
 HTTP Responder
 ==================
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/5c077m4n/http-responder.svg)](https://greenkeeper.io/)
+
 A simple and easy way to create and use HTTP errors (extending the original node.js Error) whilst giving you the control over what is seen.
 
 ```zsh
