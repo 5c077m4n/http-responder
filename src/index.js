@@ -10,6 +10,7 @@ const codeMap = new Map([
 	[100, `Continue`],
 	[101, `Switching Protocols`],
 	[102, `Processing`],
+	[103, 'Early Hints'],
 	[200, `OK`],
 	[201, `Created`],
 	[202, `Accepted`],
@@ -18,13 +19,17 @@ const codeMap = new Map([
 	[205, `Reset Content`],
 	[206, `Partial Content`],
 	[207, `Multi-Status`],
+	[208, `Already Reported`],
+	[226, `IM Used`],
 	[300, `Multiple Choices`],
 	[301, `Moved Permanently`],
-	[302, `Moved Temporarily`],
+	[302, `Found`],
 	[303, `See Other`],
 	[304, `Not Modified`],
 	[305, `Use Proxy`],
+	[306, `Switch Proxy`],
 	[307, `Temporary Redirect`],
+	[308, `Permanent Redirect`],
 	[400, `Bad Request`],
 	[401, `Unauthorized`],
 	[402, `Payment Required`],
@@ -38,12 +43,13 @@ const codeMap = new Map([
 	[410, `Gone`],
 	[411, `Length Required`],
 	[412, `Precondition Failed`],
-	[413, `Request Entity Too Large`],
-	[414, `Request-URI Too Large`],
+	[413, `Payload Too Large`],
+	[414, `URI Too Long`],
 	[415, `Unsupported Media Type`],
 	[416, `Requested Range Not Satisfiable`],
 	[417, `Expectation Failed`],
 	[418, `I Am A Teapot`],
+	[421, `Misdirected Request`],
 	[422, `Unprocessable Entity`],
 	[423, `Locked`],
 	[424, `Failed Dependency`],
@@ -75,6 +81,7 @@ class HttpResponder extends Error {
 	constructor(statusCodeOrMessage = 500, errorOrOptions = {}) {
 		super();
 		Object.assign(this, errorOrOptions);
+		this._isHttpRes = true;
 		if(typeof statusCodeOrMessage === 'number') {
 			this.statusCode = statusCodeOrMessage;
 			this.message = (errorOrOptions.message)?
@@ -91,7 +98,6 @@ class HttpResponder extends Error {
 				'The first parameter must be either a number or a string.'
 			);
 		}
-		this._isHttpRes = true;
 	}
 
 	/** Getters and setters */
@@ -117,7 +123,7 @@ class HttpResponder extends Error {
 	}
 	set payload(_) { throw new Error('This property is read-only.'); }
 
-	/** Append new errors to the exisisting HttpResponse */
+	/** Append new responses to the exisisting HttpResponse */
 	appendError(err) {
 		return Object.assign(this, err);
 	}
@@ -126,8 +132,8 @@ class HttpResponder extends Error {
 	static improve(err) {
 		return new HttpResponder(500, err);
 	}
-	static isHR(err) {
-		return ((err instanceof HttpResponder) && err._isHttpRes);
+	static isHR(res) {
+		return ((res instanceof HttpResponder) && res._isHttpRes);
 	}
 }
 

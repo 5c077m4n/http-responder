@@ -80,6 +80,8 @@ Static response functions:
 
 `hr.processing()` (statusCode: 102),
 
+`hr.earlyHints()` (statusCode: 103),
+
 `hr.ok()` (statusCode: 200),
 
 `hr.created()` (statusCode: 201),
@@ -96,11 +98,15 @@ Static response functions:
 
 `hr.multiStatus()` (statusCode: 207),
 
+`hr.alreadyReported()` (statusCode: 208),
+
+`hr.ImUsed()` (statusCode: 226),
+
 `hr.multipleChoices()` (statusCode: 300),
 
 `hr.movedPermanently()` (statusCode: 301),
 
-`hr.movedTemporarily()` (statusCode: 302),
+`hr.found()` (statusCode: 302),
 
 `hr.seeOther()` (statusCode: 303),
 
@@ -108,7 +114,11 @@ Static response functions:
 
 `hr.useProxy()` (statusCode: 305),
 
+`hr.switchProxy()` (statusCode: 306),
+
 `hr.temporaryRedirect()` (statusCode: 307),
+
+`hr.permanentRedirect()` (statusCode: 308),
 
 `hr.badRequest()` (statusCode: 400),
 
@@ -136,9 +146,9 @@ Static response functions:
 
 `hr.preconditionFailed()` (statusCode: 412),
 
-`hr.requestEntityTooLarge()` (statusCode: 413),
+`hr.payloadTooLarge()` (statusCode: 413),
 
-`hr.requestUriTooLarge()` (statusCode: 414),
+`hr.uriTooLong()` (statusCode: 414),
 
 `hr.unsupportedMediaType()` (statusCode: 415),
 
@@ -147,6 +157,8 @@ Static response functions:
 `hr.expectationFailed()` (statusCode: 417),
 
 `hr.iAmATeapot()` (statusCode: 418),
+
+`hr.misdirectedRequest` (statusCode: 421),
 
 `hr.unprocessableEntity()` (statusCode: 422),
 
