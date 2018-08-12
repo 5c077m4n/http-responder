@@ -2,6 +2,7 @@
 
 const camelCase = require('camelcase');
 
+
 /**
  * @param codeMap - a complete map of status codes.
  */
@@ -74,14 +75,17 @@ class HttpResponder extends Error {
 	constructor(statusCodeOrMessage = 500, errorOrOptions = {}) {
 		super();
 		Object.assign(this, errorOrOptions);
-		if(typeof statusCodeOrMessage === 'number')
+		if(typeof statusCodeOrMessage === 'number') {
 			this.statusCode = statusCodeOrMessage;
+			this.message = (errorOrOptions.message)?
+				errorOrOptions.message : undefined;
+		}
 		else {
 			if(typeof statusCodeOrMessage === 'string') {
+				this.message = statusCodeOrMessage;
 				this.statusCode = errorOrOptions.statusCode
 					|| errorOrOptions.status
 					|| 500;
-				this.message = statusCodeOrMessage;
 			}
 			else throw new Error(
 				'The first parameter must be either a number or a string.'
@@ -89,6 +93,8 @@ class HttpResponder extends Error {
 		}
 		this._isHttpRes = true;
 	}
+
+	/** Getters and setters */
 	get status() {
 		return this.statusCode;
 	}
@@ -100,24 +106,23 @@ class HttpResponder extends Error {
 		return (codeMap.has(this.statusCode))?
 			codeMap.get(this.statusCode) : 'Unknown Status Code';
 	}
-	set statusDesc(_) {
-		throw new Error('This property is read-only.');
-	}
+	set statusDesc(_) { throw new Error('This property is read-only.'); }
 	get payload() {
 		return {
 			statusCode: this.statusCode,
 			statusDesc: this.statusDesc,
-			message: this.message,
+			message: (this.message)? this.message : undefined,
 			data: (this.data)? this.data : undefined
 		};
 	}
-	set payload(_) {
-		throw new Error('This property is read-only.');
-	}
+	set payload(_) { throw new Error('This property is read-only.'); }
+
+	/** Append new errors to the exisisting HttpResponse */
 	appendError(err) {
 		return Object.assign(this, err);
 	}
 
+	/** Static functions */
 	static improve(err) {
 		return new HttpResponder(500, err);
 	}

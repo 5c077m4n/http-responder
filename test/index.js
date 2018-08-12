@@ -13,10 +13,13 @@ const payloadTestSuite = error => {
 			should.exist(payload);
 		});
 		it('should have a status code of the original object', function() {
-			payload.should.have.property('statusCode').equal(error.statusCode);
+			expect(payload.statusCode).equal(error.statusCode);
 		});
-		it('should have a data of the original object', function() {
-			payload.should.have.property('data').equal(error.data);
+		it('should have the data of the original object', function() {
+			expect(payload.data).equal(error.data);
+		});
+		it('should have the message of the original object', function() {
+			expect(payload.message).equal(error.message);
 		});
 	});
 };
@@ -32,10 +35,10 @@ const responseTestSuite = (title, error, expectedStatus, expectedDefaultMessage,
 			error.should.have.property('statusDesc').equal(expectedDefaultMessage);
 		});
 		it('should check the custom message', function() {
-			error.should.have.property('message').equal(expectedMessage);
+			expect(error.message).equal(expectedMessage);
 		});
 		it('should have a status getter equal to statusCode', function() {
-			error.should.have.property('statusCode').equal(error.status);
+			expect(error.statusCode).equal(error.status);
 		});
 	});
 	payloadTestSuite(error);
@@ -43,8 +46,9 @@ const responseTestSuite = (title, error, expectedStatus, expectedDefaultMessage,
 const testSuite = (title, hr) => {
 	describe(title, function() {
 		[
-			['the default error', new hr(), 500, 'Internal Server Error', ''],
-			['the custom error', new hr(499), 499, 'Unknown Status Code', ''],
+			['the default error', new hr(), 500, 'Internal Server Error'],
+			['the default error', new hr('Waka Waka!'), 500, 'Internal Server Error', 'Waka Waka!'],
+			['the custom error', new hr(499), 499, 'Unknown Status Code'],
 			['the not found error', hr.notFound(), 404, 'Not Found'],
 			['the locked error', hr.locked('Can\'t go here!'), 423, 'Locked', 'Can\'t go here!']
 		]
