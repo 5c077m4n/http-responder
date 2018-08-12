@@ -82,128 +82,132 @@ Static functions:
 Static response functions:
 ---
 
-`hr.continue()` (statusCode: 100),
 
-`hr.switchingProtocols()` (statusCode: 101),
-
-`hr.processing()` (statusCode: 102),
-
-`hr.earlyHints()` (statusCode: 103),
-
-`hr.ok()` (statusCode: 200),
-
-`hr.created()` (statusCode: 201),
-
-`hr.accepted()` (statusCode: 202),
-
-`hr.nonAuthoritativeInformation()` (statusCode: 203),
-
-`hr.noContent()` (statusCode: 204),
-
-`hr.resetContent()` (statusCode: 205),
-
-`hr.partialContent()` (statusCode: 206),
-
-`hr.multiStatus()` (statusCode: 207),
-
-`hr.alreadyReported()` (statusCode: 208),
-
-`hr.ImUsed()` (statusCode: 226),
-
-`hr.multipleChoices()` (statusCode: 300),
-
-`hr.movedPermanently()` (statusCode: 301),
-
-`hr.found()` (statusCode: 302),
-
-`hr.seeOther()` (statusCode: 303),
-
-`hr.notModified()` (statusCode: 304),
-
-`hr.useProxy()` (statusCode: 305),
-
-`hr.switchProxy()` (statusCode: 306),
-
-`hr.temporaryRedirect()` (statusCode: 307),
-
-`hr.permanentRedirect()` (statusCode: 308),
-
-`hr.badRequest()` (statusCode: 400),
-
-`hr.unauthorized()` (statusCode: 401),
-
-`hr.paymentRequired()` (statusCode: 402),
-
-`hr.forbidden()` (statusCode: 403),
-
-`hr.notFound()` (statusCode: 404),
-
-`hr.methodNotAllowed()` (statusCode: 405),
-
-`hr.notAcceptable()` (statusCode: 406),
-
-`hr.proxyAuthenticationRequired()` (statusCode: 407),
-
-`hr.requestTimeOut()` (statusCode: 408),
-
-`hr.conflict()` (statusCode: 409),
-
-`hr.gone()` (statusCode: 410),
-
-`hr.lengthRequired()` (statusCode: 411),
-
-`hr.preconditionFailed()` (statusCode: 412),
-
-`hr.payloadTooLarge()` (statusCode: 413),
-
-`hr.uriTooLong()` (statusCode: 414),
-
-`hr.unsupportedMediaType()` (statusCode: 415),
-
-`hr.requestedRangeNotSatisfiable()` (statusCode: 416),
-
-`hr.expectationFailed()` (statusCode: 417),
-
-`hr.iAmATeapot()` (statusCode: 418),
-
-`hr.misdirectedRequest` (statusCode: 421),
-
-`hr.unprocessableEntity()` (statusCode: 422),
-
-`hr.locked()` (statusCode: 423),
-
-`hr.failedDependency()` (statusCode: 424),
-
-`hr.unorderedCollection()` (statusCode: 425),
-
-`hr.upgradeRequired()` (statusCode: 426),
-
-`hr.preconditionRequired()` (statusCode: 428),
-
-`hr.tooManyRequests()` (statusCode: 429),
-
-`hr.requestHeaderFieldsTooLarge()` (statusCode: 431),
-
-`hr.unavailableForLegalReasons()` (statusCode: 451),
-
-`hr.internalServerError()` (statusCode: 500),
-
-`hr.notImplemented()` (statusCode: 501),
-
-`hr.badGateway()` (statusCode: 502),
-
-`hr.serviceUnavailable()` (statusCode: 503),
-
-`hr.gatewayTimeOut()` (statusCode: 504),
-
-`hr.httpVersionNotSupported()` (statusCode: 505),
-
-`hr.variantAlsoNegotiates()` (statusCode: 506),
-
-`hr.insufficientStorage()` (statusCode: 507),
-
-`hr.bandwidthLimitExceeded()` (statusCode: 509),
-
-`hr.notExtended()` (statusCode: 510),
-
-`hr.networkAuthenticationRequired()` (statusCode: 511)
+|			Static Function				|	Status Code	|
+|---------------------------------------|---------------|
+|`hr.continue()`						|			100	|
+|---------------------------------------|---------------|
+|`hr.switchingProtocols()`				|			101	|
+|---------------------------------------|---------------|
+|`hr.processing()`					 	|			102	|
+|---------------------------------------|---------------|
+|`hr.earlyHints()`						|			103	|
+|---------------------------------------|---------------|
+|`hr.ok()`								|			200	|
+|---------------------------------------|---------------|
+|`hr.created()`							|			201	|
+|---------------------------------------|---------------|
+|`hr.accepted()`						|			202	|
+|---------------------------------------|---------------|
+|`hr.nonAuthoritativeInformation()`		|			203	|
+|---------------------------------------|---------------|
+|`hr.noContent()`						|			204	|
+|---------------------------------------|---------------|
+|`hr.resetContent()`					|			205	|
+|---------------------------------------|---------------|
+|`hr.partialContent()`					|			206	|
+|---------------------------------------|---------------|
+|`hr.multiStatus()`						|			207	|
+|---------------------------------------|---------------|
+|`hr.alreadyReported()`					|			208	|
+|---------------------------------------|---------------|
+|`hr.ImUsed()`							|			226	|
+|---------------------------------------|---------------|
+|`hr.multipleChoices()`					|			300	|
+|---------------------------------------|---------------|
+|`hr.movedPermanently()`				|			301	|
+|---------------------------------------|---------------|
+|`hr.found()`							|			302	|
+|---------------------------------------|---------------|
+|`hr.seeOther()`						|			303	|
+|---------------------------------------|---------------|
+|`hr.notModified()`						|			304	|
+|---------------------------------------|---------------|
+|`hr.useProxy()`						|			305	|
+|---------------------------------------|---------------|
+|`hr.switchProxy()`						|			306	|
+|---------------------------------------|---------------|
+|`hr.temporaryRedirect()`				|			307	|
+|---------------------------------------|---------------|
+|`hr.permanentRedirect()`				|			308	|
+|---------------------------------------|---------------|
+|`hr.badRequest()`						|			400	|
+|---------------------------------------|---------------|
+|`hr.unauthorized()`					|			401	|
+|---------------------------------------|---------------|
+|`hr.paymentRequired()`					|			402	|
+|---------------------------------------|---------------|
+|`hr.forbidden()`						|			403	|
+|---------------------------------------|---------------|
+|`hr.notFound()`						|			404	|
+|---------------------------------------|---------------|
+|`hr.methodNotAllowed()`				|			405	|
+|---------------------------------------|---------------|
+|`hr.notAcceptable()`					|			406	|
+|---------------------------------------|---------------|
+|`hr.proxyAuthenticationRequired()`		|			407	|
+|---------------------------------------|---------------|
+|`hr.requestTimeOut()`					|			408	|
+|---------------------------------------|---------------|
+|`hr.conflict()`						|			409	|
+|---------------------------------------|---------------|
+|`hr.gone()`							|			410	|
+|---------------------------------------|---------------|
+|`hr.lengthRequired()`					|			411	|
+|---------------------------------------|---------------|
+|`hr.preconditionFailed()`				|			412	|
+|---------------------------------------|---------------|
+|`hr.payloadTooLarge()`					|			413	|
+|---------------------------------------|---------------|
+|`hr.uriTooLong()`						|			414	|
+|---------------------------------------|---------------|
+|`hr.unsupportedMediaType()`			|			415	|
+|---------------------------------------|---------------|
+|`hr.requestedRangeNotSatisfiable()`	|			416	|
+|---------------------------------------|---------------|
+|`hr.expectationFailed()`				|			417	|
+|---------------------------------------|---------------|
+|`hr.iAmATeapot()`						|			418	|
+|---------------------------------------|---------------|
+|`hr.misdirectedRequest()`				|			421	|
+|---------------------------------------|---------------|
+|`hr.unprocessableEntity()`				|			422	|
+|---------------------------------------|---------------|
+|`hr.locked()`							|			423	|
+|---------------------------------------|---------------|
+|`hr.failedDependency()`				|			424	|
+|---------------------------------------|---------------|
+|`hr.unorderedCollection()`				|			425	|
+|---------------------------------------|---------------|
+|`hr.upgradeRequired()`					|			426	|
+|---------------------------------------|---------------|
+|`hr.preconditionRequired()`			|			428	|
+|---------------------------------------|---------------|
+|`hr.tooManyRequests()`					|			429	|
+|---------------------------------------|---------------|
+|`hr.requestHeaderFieldsTooLarge()`		|			431	|
+|---------------------------------------|---------------|
+|`hr.unavailableForLegalReasons()`		|			451	|
+|---------------------------------------|---------------|
+|`hr.internalServerError()`				|			500	|
+|---------------------------------------|---------------|
+|`hr.notImplemented()`					|			501	|
+|---------------------------------------|---------------|
+|`hr.badGateway()`						|			502	|
+|---------------------------------------|---------------|
+|`hr.serviceUnavailable()`				|			503	|
+|---------------------------------------|---------------|
+|`hr.gatewayTimeOut()`					|			504	|
+|---------------------------------------|---------------|
+|`hr.httpVersionNotSupported()`			|			505	|
+|---------------------------------------|---------------|
+|`hr.variantAlsoNegotiates()`			|			506	|
+|---------------------------------------|---------------|
+|`hr.insufficientStorage()`				|			507	|
+|---------------------------------------|---------------|
+|`hr.bandwidthLimitExceeded()`			|			509	|
+|---------------------------------------|---------------|
+|`hr.notExtended()`						|			510	|
+|---------------------------------------|---------------|
+|`hr.networkAuthenticationRequired()`	|			511	|
+|---------------------------------------|---------------|
