@@ -109,17 +109,17 @@ class HttpResponder extends Error {
 			data: (this.data)? this.data : undefined
 		};
 	}
-
 	appendError(err) {
 		return Object.assign(this, err);
 	}
+
 	static improve(err) {
 		return new HttpResponder(500, err);
 	}
 	static isHR(err) {
 		return ((err instanceof HttpResponder) && err.isRespError);
 	}
-};
+}
 
 /**
  * @function build - adds dynamically all of the codeMap's
@@ -128,7 +128,7 @@ class HttpResponder extends Error {
  * attached.
  */
 function build() {
-	codeMap.forEach((value, key, map) => {
+	codeMap.forEach((value, key) => {
 		HttpResponder[camelCase(value)] = function(msg, data) {
 			return new HttpResponder(key, {
 				statusCode: key,

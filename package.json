@@ -6,7 +6,17 @@
   "main": "./dist/index.js",
   "scripts": {
     "build": "./node_modules/.bin/minify src -d dist",
-    "test": "mocha"
+	"test": "mocha",
+	"lint": "./node_modules/.bin/eslint ./src/index.js"
+  },
+  "eslintConfig": {
+	"env": {
+	  "node": true,
+	  "es6": true
+	},
+	"parserOptions": { "ecmaVersion": 6	},
+	"extends": "eslint:recommended",
+	"rules": {}
   },
   "babel": {
     "presets": [
@@ -33,6 +43,7 @@
   "devDependencies": {
     "babel-minify": "^0.4.3",
     "chai": "^4.1.2",
+    "eslint": "^5.3.0",
     "mocha": "^5.2.0"
   }
 }
