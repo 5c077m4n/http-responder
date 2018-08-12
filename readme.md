@@ -5,7 +5,7 @@ HTTP Responder
 
 A simple and easy way to create and use HTTP errors (extending the original node.js Error) whilst giving you the control over what is seen.
 
-```zsh
+```bash
 $ npm install http-responder --save
 ```
 in your terminal, then
