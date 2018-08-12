@@ -4,6 +4,7 @@ HTTP Responder
 
 ![Dependency Tests](https://david-dm.org/5c077m4n/http-responder.svg)
 [![Greenkeeper badge](https://badges.greenkeeper.io/5c077m4n/http-responder.svg)](https://greenkeeper.io/)
+![Travis CI](https://travis-ci.org/5c077m4n/http-responder.svg?branch=master)
 
 A simple and easy way to create and use HTTP errors (extending the original node.js Error) whilst giving you the control over what is seen.
 
