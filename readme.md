@@ -47,7 +47,7 @@ Also, you can choose to use: `new hr(message [, options]);`
 
 Or, you can create them by the pre-made static functions (`hr.notFound()` for example) - a full list below.
 
-And then your imagination is the limit, ie.: `res.status(error.statusCode).json(error.payload);` (in express 4.x).
+And then your imagination is the limit, ie.: `hr.notFound().end(res);` (in express 4.x).
 
 
 Porperties:
