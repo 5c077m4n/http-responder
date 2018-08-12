@@ -40,11 +40,11 @@ And then your imagination is the limit, ie.: `res.status(error.statusCode).json(
 Porperties:
 ----
 
-1. `status`: the same as 'statusCode' - for compability.
+1. `status` the same as 'statusCode' - for compability.
 
-2. `statusDesc` - the default text for the given status code.
+2. `statusDesc` the default text for the given status code.
 
-3. `payload`: holds only a pretty version of the error (ie, no stack), so no sensitive information will be leaked, including:
+3. `payload` holds only a pretty version of the error (ie, no stack), so no sensitive information will be leaked, including:
 
 	1. `statusCode` - the original status code.
 
