@@ -6,7 +6,7 @@ const hrSrc = require('../src/index');
 const hrDist = require('../dist/index');
 
 
-const testSuit = (title, hr) => {
+const testSuite = (title, hr) => {
 	describe(title, function() {
 		describe('The default error', function() {
 			const error = new hr();
@@ -123,5 +123,4 @@ const hrTestList = [
 	['HttpResponder source', hrSrc],
 	['HttpResponder distribution version', hrDist]
 ];
-
-hrTestList.forEach(testItem => testSuit(...testItem));
+hrTestList.forEach(testItem => testSuite(...testItem));
