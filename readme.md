@@ -1,11 +1,19 @@
+https://david-dm.org/5c077m4n/http-responder.svg
+
 HTTP Responder
-----
+==================
 
 A simple and easy way to create and use HTTP errors (extending the original node.js Error) whilst giving you the control over what is seen.
 
-`$ npm install http-responder --save` in your terminal, then
+```zsh
+$ npm install http-responder --save
+```
+in your terminal, then
 
-`const hr = require('http-responder');` in your code
+```javascript
+const hr = require('http-responder');
+```
+in your code
 
 => and you're good to go!
 
@@ -46,13 +54,13 @@ Porperties:
 
 3. `payload` holds only a pretty version of the error (ie, no stack), so no sensitive information will be leaked, including:
 
-	1. `statusCode` - the original status code.
+	* `statusCode` - the original status code.
 
-	2. `statusDesc` - the default status description.
+	* `statusDesc` - the default status description.
 
-	3. `message` - the given message.
+	* `message` - the given message.
 
-	4. `data` - the given data.
+	* `data` - the given data.
 
 4. All other nodejs's `Error` object properties.
 
