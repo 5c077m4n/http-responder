@@ -5,7 +5,7 @@
   "repository": "https://bitbucket.org/5c077m4n/http-responder/src/master/",
   "main": "./dist/index.js",
   "scripts": {
-    "build": "./node_modules/.bin/minify src -d dist",
+    "build": "./node_modules/.bin/eslint ./src/index.js && ./node_modules/.bin/minify src -d dist",
     "test": "mocha",
     "lint": "./node_modules/.bin/eslint ./src/index.js"
   },
