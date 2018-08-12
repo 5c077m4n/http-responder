@@ -6,74 +6,54 @@ const hrSrc = require('../src/index');
 const hrDist = require('../dist/index');
 
 
-const knownPayloadTestSiute = error => {
+const payloadTestSuite = error => {
 	describe('test payload', function() {
 		const payload = error.payload;
 		it('should exist.', function() {
 			should.exist(payload);
 		});
-		it('should have a status code of the original object.', function() {
+		it('should have a status code of the original object', function() {
 			payload.should.have.property('statusCode').equal(error.statusCode);
 		});
-		it('should check the default message is equal to the original one.', function() {
-			payload.should.have.property('statusDesc').equal(error.message);
+		it('should have a data of the original object', function() {
+			payload.should.have.property('data').equal(error.data);
 		});
 	});
 };
-const knownErrorTestSiute = (title, error, expectedStatus, expectedMessage) => {
+const responseTestSuite = (title, error, expectedStatus, expectedDefaultMessage, expectedMessage) => {
 	describe(title, function() {
-		it('should exist.', function() {
+		it('should exist', function() {
 			should.exist(error);
 		});
-		it(`should have a status code of ${expectedStatus}.`, function() {
+		it(`should have a status code of ${expectedStatus}`, function() {
 			error.should.have.property('statusCode').equal(expectedStatus);
 		});
-		it('should check the default error message.', function() {
+		it('should check the default status description', function() {
+			error.should.have.property('statusDesc').equal(expectedDefaultMessage);
+		});
+		it('should check the custom message', function() {
 			error.should.have.property('message').equal(expectedMessage);
 		});
-		it('should have a status getter equal to statusCode.', function() {
+		it('should have a status getter equal to statusCode', function() {
 			error.should.have.property('statusCode').equal(error.status);
 		});
 	});
-	knownPayloadTestSiute(error);
+	payloadTestSuite(error);
 };
 const testSuite = (title, hr) => {
 	describe(title, function() {
-		knownErrorTestSiute('the default error', new hr(), 500, 'Internal Server Error');
-		describe('the custom 499 error', function() {
-			const error = new hr(499);
-			it('should exist.', function() {
-				should.exist(error);
-			});
-			it('should have a status code of 499.', function() {
-				error.should.have.property('statusCode').equal(499);
-			});
-			it('should check the default error message.', function() {
-				error.should.have.property('message').to.be.an('undefined');
-			});
-			it('should have a status getter equal to statusCode.', function() {
-				error.should.have.property('statusCode').equal(error.status);
-			});
-			describe('test payload', function() {
-				const payload = error.payload;
-				it('should exist.', function() {
-					should.exist(payload);
-				});
-				it('should have a status code of the original.', function() {
-					payload.should.have.property('statusCode').equal(error.statusCode);
-				});
-				it('should check the default message is equal to the original one.', function() {
-					payload.should.have.property('statusDesc').equal('Unknown Error');
-				});
-			});
-		});
-		knownErrorTestSiute('the not found error', hr.notFound(), 404, 'Not Found');
-		knownErrorTestSiute('the locked error', hr.locked(), 423, 'Locked');
+		[
+			['the default error', new hr(), 500, 'Internal Server Error', ''],
+			['the custom error', new hr(499), 499, 'Unknown Status Code', ''],
+			['the not found error', hr.notFound(), 404, 'Not Found'],
+			['the locked error', hr.locked('Can\'t go here!'), 423, 'Locked', 'Can\'t go here!']
+		]
+		.forEach(item => responseTestSuite(...item));
 	});
 };
 
-const hrTestMap = new Map([
+[
 	['HttpResponder source', hrSrc],
 	['HttpResponder distribution version', hrDist]
-]);
-hrTestMap.forEach((testVersion, testTitle) => testSuite(testTitle, testVersion));
+]
+.forEach(item => testSuite(...item));

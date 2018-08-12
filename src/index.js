@@ -87,8 +87,6 @@ class HttpResponder extends Error {
 				'The first parameter must be either a number or a string.'
 			);
 		}
-		if(!this.message) this.message = codeMap.get(this.statusCode);
-		this.statusDesc = codeMap.get(this.statusCode);
 		this._isHttpRes = true;
 	}
 	get status() {
@@ -98,14 +96,23 @@ class HttpResponder extends Error {
 		this.statusCode = code;
 		return code;
 	}
+	get statusDesc() {
+		return (codeMap.has(this.statusCode))?
+			codeMap.get(this.statusCode) : 'Unknown Status Code';
+	}
+	set statusDesc(_) {
+		throw new Error('This property is read-only.');
+	}
 	get payload() {
 		return {
 			statusCode: this.statusCode,
-			statusDesc: (codeMap.has(this.statusCode))?
-				codeMap.get(this.statusCode) : 'Unknown Error',
+			statusDesc: this.statusDesc,
 			message: this.message,
 			data: (this.data)? this.data : undefined
 		};
+	}
+	set payload(_) {
+		throw new Error('This property is read-only.');
 	}
 	appendError(err) {
 		return Object.assign(this, err);
@@ -130,7 +137,6 @@ function build() {
 		HttpResponder[camelCase(value)] = function(msg, data) {
 			return new HttpResponder(key, {
 				statusCode: key,
-				statusDesc: codeMap.get(key),
 				message: msg,
 				data
 			});
