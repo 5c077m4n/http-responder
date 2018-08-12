@@ -5,7 +5,7 @@ HTTP Responder
 
 A simple and easy way to create and use HTTP errors (extending the original node.js Error) whilst giving you the control over what is seen.
 
-```bash
+```zsh
 $ npm install http-responder --save
 ```
 in your terminal, then
@@ -15,7 +15,7 @@ const hr = require('http-responder');
 ```
 in your code
 
-=> and you're good to go!
+**and you're good to go!**
 
 
 To create a custom error: `new hr(statusCode [, optionsOrError]);`
@@ -80,7 +80,7 @@ Static functions:
 
 
 Static response functions:
----
+----
 
 |			Static Function				|		Status Code		|
 |---------------------------------------|-----------------------|
