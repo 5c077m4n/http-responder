@@ -11,7 +11,7 @@ A simple and easy way to create and use HTTP errors (extending the original Node
 Type into your terminal:
 
 ```zsh
-$ npm install http-responder --save
+$ npm install --save http-responder
 ```
 
 then into your code:
