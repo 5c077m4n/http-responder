@@ -75,7 +75,7 @@ Methods:
 
 `appendError(error: Error)` to append an Error to your custom one.
 
-`end(res: Response)` to send the response back to the client (express 4.x).
+`end(res: Response)` to send the response back to the client (works in express 4.x).
 
 
 Static functions:
