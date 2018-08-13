@@ -47,7 +47,7 @@ Also, you can choose to use: `new hr(message [, options]);`
 
 Or, you can create them by the pre-made static functions (`hr.notFound()` for example) - a full list below.
 
-And then your imagination is the limit, ie.: `hr.notFound().end(res);` (in express 4.x).
+And then your imagination is the limit, i.e.: `hr.notFound().end(res);` (in express 4.x).
 
 
 Porperties:
@@ -57,7 +57,7 @@ Porperties:
 
 2. `statusDesc` the default description for the given status code.
 
-3. `payload` holds only a pretty version of the error (ie, no stack), so no sensitive information will be leaked, including:
+3. `payload` holds only a pretty version of the error (i.e., no stack), so no sensitive information will be leaked, including:
 
 	* `statusCode` - the original status code.
 
