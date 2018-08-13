@@ -6,7 +6,7 @@ HTTP Responder
 [![Greenkeeper badge](https://badges.greenkeeper.io/5c077m4n/http-responder.svg)](https://greenkeeper.io/)
 [![Build Status](https://travis-ci.org/5c077m4n/http-responder.svg?branch=master)](https://travis-ci.org/5c077m4n/http-responder)
 
-A simple and easy way to create and use HTTP errors (extending the original node.js Error) whilst giving you the control over what is seen.
+A simple and easy way to create and use HTTP errors (extending the original Node.js Error) whilst giving you the control over what is seen. Also, it is traspiled to ECMAScript 2015, so nearly anyone can use it.
 
 Type into your terminal:
 
@@ -53,7 +53,7 @@ And then your imagination is the limit, i.e.: `hr.notFound().end(res);` (in expr
 Porperties:
 ----
 
-1. `status` the same as 'statusCode' - for compability.
+1. `status` the same as 'statusCode' - for backwards compability.
 
 2. `statusDesc` the default description for the given status code.
 
@@ -67,7 +67,7 @@ Porperties:
 
 	* `data` - the given data.
 
-4. All other nodejs's `Error` object properties.
+4. All other Node.js's `Error` object properties.
 
 
 Methods:
