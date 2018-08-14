@@ -93,6 +93,9 @@ Static functions:
 Static response functions:
 ----
 
+Each function here is used in the same manner: `hr.<functionName>(message: string, data: any);`
+
+
 |			Static Function				|		Status Code		|
 |---------------------------------------|-----------------------|
 |`hr.continue()`						|			100			|
