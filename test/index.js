@@ -21,9 +21,20 @@ const payloadTestSuite = error => {
 		it('should have the message of the original object', function() {
 			expect(payload.message).equal(error.message);
 		});
+		it('should have the data of the original error', function() {
+			expect(payload.data).to.deep.equal(error.data);
+		});
 	});
 };
-const responseTestSuite = (hr, title, error, expectedStatus, expectedDefaultMessage, expectedMessage) => {
+const responseTestSuite = (
+	hr,
+	title,
+	error,
+	expectedStatus,
+	expectedDefaultMessage,
+	expectedMessage,
+	expectedData
+) => {
 	describe(title, function() {
 		it('should exist', function() {
 			should.exist(error);
@@ -43,6 +54,9 @@ const responseTestSuite = (hr, title, error, expectedStatus, expectedDefaultMess
 		it('should have a status getter equal to statusCode', function() {
 			expect(error.statusCode).equal(error.status);
 		});
+		it('should have the expected data', function() {
+			expect(error.data).to.deep.equal(expectedData);
+		});
 	});
 	payloadTestSuite(error);
 };
@@ -53,7 +67,10 @@ const testSuite = (title, hr) => {
 			['the default error', new hr('Waka Waka!'), 500, 'Internal Server Error', 'Waka Waka!'],
 			['the custom error', new hr(499), 499, 'Unknown Status Code'],
 			['the not found error', hr.notFound(), 404, 'Not Found'],
-			['the locked error', hr.locked('Can\'t go here!'), 423, 'Locked', 'Can\'t go here!']
+			['the locked error', hr.locked('Can\'t go here!'), 423, 'Locked', 'Can\'t go here!'],
+			['the server error with data', hr.internalServerError({
+				bcz: 'dunno...'
+			}), 500, 'Internal Server Error', undefined, { bcz: 'dunno...' }]
 		]
 		.forEach(test => responseTestSuite(hr, ...test));
 	});
