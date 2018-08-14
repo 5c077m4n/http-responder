@@ -133,10 +133,10 @@ class HttpResponder extends Error {
 		return res.status(this.statusCode).json(this.payload);
 	}
 	log() {
-		return console.log(chalk.blue(JSON.stringify(this)));
+		return console.log(chalk.blueBright(JSON.stringify(this)));
 	}
 	logPayload() {
-		return console.log(chalk.blue(JSON.stringify(this.payload)));
+		return console.log(chalk.magentaBright(JSON.stringify(this.payload)));
 	}
 
 	/** Static functions */
