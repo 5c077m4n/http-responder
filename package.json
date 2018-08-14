@@ -44,7 +44,7 @@
   ],
   "author": "Roee Shapira",
   "homepage": "https://5c077m4n.github.io/http-responder/",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "camelcase": "^5.0.0",
     "chalk": "^2.4.1"
