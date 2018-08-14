@@ -95,6 +95,8 @@ Static response functions:
 
 Each function here is used in the same manner: `hr.<functionName>(message: string | undefined, data: any);` or `hr.<functionName>(data: any);` (in the latter data cannot be of type string - otherwise the data will be inserted into the message param).
 
+**A Reminder**: when using `hr.noContent(data).end(res);` express removes all fields from the response and returns only the status code!
+
 
 |			Static Function				|		Status Code		|
 |---------------------------------------|-----------------------|
