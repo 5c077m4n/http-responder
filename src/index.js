@@ -132,6 +132,8 @@ class HttpResponder extends Error {
 	end(res) {
 		return res.status(this.statusCode).json(this.payload);
 	}
+	send(res) { this.end(res); }
+	json(res) { this.end(res); }
 	log() {
 		return console.log(chalk.bgBlack.blueBright(JSON.stringify(this)));
 	}
