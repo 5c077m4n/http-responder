@@ -77,6 +77,10 @@ Methods:
 
 `end(res: Response)` to send the response back to the client (works in express 4.x).
 
+`log()` to console.log you object - for testing.
+
+`logPayload()` to console.log you object's payload - for testing.
+
 
 Static functions:
 ----
