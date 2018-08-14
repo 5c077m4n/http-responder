@@ -1,6 +1,7 @@
 'use strict';
 
 const camelCase = require('camelcase');
+const chalk = require('chalk');
 
 
 /**
@@ -130,6 +131,12 @@ class HttpResponder extends Error {
 	/** Return a response to the client (express 4.x) */
 	end(res) {
 		return res.status(this.statusCode).json(this.payload);
+	}
+	log() {
+		return console.log(chalk.blue(JSON.stringify(this)));
+	}
+	logPayload() {
+		return console.log(chalk.blue(JSON.stringify(this.payload)));
 	}
 
 	/** Static functions */
