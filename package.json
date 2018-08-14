@@ -41,6 +41,7 @@
     "statusCode"
   ],
   "author": "Roee Shapira",
+  "homepage": "https://5c077m4n.github.io/http-responder/",
   "license": "ISC",
   "dependencies": {
     "camelcase": "^5.0.0"
