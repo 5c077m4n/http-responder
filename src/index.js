@@ -136,7 +136,7 @@ class HttpResponder extends Error {
 		return console.log(chalk.bgBlack.blueBright(JSON.stringify(this)));
 	}
 	logPayload() {
-		return console.log(chalk.bgBlack.magentaBright(JSON.stringify(this.payload)));
+		return console.log(chalk.bgBlack.cyanBright(JSON.stringify(this.payload)));
 	}
 
 	/** Static functions */
