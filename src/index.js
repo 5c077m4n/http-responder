@@ -160,7 +160,7 @@ function build() {
 			return new HttpResponder(key, {
 				statusCode: key,
 				message: msg,
-				data
+				data: data
 			});
 		}
 	});
