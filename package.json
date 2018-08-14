@@ -35,7 +35,10 @@
   "keywords": [
     "http",
     "response",
-    "error"
+    "error",
+    "backend",
+    "status",
+    "statusCode"
   ],
   "author": "Roee Shapira",
   "license": "ISC",
