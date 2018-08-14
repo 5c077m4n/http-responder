@@ -93,7 +93,7 @@ Static functions:
 Static response functions:
 ----
 
-Each function here is used in the same manner: `hr.<functionName>(message: string, data: any);`
+Each function here is used in the same manner: `hr.<functionName>(message: string, data: any);` or `hr.<functionName>(data: any);` (in this option data cannot be a string).
 
 
 |			Static Function				|		Status Code		|

@@ -158,11 +158,11 @@ class HttpResponder extends Error {
  */
 function build() {
 	codeMap.forEach((value, key) => {
-		HttpResponder[camelCase(value)] = function(msg, data) {
+		HttpResponder[camelCase(value)] = function(msgOrData, data) {
 			return new HttpResponder(key, {
 				statusCode: key,
-				message: msg,
-				data: data
+				message: (typeof msgOrData === 'string')? msgOrData : undefined,
+				data: (typeof msgOrData !== 'string')? msgOrData : data
 			});
 		}
 	});
