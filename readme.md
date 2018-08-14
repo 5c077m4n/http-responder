@@ -85,7 +85,7 @@ Methods:
 Static functions:
 ----
 
-`hr.isHR(res)` checks if the res object is of type http-response.
+`hr.isHR(res)` checks if the res object is of type HttpResponder.
 
 `hr.improve(err)` creates a new HttpResponder based on the `err: Error` param (with a status code of 500 unless different in the err object).
 
