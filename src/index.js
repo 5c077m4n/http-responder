@@ -118,7 +118,7 @@ class HttpResponder extends Error {
 		return {
 			statusCode: this.statusCode,
 			statusDesc: this.statusDesc,
-			message: (this.message)? this.message : undefined,
+			message: (this.message && this.message.length)? this.message : undefined,
 			data: (this.data)? this.data : undefined
 		};
 	}
