@@ -161,7 +161,7 @@ function build() {
 		HttpResponder[camelCase(value)] = function(msgOrData, data) {
 			return new HttpResponder(key, {
 				statusCode: key,
-				message: (typeof msgOrData === 'string')? msgOrData : undefined,
+				message: (typeof msgOrData === 'string' && msgOrData.length)? msgOrData : undefined,
 				data: (typeof msgOrData !== 'string')? msgOrData : data
 			});
 		}
