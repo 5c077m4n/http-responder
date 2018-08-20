@@ -6,7 +6,7 @@ HTTP Responder
 [![Greenkeeper badge](https://badges.greenkeeper.io/5c077m4n/http-responder.svg)](https://greenkeeper.io/)
 [![Build Status](https://travis-ci.org/5c077m4n/http-responder.svg?branch=master)](https://travis-ci.org/5c077m4n/http-responder)
 
-A simple and easy way to create and use HTTP errors (extending the original Node.js Error) whilst giving you the control over what is seen. Also, it is traspiled to ECMAScript 2015, so nearly anyone can use it.
+A simple and easy way to create and use HTTP errors (extending the original Node.js Error) whilst giving you the control over what is seen. Also, it is traspiled to ECMAScript 2015, so practically anyone can use it.
 
 Type into your terminal:
 
@@ -47,7 +47,7 @@ Also, you can choose to use: `new hr(message [, options]);`
 
 Or, you can create them by the pre-made static functions (`hr.notFound()` for example) - a full list below.
 
-And then your imagination is the limit, i.e.: `hr.notFound().end(res);` (only in express 4.x).
+And then, your imagination is the limit, i.e.: `hr.notFound().end(res);` (only in express 4.x).
 
 
 Porperties:
@@ -87,7 +87,7 @@ Static functions:
 
 `hr.isHR(res)` checks if the res object is of type HttpResponder.
 
-`hr.improve(err)` creates a new HttpResponder based on the `err: Error` param (with a status code of 500 unless different in the err object).
+`hr.improve(err)` returns a new HttpResponder based on the `err: Error` param (with a status code of 500 unless different in the err object).
 
 
 Static response functions:
