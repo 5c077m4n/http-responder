@@ -1,6 +1,5 @@
 
-HTTP Responder
-==================
+# HTTP Responder
 
 [![Dependency Tests](https://david-dm.org/5c077m4n/http-responder.svg)](https://david-dm.org/)
 [![Greenkeeper badge](https://badges.greenkeeper.io/5c077m4n/http-responder.svg)](https://greenkeeper.io/)
@@ -50,8 +49,7 @@ Or, you can create them by the pre-made static functions (`hr.notFound()` for ex
 And then, your imagination is the limit, i.e.: `hr.notFound().end(res);` (only in express 4.x).
 
 
-Porperties:
-----
+## Porperties:
 
 1. `status` the same as 'statusCode' - for backwards compability.
 
@@ -70,8 +68,7 @@ Porperties:
 4. All other Node.js's `Error` object properties.
 
 
-Methods:
-----
+## Methods:
 
 `appendError(error: Error)` to append an Error to your custom one.
 
@@ -82,16 +79,14 @@ Methods:
 `logPayload()` to console.log you object's payload - for testing.
 
 
-Static functions:
-----
+### Static functions:
 
 `hr.isHR(res)` checks if the res object is of type HttpResponder.
 
 `hr.improve(err)` returns a new HttpResponder based on the `err: Error` param (with a status code of 500 unless different in the err object).
 
 
-Static response functions:
-----
+### Static response functions:
 
 Each function here is used in the same manner: `hr.<functionName>(message: string | undefined, data: any);` or `hr.<functionName>(data: any);` (in the latter data cannot be of type string - otherwise the data will be inserted into the message param).
 
