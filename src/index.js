@@ -1,7 +1,7 @@
 'use strict';
 
 const camelCase = require('camelcase');
-const chalk = require('chalk');
+const chalk = (process)? require('chalk') : undefined;
 
 
 /**
@@ -135,10 +135,14 @@ class HttpResponder extends Error {
 	send(res) { this.end(res); }
 	json(res) { this.end(res); }
 	log() {
-		return console.log(chalk.bgBlack.blueBright(JSON.stringify(this)));
+		return (chalk)?
+            console.log(chalk.bgBlack.blueBright(JSON.stringify(this))) :
+            console.log(JSON.stringify(this));
 	}
 	logPayload() {
-		return console.log(chalk.bgBlack.cyanBright(JSON.stringify(this.payload)));
+		return (chalk)?
+            console.log(chalk.bgBlack.cyanBright(JSON.stringify(this.payload))) :
+            console.log(JSON.stringify(this.payload));
 	}
 
 	/** Static functions */
