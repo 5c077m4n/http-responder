@@ -135,12 +135,12 @@ class HttpResponder extends Error {
 	send(res) { this.end(res); }
 	json(res) { this.end(res); }
 	log() {
-		return (chalk)?
+		return (process)?
             console.log(chalk.bgBlack.blueBright(JSON.stringify(this))) :
             console.log(JSON.stringify(this));
 	}
 	logPayload() {
-		return (chalk)?
+		return (process)?
             console.log(chalk.bgBlack.cyanBright(JSON.stringify(this.payload))) :
             console.log(JSON.stringify(this.payload));
 	}
