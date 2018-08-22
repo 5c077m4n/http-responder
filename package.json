@@ -46,8 +46,7 @@
   "homepage": "https://5c077m4n.github.io/http-responder/",
   "license": "MIT",
   "dependencies": {
-    "camelcase": "^5.0.0",
-    "chalk": "^2.4.1"
+    "camelcase": "^5.0.0"
   },
   "devDependencies": {
     "babel-minify": "^0.4.3",
