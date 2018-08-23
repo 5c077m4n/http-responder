@@ -116,11 +116,13 @@ class HttpResponder extends Error {
 	get statusText() { return this.statusDesc; }
 	set statusText(_) { throw new Error('This property is read-only.'); }
 	get payload() {
+		const that = this;
 		return {
-			statusCode: this.statusCode,
-			statusDesc: this.statusDesc,
-			message: (this.message && this.message.length)? this.message : undefined,
-			data: (this.data)? this.data : undefined
+			statusCode: that.statusCode,
+			statusDesc: that.statusDesc,
+			message: (that.message && that.message.length)? that.message : undefined,
+			data: (that.data)? that.data : undefined,
+			log: () => console.log(JSON.stringify(that.payload))
 		};
 	}
 	set payload(_) { throw new Error('This property is read-only.'); }
@@ -133,13 +135,10 @@ class HttpResponder extends Error {
 	end(res) {
 		return res.status(this.statusCode).json(this.payload);
 	}
-	send(res) { this.end(res); }
-	json(res) { this.end(res); }
+	send(res) { return this.end(res); }
+	json(res) { return this.end(res); }
 	log() {
 		console.log(JSON.stringify(this));
-	}
-	logPayload() {
-		console.log(JSON.stringify(this.payload));
 	}
 
 	/** Static functions */

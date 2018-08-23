@@ -67,6 +67,8 @@ And then, your imagination is the limit, i.e.: `hr.notFound().end(res);` (only i
 
 	* `data` - the given data.
 
+	* `log()` - a function to console.log the payload - for testing.
+
 4. All other Node.js's `Error` object properties.
 
 
@@ -77,8 +79,6 @@ And then, your imagination is the limit, i.e.: `hr.notFound().end(res);` (only i
 `end(res: Response)` (or `send()` or `json()` for compability) to send the response payload back to the client (works in express 4.x).
 
 `log()` to console.log you object - for testing.
-
-`logPayload()` to console.log you object's payload - for testing.
 
 
 ### Static functions:
