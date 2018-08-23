@@ -55,7 +55,7 @@ And then, your imagination is the limit, i.e.: `hr.notFound().end(res);` (only i
 
 1. `status` the same as 'statusCode' - for backwards compability.
 
-2. `statusDesc` the default description for the given status code.
+2. `statusDesc` the default description for the given status code (or `statusText` for compability).
 
 3. `payload` holds only a pretty version of the error (i.e., no stack), so no sensitive information will be leaked, including:
 

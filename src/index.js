@@ -113,6 +113,8 @@ class HttpResponder extends Error {
 			codeMap.get(this.statusCode) : 'Unknown Status Code';
 	}
 	set statusDesc(_) { throw new Error('This property is read-only.'); }
+	get statusText() { return this.statusDesc; }
+	set statusText(_) { throw new Error('This property is read-only.'); }
 	get payload() {
 		return {
 			statusCode: this.statusCode,

@@ -52,6 +52,9 @@ const responseTestSuite = (
 		it('should have a status getter equal to statusCode', function() {
 			expect(error.statusCode).equal(error.status);
 		});
+		it('should have the same message for statusDesc and for statusText', function() {
+			expect(error.statusDesc).equal(error.statusText);
+		});
 		it('should have the expected data', function() {
 			expect(error.data).to.deep.equal(expectedData);
 		});
@@ -72,4 +75,3 @@ describe('HttpResponder source', function() {
 	]
 	.forEach(test => responseTestSuite(...test));
 });
-
