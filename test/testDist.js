@@ -26,7 +26,6 @@ const payloadTestSuite = error => {
 	});
 };
 const responseTestSuite = (
-	hr,
 	title,
 	error,
 	expectedStatus,
@@ -71,7 +70,7 @@ describe('HttpResponder distribution', function() {
 			bcz: 'dunno...'
 		}), 500, 'Internal Server Error', undefined, { bcz: 'dunno...' }]
 	]
-	.forEach(test => responseTestSuite(hr, ...test));
+	.forEach(test => responseTestSuite(...test));
 });
 
  
