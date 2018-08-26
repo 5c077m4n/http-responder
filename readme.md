@@ -80,14 +80,14 @@ And then, your imagination is the limit, i.e.: `hr.notFound().end(res);` (only i
 `log()` to console.log you object - for testing.
 
 
-### Static functions:
+### Static methods:
 
 `hr.isHR(res)` checks if the res object is of type HttpResponder.
 
 `hr.improve(err)` returns a new HttpResponder based on the `err: Error` param (with a status code of 500 unless different in the err object).
 
 
-### Static response functions:
+### Static response methods:
 
 Each function here is used in the same manner: `hr.<functionName>(message: string | undefined, data: any);` or `hr.<functionName>(data: any);` (in the latter data cannot be of type string - otherwise the data will be inserted into the message param).
 
