@@ -5,7 +5,6 @@
 [![Greenkeeper badge](https://badges.greenkeeper.io/5c077m4n/http-responder.svg)](https://greenkeeper.io/)
 [![Build Status](https://travis-ci.org/5c077m4n/http-responder.svg?branch=master)](https://travis-ci.org/5c077m4n/http-responder)
 
-(**Update**: removed a dependency that broke functionality.)
 
 A simple and easy way to create and use HTTP errors (extending the original Node.js Error) whilst giving you the control over what is seen. Also, it is traspiled to ECMAScript 2015, so practically anyone can use it.
 
