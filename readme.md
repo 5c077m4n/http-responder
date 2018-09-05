@@ -8,7 +8,7 @@
 
 A simple and easy way to create and use HTTP errors (extending the original Node.js Error) whilst giving you the control over what is seen. Also, it is traspiled to ECMAScript 2015, so practically anyone can use it.
 
-Type into your terminal:
+All you need to do is type into your terminal:
 
 ```zsh
 $ npm install --save http-responder
