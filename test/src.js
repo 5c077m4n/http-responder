@@ -2,7 +2,7 @@ const assert = require('assert');
 const expect = require('chai').expect;
 const should = require('chai').should();
 
-const hr = require('../dist/index');
+const hr = require('../src');
 
 
 const payloadTestSuite = error => {
@@ -58,11 +58,14 @@ const responseTestSuite = (
 		it('should have the expected data', function() {
 			expect(error.data).to.deep.equal(expectedData);
 		});
+		it('should have a body with the expected data', function() {
+			expect(error.data).to.deep.equal(error.body);
+		});
 	});
 	payloadTestSuite(error);
 };
 
-describe('HttpResponder distribution', function() {
+describe('HttpResponder source', function() {
 	[
 		['the default error', new hr(), 500, 'Internal Server Error'],
 		['the default error', new hr('Waka Waka!'), 500, 'Internal Server Error', 'Waka Waka!'],

@@ -104,10 +104,7 @@ class HttpResponder extends Error {
 	get status() {
 		return this.statusCode;
 	}
-	set status(code) {
-		this.statusCode = code;
-		return code;
-	}
+	set status(code) { this.statusCode = code; }
 	get statusDesc() {
 		return (codeMap.has(this.statusCode))?
 			codeMap.get(this.statusCode) : 'Unknown Status Code';
@@ -115,6 +112,8 @@ class HttpResponder extends Error {
 	set statusDesc(_) { throw new Error('This property is read-only.'); }
 	get statusText() { return this.statusDesc; }
 	set statusText(_) { throw new Error('This property is read-only.'); }
+	get body() { return this.data; }
+	set body(data) { this.data = data; }
 	get payload() {
 		const that = this;
 		return {
@@ -161,7 +160,7 @@ function build() {
 		HttpResponder[camelCase(value)] = function(msgOrData, data) {
 			return new HttpResponder(key, {
 				statusCode: key,
-				message: (typeof msgOrData === 'string' && msgOrData.length)? msgOrData : undefined,
+				message: ((typeof msgOrData === 'string') && msgOrData.length)? msgOrData : undefined,
 				data: (typeof msgOrData !== 'string')? msgOrData : data
 			});
 		}
