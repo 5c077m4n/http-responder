@@ -39,7 +39,7 @@ Also, you can choose to use: `new hr(message [, options]);`
 
 2. `options: {}` the options object may include:
 
-	1. `statusCode: number` the error's status code (you can use `status` instead).
+	1. `statusCode: number` the error's status code (you can use `status` instead)
 
 	2. `data: any` whatever data you what to send (also shows up in the payload property) - has to be truthy!
 
@@ -52,23 +52,23 @@ And then, your imagination is the limit, i.e.: `hr.notFound().end(res);` (only i
 
 ## Porperties:
 
-1. `status` the same as 'statusCode' - for backwards compability.
+1. `status` the same as 'statusCode' - for backwards compability
 
-2. `statusDesc` the default description for the given status code (or `statusText` for compability).
+2. `statusDesc` the default description for the given status code (or `statusText` for compability)
 
 3. `payload` holds only a pretty version of the error (i.e., no stack), so no sensitive information will be leaked, including:
 
-	* `statusCode` - the original status code.
+	* `statusCode` - the original status code
 
-	* `statusDesc` - the default status description.
+	* `statusDesc` - the default status description
 
-	* `message` - the given message.
+	* `message` - the given message
 
-	* `data` - the given data.
+	* `data` - the given data
 
-	* `log()` - a function to console.log the payload - for testing.
+	* `log()` - a function to console.log the payload - for testing
 
-4. All other Node.js's `Error` object properties.
+4. All other Node.js's `Error` object properties
 
 
 ## Methods:
