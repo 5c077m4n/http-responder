@@ -10,7 +10,7 @@ const codeMap = new Map([
 	[100, `Continue`],
 	[101, `Switching Protocols`],
 	[102, `Processing`],
-	[103, 'Early Hints'],
+	[103, `Early Hints`],
 	[200, `OK`],
 	[201, `Created`],
 	[202, `Accepted`],
@@ -162,7 +162,8 @@ function build() {
 		HttpResponder[camelCase(value)] = function(msgOrData, data) {
 			return new HttpResponder(key, {
 				statusCode: key,
-				message: ((typeof msgOrData === 'string') && msgOrData.length)? msgOrData : undefined,
+				message: ((typeof msgOrData === 'string') && msgOrData.length)?
+					msgOrData : undefined,
 				data: (typeof msgOrData !== 'string')? msgOrData : data
 			});
 		}
