@@ -148,6 +148,7 @@ Each function here is used in the same manner: `hr.<functionName>(message: strin
 |`hr.tooManyRequests()`					|			429			|
 |`hr.requestHeaderFieldsTooLarge()`		|			431			|
 |`hr.unavailableForLegalReasons()`		|			451			|
+|`hr.clientClosedRequest()`				|			499			|
 |`hr.internalServerError()`				|			500			|
 |`hr.notImplemented()`					|			501			|
 |`hr.badGateway()`						|			502			|
@@ -159,3 +160,4 @@ Each function here is used in the same manner: `hr.<functionName>(message: strin
 |`hr.bandwidthLimitExceeded()`			|			509			|
 |`hr.notExtended()`						|			510			|
 |`hr.networkAuthenticationRequired()`	|			511			|
+|`hr.networkConnectTimeoutError()`		|			599			|

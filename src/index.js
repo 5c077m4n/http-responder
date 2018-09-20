@@ -59,6 +59,7 @@ const codeMap = new Map([
 	[429, `Too Many Requests`],
 	[431, `Request Header Fields Too Large`],
 	[451, `Unavailable For Legal Reasons`],
+	[499, `Client Closed Request`],
 	[500, `Internal Server Error`],
 	[501, `Not Implemented`],
 	[502, `Bad Gateway`],
@@ -69,7 +70,8 @@ const codeMap = new Map([
 	[507, `Insufficient Storage`],
 	[509, `Bandwidth Limit Exceeded`],
 	[510, `Not Extended`],
-	[511, `Network Authentication Required`]
+	[511, `Network Authentication Required`],
+	[599, `Network Connect Timeout Error`]
 ]);
 
 /**

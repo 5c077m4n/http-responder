@@ -69,7 +69,7 @@ describe('HttpResponder distribution', function() {
 	[
 		['the default error', new hr(), 500, 'Internal Server Error'],
 		['the default error', new hr('Waka Waka!'), 500, 'Internal Server Error', 'Waka Waka!'],
-		['the custom error', new hr(499), 499, 'Unknown Status Code'],
+		['the custom error', new hr(490), 490, 'Unknown Status Code'],
 		['the not found error', hr.notFound(), 404, 'Not Found'],
 		['the locked error', hr.locked('Can\'t go here!'), 423, 'Locked', 'Can\'t go here!'],
 		['the server error with data', hr.internalServerError({
