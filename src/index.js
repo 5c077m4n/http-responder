@@ -117,13 +117,13 @@ class HttpResponder extends Error {
 	get body() { return this.data; }
 	set body(data) { this.data = data; }
 	get payload() {
-		const that = this;
+		const self = this;
 		return {
-			statusCode: that.statusCode,
-			statusDesc: that.statusDesc,
-			message: (that.message && that.message.length)? that.message : undefined,
-			data: (that.data)? that.data : undefined,
-			log: () => console.log(JSON.stringify(that.payload))
+			statusCode: self.statusCode,
+			statusDesc: self.statusDesc,
+			message: (self.message && self.message.length)? self.message : undefined,
+			data: (self.data)? self.data : undefined,
+			log: () => console.log(JSON.stringify(self.payload))
 		};
 	}
 	set payload(_) { throw new Error('This property is read-only.'); }
