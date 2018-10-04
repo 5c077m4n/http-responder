@@ -147,7 +147,7 @@ class HttpResponder extends Error {
 		return new HttpResponder(500, err);
 	}
 	static isHR(res) {
-		return ((res instanceof HttpResponder) && res._isHttpRes);
+		return ((res.constructor === HttpResponder) && res._isHttpRes);
 	}
 }
 
