@@ -45,7 +45,7 @@ Also, you can choose to use: `new hr(message [, options]);`
 
 (`new hr();` on its own will give you a 500 status error default.)
 
-Or, you can create them by the pre-made static functions (`hr.notFound()` for example) - a full list below.
+Or, you can create them by the pre-made static functions (`hr.notFound()`, for example, for code 404) - a full list below.
 
 And then, your imagination is the limit, i.e.: `hr.notFound().end(res);` (only in express 4.x).
 
@@ -58,17 +58,17 @@ And then, your imagination is the limit, i.e.: `hr.notFound().end(res);` (only i
 
 3. `payload` holds only a pretty version of the error (i.e., no stack), so no sensitive information will be leaked, including:
 
-	* `statusCode` - the original status code
+	* `statusCode` - the original status code.
 
-	* `statusDesc` - the default status description
+	* `statusDesc` - the default status description.
 
-	* `message` - the given message
+	* `message` - the given message.
 
-	* `data` - the given data
+	* `data` - the given data.
 
-	* `log()` - a function to console.log the payload - for testing
+	* `log()` - a function to console.log the payload - for testing.
 
-4. All other Node.js's `Error` object properties
+4. All other Node.js's `Error` object properties.
 
 
 ## Methods:
