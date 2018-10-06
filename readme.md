@@ -1,4 +1,3 @@
-
 # HTTP Responder
 
 [![Dependency Tests](https://david-dm.org/5c077m4n/http-responder.svg)](https://david-dm.org/)
@@ -21,7 +20,6 @@ const hr = require('http-responder');
 ```
 
 **and you're good to go!**
-
 
 To create a custom error: `new hr(statusCode [, optionsOrError]);`
 
@@ -49,7 +47,6 @@ Or, you can create them by the pre-made static functions (`hr.notFound()`, for e
 
 And then, your imagination is the limit, i.e.: `hr.notFound().end(res);` (only in express 4.x).
 
-
 ## Porperties:
 
 1. `status` the same as 'statusCode' - for backwards compability
@@ -70,7 +67,6 @@ And then, your imagination is the limit, i.e.: `hr.notFound().end(res);` (only i
 
 4. All other Node.js's `Error` object properties.
 
-
 ## Methods:
 
 `appendError(error: Error)` to append an Error to your custom one.
@@ -79,20 +75,17 @@ And then, your imagination is the limit, i.e.: `hr.notFound().end(res);` (only i
 
 `log()` to console.log you object - for testing.
 
-
 ### Static methods:
 
 `hr.isHR(res)` checks if the res object is of type HttpResponder.
 
 `hr.improve(err)` returns a new HttpResponder based on the `err: Error` param (with a status code of 500 unless different in the err object).
 
-
 ### Static response methods:
 
 Each function here is used in the same manner: `hr.<functionName>(message: string | undefined, data: any);` or `hr.<functionName>(data: any);` (in the latter data cannot be of type string - otherwise the data will be inserted into the message param).
 
 **A Reminder**: when using `hr.noContent(data).end(res);` express removes all fields from the response and returns only the status code (204)! So niether the data nor the default description will be returned.
-
 
 |			Static Function				|		Status Code		|
 |---------------------------------------|-----------------------|
@@ -163,4 +156,3 @@ Each function here is used in the same manner: `hr.<functionName>(message: strin
 |`hr.networkConnectTimeoutError()`		|			599			|
 
 **Happy responding! ;)**
-
