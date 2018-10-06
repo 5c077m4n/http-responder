@@ -161,3 +161,6 @@ Each function here is used in the same manner: `hr.<functionName>(message: strin
 |`hr.notExtended()`						|			510			|
 |`hr.networkAuthenticationRequired()`	|			511			|
 |`hr.networkConnectTimeoutError()`		|			599			|
+
+**Happy responding! ;)**
+
