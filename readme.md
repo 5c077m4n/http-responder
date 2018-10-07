@@ -9,7 +9,7 @@ A simple and easy way to create and use HTTP errors (extending the original Node
 
 All you need to do is type into your terminal:
 
-```zsh
+```bash
 $ npm install --save http-responder
 ```
 
@@ -49,11 +49,13 @@ And then, your imagination is the limit, i.e.: `hr.notFound().end(res);` (only i
 
 ## Porperties:
 
-1. `status` the same as 'statusCode' - for backwards compability
+1. `status` the same as `statusCode` - for backwards compability.
 
-2. `statusDesc` the default description for the given status code (or `statusText` for compability)
+2. `statusDesc` the default description for the given status code (or `statusText` for compability).
 
-3. `payload` holds only a pretty version of the error (i.e., no stack), so no sensitive information will be leaked, including:
+3. `data` (or `body`) the included data.
+
+4. `payload` holds only a pretty version of the error (i.e., no stack), so no sensitive information will be leaked, including:
 
 	* `statusCode` - the original status code.
 
