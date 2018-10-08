@@ -4,8 +4,7 @@
 [![Greenkeeper badge](https://badges.greenkeeper.io/5c077m4n/http-responder.svg)](https://greenkeeper.io/)
 [![Build Status](https://travis-ci.org/5c077m4n/http-responder.svg?branch=master)](https://travis-ci.org/5c077m4n/http-responder)
 
-
-A simple and easy way to create and use HTTP errors (extending the original Node.js Error) whilst giving you the control over what is seen. Also, it is traspiled to ECMAScript 2015, so practically anyone can use it.
+A simple and easy way to create and use HTTP errors (extending the original Node.js Error) whilst giving you the control over what is seen.
 
 All you need to do is type into your terminal:
 
@@ -49,11 +48,11 @@ And then, your imagination is the limit, i.e.: `hr.notFound().end(res);` (only i
 
 ## Porperties:
 
-1. `status` the same as `statusCode` - for backwards compability.
+1. `status | statusCode` the error's status code.
 
-2. `statusDesc` the default description for the given status code (or `statusText` for compability).
+2. `statusDesc | statusText` the default description for the given status code (readonly).
 
-3. `data` (or `body`) the included data.
+3. `data | body` the included data.
 
 4. `payload` holds only a pretty version of the error (i.e., no stack), so no sensitive information will be leaked, including:
 
