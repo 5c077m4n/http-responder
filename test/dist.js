@@ -71,7 +71,7 @@ describe('HttpResponder distribution', function() {
 		['the default error', new hr('Waka Waka!'), 500, 'Internal Server Error', 'Waka Waka!'],
 		['the custom error', new hr(490), 490, 'Unknown Status Code'],
 		['the not found error', hr.notFound(), 404, 'Not Found'],
-		['the locked error', hr.locked('Can\'t go here!'), 423, 'Locked', 'Can\'t go here!'],
+		['the locked error', hr.locked('Sorry, not today...'), 423, 'Locked', 'Sorry, not today...'],
 		['the server error with data', hr.internalServerError({
 			bcz: 'dunno...'
 		}), 500, 'Internal Server Error', undefined, { bcz: 'dunno...' }]
