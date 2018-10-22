@@ -4,7 +4,6 @@ const should = require('chai').should();
 
 const hr = require('../src');
 
-
 const payloadTestSuite = error => {
 	describe('test payload', function() {
 		const payload = error.payload;

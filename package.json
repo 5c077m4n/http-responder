@@ -45,9 +45,7 @@
   "author": "Roee Shapira",
   "homepage": "https://5c077m4n.github.io/http-responder/",
   "license": "MIT",
-  "dependencies": {
-    "camelcase": "^5.0.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "babel-minify": "^0.4.3",
     "chai": "^4.2.0",

@@ -1,7 +1,10 @@
 'use strict';
 
-const camelCase = require('camelcase');
-
+const camelcase = str => {
+	str = str.replace(/^[A-Z]{2,}/g, match => match.toLowerCase());
+	str = str.replace(/\W/gi, '');
+	return str.charAt(0).toLowerCase() + str.substring(1);
+};
 
 /**
  * @param codeMap - a complete map of status codes.
@@ -159,7 +162,7 @@ class HttpResponder extends Error {
  */
 function build() {
 	codeMap.forEach((value, key) => {
-		HttpResponder[camelCase(value)] = function(msgOrData, data) {
+		HttpResponder[camelcase(value)] = function(msgOrData, data) {
 			return new HttpResponder(key, {
 				statusCode: key,
 				message: ((typeof msgOrData === 'string') && msgOrData.length)?
@@ -171,4 +174,5 @@ function build() {
 	return HttpResponder;
 }
 
+console.info(build());
 module.exports = build();
