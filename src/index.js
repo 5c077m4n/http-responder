@@ -180,5 +180,4 @@ const build = () => {
 	return HttpResponder;
 }
 
-console.info(build());
 module.exports = build();
