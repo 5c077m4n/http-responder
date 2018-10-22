@@ -1,6 +1,4 @@
-const assert = require('assert');
-const expect = require('chai').expect;
-const should = require('chai').should();
+const { expect } = require('chai');
 
 const hr = require('../dist');
 
@@ -9,7 +7,7 @@ const payloadTestSuite = error => {
 	describe('test payload', function() {
 		const payload = error.payload;
 		it('should exist.', function() {
-			should.exist(payload);
+			expect(payload).to.exist;
 		});
 		it('should have a status code of the original object', function() {
 			expect(payload.statusCode).equal(error.statusCode);
@@ -35,7 +33,7 @@ const responseTestSuite = (
 ) => {
 	describe(title, function() {
 		it('should exist', function() {
-			should.exist(error);
+			expect(error).to.exist;
 		});
 		it('should be of type HttpResponse', function() {
 			expect(hr.isHR(new hr())).equal(true);
