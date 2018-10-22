@@ -171,9 +171,9 @@ const build = () => {
 		HttpResponder[camelcase(value)] = function(msgOrData, data) {
 			return new HttpResponder(key, {
 				statusCode: key,
-				message: ((typeof msgOrData === 'string') && msgOrData.length)?
+				message: (msgOrData && msgOrData.constructor === String && msgOrData.length)?
 					msgOrData : undefined,
-				data: (typeof msgOrData !== 'string')? msgOrData : data
+				data: (msgOrData && msgOrData.constructor !== String)? msgOrData : data
 			});
 		}
 	});
