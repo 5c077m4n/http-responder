@@ -1,10 +1,5 @@
 'use strict';
 
-const camelcase = str => {
-	str = str.replace(/^[A-Z]{2,}/g, match => match.toLowerCase());
-	str = str.replace(/\W/gi, '');
-	return str.charAt(0).toLowerCase() + str.substring(1);
-};
 
 /**
  * @param codeMap - a complete map of status codes.
@@ -76,6 +71,17 @@ const codeMap = new Map([
 	[511, `Network Authentication Required`],
 	[599, `Network Connect Timeout Error`]
 ]);
+/**
+ * @function camelcase
+ * @param str
+ * A function that takes a string and returns its camelcased form.
+ */
+const camelcase = str => {
+	let strOut = str.replace(/^[A-Z]{2,}/g, match => match.toLowerCase());
+	strOut = strOut.replace(/\W/gi, '');
+	strOut = strOut.charAt(0).toLowerCase() + strOut.substring(1);
+	return strOut;
+};
 
 /**
  * @class HttpResponder - a class containing all static
@@ -160,7 +166,7 @@ class HttpResponder extends Error {
  * @returns HttpResponder - the class with all static functions
  * attached.
  */
-function build() {
+const build = () => {
 	codeMap.forEach((value, key) => {
 		HttpResponder[camelcase(value)] = function(msgOrData, data) {
 			return new HttpResponder(key, {
@@ -174,4 +180,5 @@ function build() {
 	return HttpResponder;
 }
 
+console.info(build());
 module.exports = build();
