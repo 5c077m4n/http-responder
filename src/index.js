@@ -69,7 +69,7 @@ const codeMap = new Map([
 	[509, `Bandwidth Limit Exceeded`],
 	[510, `Not Extended`],
 	[511, `Network Authentication Required`],
-	[598, `Network read timeout error`], // Informal convention
+	[598, `Network Read Timeout Error`], // Informal convention
 	[599, `Network Connect Timeout Error`]
 ]);
 /**

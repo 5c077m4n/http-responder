@@ -154,6 +154,7 @@ Each function here is used in the same manner: `hr.<functionName>(message: strin
 |`hr.bandwidthLimitExceeded()`			|			509			|
 |`hr.notExtended()`						|			510			|
 |`hr.networkAuthenticationRequired()`	|			511			|
+|`hr.networkReadTimeoutError()`			|			598			|
 |`hr.networkConnectTimeoutError()`		|			599			|
 
 **Happy responding! ;)**
