@@ -1,5 +1,7 @@
 'use strict';
 
+const camelcase = require('./libs/camelcase');
+
 
 /**
  * @param codeMap - a complete map of status codes.
@@ -72,16 +74,6 @@ const codeMap = new Map([
 	[598, `Network Read Timeout Error`], // Informal convention
 	[599, `Network Connect Timeout Error`]
 ]);
-/**
- * @function camelcase takes a string and returns its camelcased form.
- * @param str: string
- */
-const camelcase = str => {
-	let strOut = str.toLowerCase();
-	strOut = strOut.replace(/\s([a-z])/g, match => match.toUpperCase());
-	strOut = strOut.replace(/\s/gi, '');
-	return strOut;
-};
 
 /**
  * @class HttpResponder - a class containing all static

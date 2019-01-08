@@ -3,14 +3,8 @@ const expect = require('chai').expect;
 const should = require('chai').should();
 
 const hr = require('../src');
+const camelcase = require('../src/libs/camelcase');
 
-
-const camelcase = str => {
-	let strOut = str.toLowerCase();
-	strOut = strOut.replace(/\s([a-z])/g, match => match.toUpperCase());
-	strOut = strOut.replace(/\s/gi, '');
-	return strOut;
-};
 
 const payloadTestSuite = error => {
 	describe('test payload', function () {
