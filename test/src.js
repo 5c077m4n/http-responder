@@ -102,4 +102,7 @@ describe('The camelcase function', function () {
 	it('should camelcase the sentence "I aM A TeAPOT"', function () {
 		expect(camelcase('I aM A TeAPOT')).to.deep.equal(correctStr);
 	});
+	it('should camelcase the sentence "I-aM~A`TeAPOT"', function () {
+		expect(camelcase('I-aM~A`TeAPOT')).to.deep.equal(correctStr);
+	});
 });

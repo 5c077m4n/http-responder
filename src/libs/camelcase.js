@@ -4,7 +4,7 @@
  */
 module.exports = function (str) {
 	let strOut = str.toLowerCase();
-	strOut = strOut.replace(/\s([a-z])/g, match => match.toUpperCase());
-	strOut = strOut.replace(/\s/gi, '');
+	strOut = strOut.replace(/\W([a-z])/g, match => match.toUpperCase());
+	strOut = strOut.replace(/\W/gi, '');
 	return strOut;
 };
