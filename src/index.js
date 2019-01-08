@@ -89,16 +89,14 @@ class HttpResponder extends Error {
 			this.statusCode = statusCodeOrMessage;
 			this.message = (errorOrOptions.message) ?
 				errorOrOptions.message : undefined;
-		} else {
-			if (typeof statusCodeOrMessage === 'string') {
-				this.message = statusCodeOrMessage;
-				this.statusCode = errorOrOptions.statusCode ||
-					errorOrOptions.status ||
-					500;
-			} else throw new Error(
-				'The first parameter must be either a number or a string.'
-			);
-		}
+		} else if (typeof statusCodeOrMessage === 'string') {
+			this.message = statusCodeOrMessage;
+			this.statusCode = errorOrOptions.statusCode ||
+				errorOrOptions.status ||
+				500;
+		} else throw new Error(
+			'The first parameter must be either a number or a string.'
+		);
 	}
 
 	/** Getters and setters */
