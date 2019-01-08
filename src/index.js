@@ -73,14 +73,13 @@ const codeMap = new Map([
 	[599, `Network Connect Timeout Error`]
 ]);
 /**
- * @function camelcase
- * @param str
- * A function that takes a string and returns its camelcased form.
+ * @function camelcase takes a string and returns its camelcased form.
+ * @param str: string
  */
 const camelcase = str => {
-	let strOut = str.replace(/^[A-Z]{2,}/g, match => match.toLowerCase());
-	strOut = strOut.replace(/\W/gi, '');
-	strOut = strOut.charAt(0).toLowerCase() + strOut.substring(1);
+	let strOut = str.toLowerCase();
+	strOut = strOut.replace(/\s([a-z])/g, match => match.toUpperCase());
+	strOut = strOut.replace(/\s/gi, '');
 	return strOut;
 };
 
