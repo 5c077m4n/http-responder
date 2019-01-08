@@ -74,3 +74,9 @@ typings/
 
 # coverall
 .coveralls.yml
+
+# vs code files
+.vscode/
+
+# kde desktop file
+.directory
