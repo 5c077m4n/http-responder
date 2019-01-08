@@ -82,27 +82,13 @@ describe('HttpResponder source', function () {
 	.forEach(test => responseTestSuite(...test));
 });
 
-const correctStr = 'iAmATeapot';
 describe('The camelcase function', function () {
-	it('should camelcase the sentence "i am a teapot"', function () {
-		expect(camelcase('i am a teapot')).to.deep.equal(correctStr);
-	});
-	it('should camelcase the sentence "I am a  teapot"', function () {
-		expect(camelcase('I am a  teapot')).to.deep.equal(correctStr);
-	});
-	it('should camelcase the sentence "i aM a teapot"', function () {
-		expect(camelcase('i aM a teapot')).to.deep.equal(correctStr);
-	});
-	it('should camelcase the sentence "i am a teaPot"', function () {
-		expect(camelcase('i am a teaPot')).to.deep.equal(correctStr);
-	});
-	it('should camelcase the sentence "I aM A teApoT"', function () {
-		expect(camelcase('I aM A teApoT')).to.deep.equal(correctStr);
-	});
-	it('should camelcase the sentence "I aM A TeAPOT"', function () {
-		expect(camelcase('I aM A TeAPOT')).to.deep.equal(correctStr);
-	});
-	it('should camelcase the sentence "I-aM~A`TeAPOT"', function () {
-		expect(camelcase('I-aM~A`TeAPOT')).to.deep.equal(correctStr);
-	});
+	const correctStr = 'iAmATeapot';
+	const testStrings = ['i am a teapot', 'I am a  teapot', 'i aM a teapot', 'i am a teaPot', 'I aM A teApoT', 'I aM A TeAPOT', 'I-aM~A`TeAPOT'];
+
+	testStrings.forEach(testString =>
+		it(`should camelcase the sentence "${testString}"`, function () {
+			expect(camelcase(testString)).to.deep.equal(correctStr);
+		})
+	);
 });
