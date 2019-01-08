@@ -69,6 +69,7 @@ const codeMap = new Map([
 	[509, `Bandwidth Limit Exceeded`],
 	[510, `Not Extended`],
 	[511, `Network Authentication Required`],
+	[598, `Network read timeout error`], // Informal convention
 	[599, `Network Connect Timeout Error`]
 ]);
 /**
@@ -93,19 +94,17 @@ class HttpResponder extends Error {
 		super();
 		Object.assign(this, errorOrOptions);
 		this._isHttpRes = true;
-		if(typeof statusCodeOrMessage === 'number') {
+		if (typeof statusCodeOrMessage === 'number') {
 			this.statusCode = statusCodeOrMessage;
-			this.message = (errorOrOptions.message)?
+			this.message = (errorOrOptions.message) ?
 				errorOrOptions.message : undefined;
-		}
-		else {
-			if(typeof statusCodeOrMessage === 'string') {
+		} else {
+			if (typeof statusCodeOrMessage === 'string') {
 				this.message = statusCodeOrMessage;
-				this.statusCode = errorOrOptions.statusCode
-					|| errorOrOptions.status
-					|| 500;
-			}
-			else throw new Error(
+				this.statusCode = errorOrOptions.statusCode ||
+					errorOrOptions.status ||
+					500;
+			} else throw new Error(
 				'The first parameter must be either a number or a string.'
 			);
 		}
@@ -115,27 +114,41 @@ class HttpResponder extends Error {
 	get status() {
 		return this.statusCode;
 	}
-	set status(code) { this.statusCode = code; }
+	set status(code) {
+		this.statusCode = code;
+	}
 	get statusDesc() {
-		return (codeMap.has(this.statusCode))?
+		return (codeMap.has(this.statusCode)) ?
 			codeMap.get(this.statusCode) : 'Unknown Status Code';
 	}
-	set statusDesc(_) { throw new Error('This property is read-only.'); }
-	get statusText() { return this.statusDesc; }
-	set statusText(_) { throw new Error('This property is read-only.'); }
-	get body() { return this.data; }
-	set body(data) { this.data = data; }
+	set statusDesc(_) {
+		throw new Error('This property is read-only.');
+	}
+	get statusText() {
+		return this.statusDesc;
+	}
+	set statusText(_) {
+		throw new Error('This property is read-only.');
+	}
+	get body() {
+		return this.data;
+	}
+	set body(data) {
+		this.data = data;
+	}
 	get payload() {
 		const self = this;
 		return {
 			statusCode: self.statusCode,
 			statusDesc: self.statusDesc,
-			message: (self.message && self.message.length)? self.message : undefined,
-			data: (self.data)? self.data : undefined,
+			message: (self.message && self.message.length) ? self.message : undefined,
+			data: (self.data) ? self.data : undefined,
 			log: () => console.log(JSON.stringify(self.payload))
 		};
 	}
-	set payload(_) { throw new Error('This property is read-only.'); }
+	set payload(_) {
+		throw new Error('This property is read-only.');
+	}
 
 	/** Append new responses to the exisisting HttpResponse */
 	appendError(err) {
@@ -145,8 +158,12 @@ class HttpResponder extends Error {
 	end(res) {
 		return res.status(this.statusCode).json(this.payload);
 	}
-	send(res) { return this.end(res); }
-	json(res) { return this.end(res); }
+	send(res) {
+		return this.end(res);
+	}
+	json(res) {
+		return this.end(res);
+	}
 	log() {
 		console.log(JSON.stringify(this));
 	}
@@ -168,12 +185,12 @@ class HttpResponder extends Error {
  */
 const build = () => {
 	codeMap.forEach((value, key) => {
-		HttpResponder[camelcase(value)] = function(msgOrData, data) {
+		HttpResponder[camelcase(value)] = function (msgOrData, data) {
 			return new HttpResponder(key, {
 				statusCode: key,
-				message: (msgOrData && msgOrData.constructor === String && msgOrData.length)?
+				message: (msgOrData && msgOrData.constructor === String && msgOrData.length) ?
 					msgOrData : undefined,
-				data: (msgOrData && msgOrData.constructor !== String)? msgOrData : data
+				data: (msgOrData && msgOrData.constructor !== String) ? msgOrData : data
 			});
 		}
 	});
