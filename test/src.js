@@ -7,7 +7,7 @@ const camelcase = require('../src/libs/camelcase');
 
 
 const payloadTestSuite = error => {
-	describe('test payload', function () {
+	describe.only('test payload', function () {
 		const payload = error.payload;
 		it('should exist.', function () {
 			should.exist(payload);
@@ -76,10 +76,10 @@ describe('HttpResponder source', function () {
 		['the server error with data', hr.internalServerError({
 			bcz: 'dunno...'
 		}), 500, 'Internal Server Error', undefined, {
-			bcz: 'dunno...'
-		}]
+				bcz: 'dunno...'
+			}]
 	]
-	.forEach(test => responseTestSuite(...test));
+		.forEach(test => responseTestSuite(...test));
 });
 
 describe('The camelcase function', function () {
