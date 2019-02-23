@@ -78,5 +78,8 @@ typings/
 # vs code files
 .vscode/
 
+# dist files
+dist/
+
 # kde desktop file
 .directory

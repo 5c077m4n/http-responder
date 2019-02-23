@@ -1,1 +1,0 @@
-module.exports=function(a){let b=a.toLowerCase();return b=b.replace(/\W([a-z])/g,a=>a.toUpperCase()),b=b.replace(/\W/gi,""),b};
