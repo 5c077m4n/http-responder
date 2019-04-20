@@ -5,8 +5,7 @@
 	"repository": "https://github.com/5c077m4n/http-responder/",
 	"main": "./dist/index.js",
 	"scripts": {
-		"build": "./node_modules/.bin/eslint ./src/index.js && ./node_modules/.bin/minify src -d dist",
-		"build:parcel": "./node_modules/.bin/eslint ./src/index.js && ./node_modules/.bin/parcel build ./src/index.js --out-dir ./dist/",
+		"build": "./node_modules/.bin/eslint ./src/index.js && ./node_modules/.bin/parcel build ./src/index.js --out-dir ./dist/",
 		"lint": "./node_modules/.bin/eslint ./src/index.js",
 		"test": "mocha ./test/src.js"
 	},
