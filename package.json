@@ -9,19 +9,6 @@
 		"lint": "./node_modules/.bin/eslint ./src/index.js",
 		"test": "mocha ./test/src.js"
 	},
-	"eslintConfig": {
-		"env": {
-			"node": true,
-			"es6": true
-		},
-		"parserOptions": {
-			"ecmaVersion": 6
-		},
-		"extends": "eslint:recommended",
-		"rules": {
-			"no-console": "off"
-		}
-	},
 	"babel": {
 		"presets": [
 			"es2015"
