@@ -5,7 +5,7 @@
 	"repository": "https://github.com/5c077m4n/http-responder/",
 	"main": "./dist/index.js",
 	"scripts": {
-		"build": "eslint ./src/index.js && parcel build ./src/index.js --out-dir ./dist/",
+		"build": "eslint ./src/index.js && parcel build ./src/index.js --target node --out-dir ./dist/",
 		"lint": "eslint ./src/index.js",
 		"test": "mocha ./test/src.js"
 	},
