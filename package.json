@@ -3,7 +3,7 @@
 	"version": "2.0.3",
 	"description": "A very simple way to create an error response and send it only showing what you choose to.",
 	"repository": "https://github.com/5c077m4n/http-responder/",
-	"main": "./dist/index.js",
+	"main": "./src/index.js",
 	"scripts": {
 		"build": "eslint ./src/index.js && parcel build ./src/index.js --target node --out-dir ./dist/",
 		"lint": "eslint ./src/index.js",
