@@ -9,11 +9,6 @@
 		"lint": "eslint ./src/index.js",
 		"test": "mocha ./test/src.js"
 	},
-	"babel": {
-		"presets": [
-			"es2015"
-		]
-	},
 	"keywords": [
 		"http",
 		"response",
