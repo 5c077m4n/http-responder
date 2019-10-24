@@ -7,7 +7,8 @@
 	"scripts": {
 		"build": "eslint ./src/index.js && parcel build ./src/index.js --target node --out-dir ./dist/",
 		"lint": "eslint ./src/index.js",
-		"test": "mocha ./test/src.js"
+		"test": "mocha ./test/src.js",
+		"prepublish": "npm run build"
 	},
 	"keywords": [
 		"http",
