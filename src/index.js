@@ -2,7 +2,6 @@
 
 const camelcase = require('./libs/camelcase');
 
-
 /**
  * @param codeMap - a complete map of status codes.
  */
@@ -81,8 +80,16 @@ const codeMap = new Map([
  * setters.
  */
 class HttpResponder extends Error {
+	static improve(err) {
+		return new HttpResponder(500, err);
+	}
+	static isHR(res) {
+		return ((res.constructor === HttpResponder) && res._isHttpRes);
+	}
+
 	constructor(statusCodeOrMessage = 500, errorOrOptions = {}) {
 		super();
+
 		Object.assign(this, errorOrOptions);
 		this._isHttpRes = true;
 		if (typeof statusCodeOrMessage === 'number') {
@@ -110,15 +117,9 @@ class HttpResponder extends Error {
 		return (codeMap.has(this.statusCode)) ?
 			codeMap.get(this.statusCode) : 'Unknown Status Code';
 	}
-	// set statusDesc(_) {
-	// 	throw new Error('This property is read-only.');
-	// }
 	get statusText() {
 		return this.statusDesc;
 	}
-	// set statusText(_) {
-	// 	throw new Error('This property is read-only.');
-	// }
 	get body() {
 		return this.data;
 	}
@@ -126,13 +127,12 @@ class HttpResponder extends Error {
 		this.data = data;
 	}
 	get payload() {
-		const self = this;
 		return {
-			statusCode: self.statusCode,
-			statusDesc: self.statusDesc,
-			message: (self.message && self.message.length) ? self.message : undefined,
-			data: (self.data) ? self.data : undefined,
-			log: () => console.log(JSON.stringify(self.payload))
+			statusCode: this.statusCode,
+			statusDesc: this.statusDesc,
+			message: (this.message && this.message.length) ? this.message : undefined,
+			data: (this.data) ? this.data : undefined,
+			log: () => console.log(JSON.stringify(this.payload))
 		};
 	}
 	set payload(_) {
@@ -156,14 +156,6 @@ class HttpResponder extends Error {
 	log() {
 		console.log(JSON.stringify(this));
 	}
-
-	/** Static functions */
-	static improve(err) {
-		return new HttpResponder(500, err);
-	}
-	static isHR(res) {
-		return ((res.constructor === HttpResponder) && res._isHttpRes);
-	}
 }
 
 /**
@@ -172,7 +164,7 @@ class HttpResponder extends Error {
  * @returns HttpResponder - the class with all static functions
  * attached.
  */
-const build = () => {
+function build() {
 	codeMap.forEach((value, key) => {
 		HttpResponder[camelcase(value)] = function (msgOrData, data) {
 			return new HttpResponder(key, {
