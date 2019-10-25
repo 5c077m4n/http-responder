@@ -1,10 +1,8 @@
-const {
-	expect
-} = require('chai');
+/* eslint-disable no-undef */
+const { expect } = require('chai');
 
 const hr = require('../dist');
 const camelcase = require('../dist/libs/camelcase');
-
 
 const payloadTestSuite = error => {
 	describe('test payload', function () {
@@ -76,10 +74,10 @@ describe('HttpResponder distribution', function () {
 		['the server error with data', hr.internalServerError({
 			bcz: 'dunno...'
 		}), 500, 'Internal Server Error', undefined, {
-			bcz: 'dunno...'
-		}]
+				bcz: 'dunno...'
+			}]
 	]
-	.forEach(test => responseTestSuite(...test));
+		.forEach(test => responseTestSuite(...test));
 });
 
 describe('The camelcase function', function () {

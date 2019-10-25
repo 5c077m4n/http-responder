@@ -1,5 +1,5 @@
-const assert = require('assert');
-const expect = require('chai').expect;
+/* eslint-disable no-undef */
+const { expect } = require('chai');
 const should = require('chai').should();
 
 const hr = require('../src');
