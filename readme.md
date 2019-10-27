@@ -3,7 +3,7 @@
 [![Greenkeeper badge](https://badges.greenkeeper.io/5c077m4n/http-responder.svg)](https://greenkeeper.io/)
 [![Build Status](https://travis-ci.org/5c077m4n/http-responder.svg?branch=master)](https://travis-ci.org/5c077m4n/http-responder)
 [![Known Vulnerabilities](https://snyk.io/test/github/5c077m4n/http-responder/badge.svg)](https://snyk.io/test/github/5c077m4n/http-responder)
-[![Known Vulnerabilities](https://snyk.io/test/github/5c077m4n/http-responder/badge.svg)](https://snyk.io/test/github/5c077m4n/http-responder)
+[![Coverage Status](https://coveralls.io/repos/github/5c077m4n/http-responder/badge.svg?branch=master)](https://coveralls.io/github/5c077m4n/http-responder?branch=master)
 
 A simple and easy way to create and use HTTP errors (extending the original Node.js Error) whilst giving you the control over what is seen.
 
