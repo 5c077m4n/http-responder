@@ -9,7 +9,8 @@
 		"build": "parcel build ./src/index.js --target node --out-dir ./dist/",
 		"lint": "eslint ./src/index.js",
 		"test": "mocha ./test/src.js",
-		"prepublish": "run-s lint build test"
+		"converage": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
+		"prepublish": "run-s lint build converage"
 	},
 	"keywords": [
 		"http",
@@ -27,9 +28,11 @@
 		"@babel/core": "^7.6.4",
 		"@babel/preset-env": "^7.6.3",
 		"chai": "^4.2.0",
+		"coveralls": "^3.0.7",
 		"eslint": "^6.6.0",
 		"mocha": "^6.2.2",
 		"npm-run-all": "^4.1.5",
+		"nyc": "^14.1.1",
 		"parcel-bundler": "^1.12.4",
 		"rimraf": "^3.0.0"
 	}
