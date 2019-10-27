@@ -5,7 +5,6 @@ const should = require('chai').should();
 const hr = require('../src');
 const camelcase = require('../src/libs/camelcase');
 
-
 const payloadTestSuite = error => {
 	describe.only('test payload', function () {
 		const payload = error.payload;
