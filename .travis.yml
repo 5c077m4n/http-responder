@@ -1,3 +1,6 @@
 language: node_js
 node_js:
   - "lts/*"
+after_success:
+  - npm install -g nyc coveralls
+  - nyc npm test && nyc report --reporter=text-lcov | coveralls
