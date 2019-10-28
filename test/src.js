@@ -5,6 +5,26 @@ const should = require('chai').should();
 const hr = require('../src');
 const camelcase = require('../src/libs/camelcase');
 
+describe('Sanity', function () {
+	it('Should throw an error for a bad input', function () {
+		try {
+			const httpObj = new hr({});
+		} catch (err) {
+			expect(err.message).equal('The first parameter must be either a number or a string.');
+			expect(err instanceof Error);
+		}
+	});
+	it('Should test to see if the object is of http-responder type', function () {
+		const hrObj = hr.improve(new Error('Test error'));
+		expect(hrObj instanceof hr);
+	})
+	it('should change the status code', function () {
+		const error = new hr(500);
+		error.status = 501;
+		expect(error.statusCode).to.equal(501);
+	});
+});
+
 const payloadTestSuite = error => {
 	describe('test payload', function () {
 		const payload = error.payload;
