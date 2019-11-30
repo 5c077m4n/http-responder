@@ -79,7 +79,7 @@ typings/
 .vscode/
 
 # dist files
-dist/
+#dist/
 
 # kde desktop file
 .directory
