@@ -10,7 +10,7 @@
 		"lint": "eslint ./src/index.js",
 		"lint:staged": "lint-staged",
 		"test": "mocha ./test/src.js",
-		"prepublish": "run-s lint build test"
+		"postinstall": "npm run build"
 	},
 	"keywords": [
 		"http",
@@ -40,7 +40,7 @@
 	"husky": {
 		"hooks": {
 			"pre-commit": "run-s lint:staged build",
-			"pre-push": "run-s lint build test"
+			"pre-push": "run-s lint test"
 		}
 	},
 	"lint-staged": {
