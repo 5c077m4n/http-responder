@@ -9,8 +9,7 @@
 		"build": "parcel build ./src/index.js --target node --out-dir ./dist/",
 		"lint": "eslint ./src/**/*.js",
 		"lint:staged": "lint-staged",
-		"test": "mocha ./test/src.js",
-		"postinstall": "npm run build"
+		"test": "mocha ./test/src.js"
 	},
 	"keywords": [
 		"http",
