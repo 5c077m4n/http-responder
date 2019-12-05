@@ -3,7 +3,7 @@
 	"version": "2.0.23",
 	"description": "A very simple way to create an error response and send it only showing what you choose to.",
 	"repository": "https://github.com/5c077m4n/http-responder/",
-	"main": "./src/index.js",
+	"main": "./dist/index.js",
 	"scripts": {
 		"clean": "rimraf ./dist && rimraf ./.cache",
 		"build": "parcel build ./src/index.js --target node --out-dir ./dist/",
