@@ -1,1 +1,164 @@
-var to=function(e){var t={};function n(o){if(t[o])return t[o].exports;var r=t[o]={i:o,l:!1,exports:{}};return e[o].call(r.exports,r,r.exports,n),r.l=!0,r.exports}return n.m=e,n.c=t,n.d=function(e,t,o){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:o})},n.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var o=Object.create(null);if(n.r(o),Object.defineProperty(o,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var r in e)n.d(o,r,function(t){return e[t]}.bind(null,r));return o},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,"a",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p="",n(n.s=0)}([function(e,t,n){"use strict";function o(e){return(o="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}function r(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return e}function i(e,t){for(var n=0;n<t.length;n++){var o=t[n];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(e,o.key,o)}}function u(e,t,n){return t&&i(e.prototype,t),n&&i(e,n),e}function a(e){var t="function"==typeof Map?new Map:void 0;return(a=function(e){if(null===e||(n=e,-1===Function.toString.call(n).indexOf("[native code]")))return e;var n;if("function"!=typeof e)throw new TypeError("Super expression must either be null or a function");if(void 0!==t){if(t.has(e))return t.get(e);t.set(e,o)}function o(){return s(e,arguments,l(this).constructor)}return o.prototype=Object.create(e.prototype,{constructor:{value:o,enumerable:!1,writable:!0,configurable:!0}}),c(o,e)})(e)}function s(e,t,n){return(s=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1;if(Reflect.construct.sham)return!1;if("function"==typeof Proxy)return!0;try{return Date.prototype.toString.call(Reflect.construct(Date,[],(function(){}))),!0}catch(e){return!1}}()?Reflect.construct:function(e,t,n){var o=[null];o.push.apply(o,t);var r=new(Function.bind.apply(e,o));return n&&c(r,n.prototype),r}).apply(null,arguments)}function c(e,t){return(c=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e})(e,t)}function l(e){return(l=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)})(e)}n.r(t);var f=new Map([[100,"Continue"],[101,"Switching Protocols"],[102,"Processing"],[103,"Early Hints"],[200,"OK"],[201,"Created"],[202,"Accepted"],[203,"Non-Authoritative Information"],[204,"No Content"],[205,"Reset Content"],[206,"Partial Content"],[207,"Multi-Status"],[208,"Already Reported"],[226,"IM Used"],[300,"Multiple Choices"],[301,"Moved Permanently"],[302,"Found"],[303,"See Other"],[304,"Not Modified"],[305,"Use Proxy"],[306,"Switch Proxy"],[307,"Temporary Redirect"],[308,"Permanent Redirect"],[400,"Bad Request"],[401,"Unauthorized"],[402,"Payment Required"],[403,"Forbidden"],[404,"Not Found"],[405,"Method Not Allowed"],[406,"Not Acceptable"],[407,"Proxy Authentication Required"],[408,"Request Time-out"],[409,"Conflict"],[410,"Gone"],[411,"Length Required"],[412,"Precondition Failed"],[413,"Payload Too Large"],[414,"URI Too Long"],[415,"Unsupported Media Type"],[416,"Requested Range Not Satisfiable"],[417,"Expectation Failed"],[418,"I Am A Teapot"],[421,"Misdirected Request"],[422,"Unprocessable Entity"],[423,"Locked"],[424,"Failed Dependency"],[425,"Unordered Collection"],[426,"Upgrade Required"],[428,"Precondition Required"],[429,"Too Many Requests"],[431,"Request Header Fields Too Large"],[451,"Unavailable For Legal Reasons"],[499,"Client Closed Request"],[500,"Internal Server Error"],[501,"Not Implemented"],[502,"Bad Gateway"],[503,"Service Unavailable"],[504,"Gateway Time-out"],[505,"HTTP Version Not Supported"],[506,"Variant Also Negotiates"],[507,"Insufficient Storage"],[509,"Bandwidth Limit Exceeded"],[510,"Not Extended"],[511,"Network Authentication Required"],[598,"Network Read Timeout Error"],[599,"Network Connect Timeout Error"]]),d=function(e){function t(){var e,n,i,u=arguments.length>0&&void 0!==arguments[0]?arguments[0]:500,a=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{};if(function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,t),n=this,e=!(i=l(t).call(this))||"object"!==o(i)&&"function"!=typeof i?r(n):i,Object.assign(r(e),a),e._isHttpRes=!0,"number"==typeof u)e.statusCode=u,e.message=a.message?a.message:void 0;else{if("string"!=typeof u)throw new Error("The first parameter must be either a number or a string.");e.message=u,e.statusCode=a.statusCode||a.status||500}return e}return function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function");e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&c(e,t)}(t,e),u(t,null,[{key:"improve",value:function(e){return new t(500,e)}},{key:"isHR",value:function(e){return e.constructor===t&&e._isHttpRes}}]),u(t,[{key:"appendError",value:function(e){return Object.assign(this,e)}},{key:"end",value:function(e){return e.status(this.statusCode).json(this.payload)}},{key:"send",value:function(e){return this.end(e)}},{key:"json",value:function(e){return this.end(e)}},{key:"log",value:function(){console.log(JSON.stringify(this))}},{key:"status",get:function(){return this.statusCode},set:function(e){this.statusCode=e}},{key:"statusDesc",get:function(){return f.has(this.statusCode)?f.get(this.statusCode):"Unknown Status Code"}},{key:"statusText",get:function(){return this.statusDesc}},{key:"body",get:function(){return this.data},set:function(e){this.data=e}},{key:"payload",get:function(){var e=this;return{statusCode:this.statusCode,statusDesc:this.statusDesc,message:this.message&&this.message.length?this.message:void 0,data:this.data?this.data:void 0,log:function(){return console.log(JSON.stringify(e.payload))}}},set:function(e){throw new Error("This property is read-only.")}}]),t}(a(Error));t.default=(f.forEach((function(e,t){var n,o;d[(n=e,o=n.toLowerCase(),o=(o=o.replace(/\W([a-z])/g,(function(e){return e.toUpperCase()}))).replace(/\W/gi,""))]=function(e,n){return new d(t,{statusCode:t,message:e&&e.constructor===String&&e.length?e:void 0,data:e&&e.constructor!==String?e:n})}})),d)}]);
+/// <reference no-default-lib="true"/>
+/**
+ * @param codeMap - a complete map of status codes.
+ */
+const codeMap = new Map([
+	[100, `Continue`],
+	[101, `Switching Protocols`],
+	[102, `Processing`],
+	[103, `Early Hints`],
+	[200, `OK`],
+	[201, `Created`],
+	[202, `Accepted`],
+	[203, `Non-Authoritative Information`],
+	[204, `No Content`],
+	[205, `Reset Content`],
+	[206, `Partial Content`],
+	[207, `Multi-Status`],
+	[208, `Already Reported`],
+	[226, `IM Used`],
+	[300, `Multiple Choices`],
+	[301, `Moved Permanently`],
+	[302, `Found`],
+	[303, `See Other`],
+	[304, `Not Modified`],
+	[305, `Use Proxy`],
+	[306, `Switch Proxy`],
+	[307, `Temporary Redirect`],
+	[308, `Permanent Redirect`],
+	[400, `Bad Request`],
+	[401, `Unauthorized`],
+	[402, `Payment Required`],
+	[403, `Forbidden`],
+	[404, `Not Found`],
+	[405, `Method Not Allowed`],
+	[406, `Not Acceptable`],
+	[407, `Proxy Authentication Required`],
+	[408, `Request Time-out`],
+	[409, `Conflict`],
+	[410, `Gone`],
+	[411, `Length Required`],
+	[412, `Precondition Failed`],
+	[413, `Payload Too Large`],
+	[414, `URI Too Long`],
+	[415, `Unsupported Media Type`],
+	[416, `Requested Range Not Satisfiable`],
+	[417, `Expectation Failed`],
+	[418, `I Am A Teapot`],
+	[421, `Misdirected Request`],
+	[422, `Unprocessable Entity`],
+	[423, `Locked`],
+	[424, `Failed Dependency`],
+	[425, `Unordered Collection`],
+	[426, `Upgrade Required`],
+	[428, `Precondition Required`],
+	[429, `Too Many Requests`],
+	[431, `Request Header Fields Too Large`],
+	[451, `Unavailable For Legal Reasons`],
+	[499, `Client Closed Request`],
+	[500, `Internal Server Error`],
+	[501, `Not Implemented`],
+	[502, `Bad Gateway`],
+	[503, `Service Unavailable`],
+	[504, `Gateway Time-out`],
+	[505, `HTTP Version Not Supported`],
+	[506, `Variant Also Negotiates`],
+	[507, `Insufficient Storage`],
+	[509, `Bandwidth Limit Exceeded`],
+	[510, `Not Extended`],
+	[511, `Network Authentication Required`],
+	[598, `Network Read Timeout Error`],
+	[599, `Network Connect Timeout Error`],
+]);
+/**
+ * @class HttpResponder - a class containing all static
+ * functions that create the responses, with getters and
+ * setters.
+ */
+class HttpResponder extends Error {
+	static improve(err) {
+		return new HttpResponder(500, err);
+	}
+	static isHR(res) {
+		return res.constructor === HttpResponder && res._isHttpRes;
+	}
+	constructor(statusCodeOrMessage = 500, errorOrOptions = {}) {
+		super();
+		Object.assign(this, errorOrOptions);
+		this._isHttpRes = true;
+		if (typeof statusCodeOrMessage === 'number') {
+			this.statusCode = statusCodeOrMessage;
+			this.message = errorOrOptions.message ? errorOrOptions.message : undefined;
+		} else if (typeof statusCodeOrMessage === 'string') {
+			this.message = statusCodeOrMessage;
+			this.statusCode = errorOrOptions.statusCode || errorOrOptions.status || 500;
+		} else throw new Error('The first parameter must be either a number or a string.');
+	}
+	/** Getters and setters */
+	get status() {
+		return this.statusCode;
+	}
+	set status(code) {
+		this.statusCode = code;
+	}
+	get statusDesc() {
+		return codeMap.has(this.statusCode) ? codeMap.get(this.statusCode) : 'Unknown Status Code';
+	}
+	get statusText() {
+		return this.statusDesc;
+	}
+	get body() {
+		return this.data;
+	}
+	set body(data) {
+		this.data = data;
+	}
+	get payload() {
+		return {
+			statusCode: this.statusCode,
+			statusDesc: this.statusDesc,
+			message: this.message && this.message.length ? this.message : undefined,
+			data: this.data ? this.data : undefined,
+			log: () => console.log(JSON.stringify(this.payload)),
+		};
+	}
+	set payload(_) {
+		throw new Error('This property is read-only.');
+	}
+	/** Append new responses to the exisisting HttpResponse */
+	appendError(err) {
+		return Object.assign(this, err);
+	}
+	/** Return a response to the client (express 4.x) */
+	end(res) {
+		return res.status(this.statusCode).json(this.payload);
+	}
+	send(res) {
+		return this.end(res);
+	}
+	json(res) {
+		return this.end(res);
+	}
+	log() {
+		console.log(JSON.stringify(this));
+	}
+}
+/**
+ * @function build - adds dynamically all of the codeMap's
+ * values as functions.
+ * @returns HttpResponder - the class with all static functions
+ * attached.
+ */
+function build() {
+	codeMap.forEach((value, key) => {
+		HttpResponder[camelcase(value)] = function(msgOrData, data) {
+			return new HttpResponder(key, {
+				statusCode: key,
+				message: msgOrData && msgOrData.constructor === String && msgOrData.length ? msgOrData : undefined,
+				data: msgOrData && msgOrData.constructor !== String ? msgOrData : data,
+			});
+		};
+	});
+	return HttpResponder;
+}
+export default build();

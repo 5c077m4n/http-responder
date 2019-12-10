@@ -11,7 +11,10 @@
 	},
 	"scripts": {
 		"clean": "lerna run clean",
-		"build": "webpack",
+		"build:esm": "tsc --project ./build-config-files/tsconfig.esm.json",
+		"build:cjs": "tsc --project ./build-config-files/tsconfig.cjs.json",
+		"build:umd": "tsc --project ./build-config-files/tsconfig.umd.json",
+		"build": "run-s build:*",
 		"lint": "eslint ./src/**/*.ts",
 		"lint:staged": "lint-staged",
 		"test:all": "jest",
@@ -34,10 +37,7 @@
 		"@babel/plugin-proposal-object-rest-spread": "^7.7.4",
 		"@babel/preset-env": "^7.7.6",
 		"@babel/preset-typescript": "^7.7.4",
-		"@types/chai": "^4.2.7",
-		"@types/expect": "^24.3.0",
 		"@types/jest": "^24.0.23",
-		"@types/mocha": "^5.2.7",
 		"@typescript-eslint/eslint-plugin": "^2.11.0",
 		"@typescript-eslint/parser": "^2.11.0",
 		"babel-loader": "^8.0.6",
@@ -52,13 +52,17 @@
 		"prettier": "^1.19.1",
 		"rimraf": "^3.0.0",
 		"ts-jest": "^24.2.0",
-		"typescript": "^3.7.3",
-		"webpack": "^4.41.2",
-		"webpack-cli": "^3.3.10"
+		"typescript": "^3.7.3"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged",
+			"pre-push": "run-s lint test:all"
+		}
 	},
 	"lint-staged": {
 		"*.{ts,mjs,js}": [
-			"eslint --fix",
+			"eslint --fix --ignore-pattern packages/",
 			"git add"
 		],
 		"*.{ts,mjs,js,json,md}": [
