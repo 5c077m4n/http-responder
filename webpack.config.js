@@ -17,9 +17,6 @@ const cjsConfig = {
 				include: [path.resolve(__dirname, 'src')],
 				use: [
 					{
-						loader: 'ts-loader',
-					},
-					{
 						loader: 'babel-loader',
 						options: {
 							presets: [['@babel/preset-env', { modules: 'cjs' }], '@babel/preset-typescript'],
@@ -53,9 +50,6 @@ const esmConfig = {
 				include: [path.resolve(__dirname, 'src')],
 				use: [
 					{
-						loader: 'ts-loader',
-					},
-					{
 						loader: 'babel-loader',
 						options: {
 							presets: [['@babel/preset-env', { modules: false }], '@babel/preset-typescript'],
@@ -86,9 +80,6 @@ const umdConfig = {
 				test: /\.ts$/,
 				include: [path.resolve(__dirname, 'src')],
 				use: [
-					{
-						loader: 'ts-loader',
-					},
 					{
 						loader: 'babel-loader',
 						options: {

@@ -1,8 +1,5 @@
 /// <reference no-default-lib="true"/>
 
-import { expect, should as shouldFn } from 'chai';
-const should = shouldFn();
-
 import hr from '../src';
 import camelcase from '../src/libs/camelcase';
 
