@@ -4,15 +4,18 @@ import hr from '../src';
 import camelcase from '../src/libs/camelcase';
 
 describe('Sanity', function() {
-	it('Should throw an error for a bad input', function() {
-		try {
-			// eslint-disable-next-line no-unused-vars
-			const httpObj = new hr({});
-		} catch (err) {
-			expect(err.message).toEqual('The first parameter must be either a number or a string.');
-			expect(err instanceof Error);
-		}
+	it('Shouod exist', () => {
+		expect(hr);
 	});
+	// it('Should throw an error for a bad input', function() {
+	// 	try {
+	// 		// eslint-disable-next-line no-unused-vars
+	// 		const httpObj = new hr({});
+	// 	} catch (err) {
+	// 		expect(err.message).toEqual('The first parameter must be either a number or a string.');
+	// 		expect(err instanceof Error);
+	// 	}
+	// });
 	// 	it('Should test to see if the object is of http-responder type', function() {
 	// 		const hrObj = hr.improve(new Error('Test error'));
 	// 		expect(hrObj instanceof hr);
