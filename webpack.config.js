@@ -15,14 +15,22 @@ const cjsConfig = {
 			{
 				test: /\.ts$/,
 				include: [path.resolve(__dirname, 'src')],
-				use: {
-					loader: 'babel-loader',
-					options: {
-						presets: [['@babel/preset-env', { modules: 'cjs' }]],
+				use: [
+					{
+						loader: 'ts-loader',
 					},
-				},
+					{
+						loader: 'babel-loader',
+						options: {
+							presets: [['@babel/preset-env', { modules: 'cjs' }], '@babel/preset-typescript'],
+						},
+					},
+				],
 			},
 		],
+	},
+	resolve: {
+		extensions: ['.ts'],
 	},
 };
 
@@ -43,14 +51,22 @@ const esmConfig = {
 			{
 				test: /\.ts$/,
 				include: [path.resolve(__dirname, 'src')],
-				use: {
-					loader: 'babel-loader',
-					options: {
-						presets: [['@babel/preset-env', { modules: false }]],
+				use: [
+					{
+						loader: 'ts-loader',
 					},
-				},
+					{
+						loader: 'babel-loader',
+						options: {
+							presets: [['@babel/preset-env', { modules: false }], '@babel/preset-typescript'],
+						},
+					},
+				],
 			},
 		],
+	},
+	resolve: {
+		extensions: ['.ts'],
 	},
 };
 
@@ -69,14 +85,22 @@ const umdConfig = {
 			{
 				test: /\.ts$/,
 				include: [path.resolve(__dirname, 'src')],
-				use: {
-					loader: 'babel-loader',
-					options: {
-						presets: [['@babel/preset-env', { modules: 'umd' }]],
+				use: [
+					{
+						loader: 'ts-loader',
 					},
-				},
+					{
+						loader: 'babel-loader',
+						options: {
+							presets: [['@babel/preset-env', { modules: 'umd' }], '@babel/preset-typescript'],
+						},
+					},
+				],
 			},
 		],
+	},
+	resolve: {
+		extensions: ['.ts'],
 	},
 };
 
