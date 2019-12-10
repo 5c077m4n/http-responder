@@ -3,14 +3,19 @@
 	"version": "2.0.24",
 	"description": "A very simple way to create an error response and send it only showing what you choose to.",
 	"repository": "https://github.com/5c077m4n/http-responder/",
-	"main": "./dist/index.js",
+	"main": "./packages/http-responder.cjs/src/index.js",
+	"module": "./packages/http-responder.esm/src/index.js",
+	"exports": {
+		"default": "./packages/http-responder.esm/",
+		"require": "./packages/http-responder.cjs/"
+	},
 	"scripts": {
-		"clean": "rimraf ./.cache ./dist",
-		"build": "parcel build ./src/index.js --target node --out-dir ./dist/",
-		"lint": "eslint ./src/**/*.js",
+		"clean": "lerna run clean",
+		"build": "webpack --config webpack.config.js",
+		"lint": "eslint ./src/**/*.ts",
 		"lint:staged": "lint-staged",
-		"test": "mocha ./test/**/*.js",
-		"prepare": "run-s lint clean build test"
+		"test:all": "ts-mocha ./__test__/**/*",
+		"prepare": "run-s lint clean build test:all"
 	},
 	"keywords": [
 		"http",
@@ -23,29 +28,39 @@
 	"author": "Roee Shapira",
 	"homepage": "https://5c077m4n.github.io/http-responder/",
 	"license": "MIT",
-	"dependencies": {},
 	"devDependencies": {
 		"@babel/core": "^7.7.5",
 		"@babel/plugin-proposal-class-properties": "^7.7.4",
+		"@babel/plugin-proposal-object-rest-spread": "^7.7.4",
 		"@babel/preset-env": "^7.7.6",
+		"@types/expect": "^24.3.0",
+		"@types/mocha": "^5.2.7",
+		"@typescript-eslint/eslint-plugin": "^2.11.0",
+		"@typescript-eslint/parser": "^2.11.0",
+		"babel-loader": "^8.0.6",
 		"chai": "^4.2.0",
 		"eslint": "^6.7.2",
+		"eslint-config-prettier": "^6.7.0",
+		"eslint-plugin-prettier": "^3.1.1",
 		"husky": "^3.1.0",
+		"lerna": "^3.19.0",
 		"lint-staged": "^9.5.0",
 		"mocha": "^6.2.2",
 		"npm-run-all": "^4.1.5",
-		"parcel-bundler": "^1.12.4",
-		"rimraf": "^3.0.0"
-	},
-	"husky": {
-		"hooks": {
-			"pre-commit": "run-s lint:staged clean build",
-			"pre-push": "run-s lint test"
-		}
+		"prettier": "^1.19.1",
+		"rimraf": "^3.0.0",
+		"ts-mocha": "^6.0.0",
+		"typescript": "^3.7.3",
+		"webpack": "^4.41.2",
+		"webpack-cli": "^3.3.10"
 	},
 	"lint-staged": {
-		"*.js": [
-			"eslint --fix --ignore-pattern 'dist/**'",
+		"*.{ts,mjs,js}": [
+			"eslint --fix",
+			"git add"
+		],
+		"*.{ts,mjs,js,json,md}": [
+			"prettier --write",
 			"git add"
 		]
 	}

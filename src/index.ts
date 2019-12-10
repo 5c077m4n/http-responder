@@ -1,6 +1,6 @@
-'use strict';
+/// <reference no-default-lib="true"/>
 
-const camelcase = require('./libs/camelcase');
+import camelcase from './libs/camelcase';
 
 /**
  * @param codeMap - a complete map of status codes.
@@ -71,7 +71,7 @@ const codeMap = new Map([
 	[510, `Not Extended`],
 	[511, `Network Authentication Required`],
 	[598, `Network Read Timeout Error`], // Informal convention
-	[599, `Network Connect Timeout Error`]
+	[599, `Network Connect Timeout Error`],
 ]);
 
 /**
@@ -84,7 +84,7 @@ class HttpResponder extends Error {
 		return new HttpResponder(500, err);
 	}
 	static isHR(res) {
-		return ((res.constructor === HttpResponder) && res._isHttpRes);
+		return res.constructor === HttpResponder && res._isHttpRes;
 	}
 
 	constructor(statusCodeOrMessage = 500, errorOrOptions = {}) {
@@ -94,16 +94,11 @@ class HttpResponder extends Error {
 		this._isHttpRes = true;
 		if (typeof statusCodeOrMessage === 'number') {
 			this.statusCode = statusCodeOrMessage;
-			this.message = (errorOrOptions.message) ?
-				errorOrOptions.message : undefined;
+			this.message = errorOrOptions.message ? errorOrOptions.message : undefined;
 		} else if (typeof statusCodeOrMessage === 'string') {
 			this.message = statusCodeOrMessage;
-			this.statusCode = errorOrOptions.statusCode ||
-				errorOrOptions.status ||
-				500;
-		} else throw new Error(
-			'The first parameter must be either a number or a string.'
-		);
+			this.statusCode = errorOrOptions.statusCode || errorOrOptions.status || 500;
+		} else throw new Error('The first parameter must be either a number or a string.');
 	}
 
 	/** Getters and setters */
@@ -114,8 +109,7 @@ class HttpResponder extends Error {
 		this.statusCode = code;
 	}
 	get statusDesc() {
-		return (codeMap.has(this.statusCode)) ?
-			codeMap.get(this.statusCode) : 'Unknown Status Code';
+		return codeMap.has(this.statusCode) ? codeMap.get(this.statusCode) : 'Unknown Status Code';
 	}
 	get statusText() {
 		return this.statusDesc;
@@ -130,9 +124,9 @@ class HttpResponder extends Error {
 		return {
 			statusCode: this.statusCode,
 			statusDesc: this.statusDesc,
-			message: (this.message && this.message.length) ? this.message : undefined,
-			data: (this.data) ? this.data : undefined,
-			log: () => console.log(JSON.stringify(this.payload))
+			message: this.message && this.message.length ? this.message : undefined,
+			data: this.data ? this.data : undefined,
+			log: () => console.log(JSON.stringify(this.payload)),
 		};
 	}
 	set payload(_) {
@@ -166,16 +160,15 @@ class HttpResponder extends Error {
  */
 function build() {
 	codeMap.forEach((value, key) => {
-		HttpResponder[camelcase(value)] = function (msgOrData, data) {
+		HttpResponder[camelcase(value)] = function(msgOrData, data) {
 			return new HttpResponder(key, {
 				statusCode: key,
-				message: (msgOrData && msgOrData.constructor === String && msgOrData.length) ?
-					msgOrData : undefined,
-				data: (msgOrData && msgOrData.constructor !== String) ? msgOrData : data
+				message: msgOrData && msgOrData.constructor === String && msgOrData.length ? msgOrData : undefined,
+				data: msgOrData && msgOrData.constructor !== String ? msgOrData : data,
 			});
-		}
+		};
 	});
 	return HttpResponder;
 }
 
-module.exports = build();
+export default build();

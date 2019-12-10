@@ -1,9 +1,9 @@
-/* eslint-disable no-undef */
-const { expect } = require('chai');
-const should = require('chai').should();
+/// <reference no-default-lib="true"/>
+import { expect, should as shouldFn } from 'chai';
+const should = shouldFn();
 
-const hr = require('../src');
-const camelcase = require('../src/libs/camelcase');
+import hr from '../src';
+import camelcase from '../src/libs/camelcase';
 
 describe('Sanity', function() {
 	it('Should throw an error for a bad input', function() {
@@ -11,9 +11,7 @@ describe('Sanity', function() {
 			// eslint-disable-next-line no-unused-vars
 			const httpObj = new hr({});
 		} catch (err) {
-			expect(err.message).equal(
-				'The first parameter must be either a number or a string.'
-			);
+			expect(err.message).equal('The first parameter must be either a number or a string.');
 			expect(err instanceof Error);
 		}
 	});
@@ -24,7 +22,7 @@ describe('Sanity', function() {
 	it('should change the status code', function() {
 		const error = new hr(500);
 		error.status = 501;
-		expect(error.statusCode).to.equal(501);
+		expect((error as any).statusCode).to.equal(501);
 	});
 });
 
@@ -48,14 +46,7 @@ const payloadTestSuite = error => {
 		});
 	});
 };
-const responseTestSuite = (
-	title,
-	error,
-	expectedStatus,
-	expectedDefaultMessage,
-	expectedMessage,
-	expectedData
-) => {
+const responseTestSuite = (title, error, expectedStatus, expectedDefaultMessage, expectedMessage, expectedData) => {
 	describe(title, function() {
 		it('should exist', function() {
 			should.exist(error);
@@ -67,9 +58,7 @@ const responseTestSuite = (
 			error.should.have.property('statusCode').equal(expectedStatus);
 		});
 		it('should check the default status description', function() {
-			error.should.have
-				.property('statusDesc')
-				.equal(expectedDefaultMessage);
+			error.should.have.property('statusDesc').equal(expectedDefaultMessage);
 		});
 		it('should check the custom message', function() {
 			expect(error.message).equal(expectedMessage);
@@ -93,22 +82,10 @@ const responseTestSuite = (
 describe('HttpResponder source', function() {
 	[
 		['the default error', new hr(), 500, 'Internal Server Error'],
-		[
-			'the default error',
-			new hr('Waka Waka!'),
-			500,
-			'Internal Server Error',
-			'Waka Waka!',
-		],
+		['the default error', new hr('Waka Waka!'), 500, 'Internal Server Error', 'Waka Waka!'],
 		['the custom error', new hr(490), 490, 'Unknown Status Code'],
 		['the not found error', hr.notFound(), 404, 'Not Found'],
-		[
-			'the locked error',
-			hr.locked('Sorry, not today...'),
-			423,
-			'Locked',
-			'Sorry, not today...',
-		],
+		['the locked error', hr.locked('Sorry, not today...'), 423, 'Locked', 'Sorry, not today...'],
 		[
 			'the server error with data',
 			hr.internalServerError({
