@@ -1,5 +1,3 @@
-/// <reference no-default-lib="true"/>
-
 import camelcase from './libs/camelcase';
 
 /**
