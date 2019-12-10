@@ -14,7 +14,7 @@
 		"build:esm": "tsc --project ./build-config-files/tsconfig.esm.json",
 		"build:cjs": "tsc --project ./build-config-files/tsconfig.cjs.json",
 		"build:umd": "tsc --project ./build-config-files/tsconfig.umd.json",
-		"build": "run-s build:*",
+		"build": "run-p build:*",
 		"lint": "eslint ./src/**/*.ts",
 		"lint:staged": "lint-staged",
 		"test:all": "jest",
@@ -32,15 +32,9 @@
 	"homepage": "https://5c077m4n.github.io/http-responder/",
 	"license": "MIT",
 	"devDependencies": {
-		"@babel/core": "^7.7.5",
-		"@babel/plugin-proposal-class-properties": "^7.7.4",
-		"@babel/plugin-proposal-object-rest-spread": "^7.7.4",
-		"@babel/preset-env": "^7.7.6",
-		"@babel/preset-typescript": "^7.7.4",
 		"@types/jest": "^24.0.23",
 		"@typescript-eslint/eslint-plugin": "^2.11.0",
 		"@typescript-eslint/parser": "^2.11.0",
-		"babel-loader": "^8.0.6",
 		"eslint": "^6.7.2",
 		"eslint-config-prettier": "^6.7.0",
 		"eslint-plugin-prettier": "^3.1.1",
@@ -61,11 +55,11 @@
 		}
 	},
 	"lint-staged": {
-		"*.{ts,mjs,js}": [
-			"eslint --fix --ignore-pattern packages/",
+		"*.{ts}": [
+			"eslint --fix --ignore-pattern **/*.spec.ts",
 			"git add"
 		],
-		"*.{ts,mjs,js,json,md}": [
+		"*.{ts,json,md}": [
 			"prettier --write",
 			"git add"
 		]

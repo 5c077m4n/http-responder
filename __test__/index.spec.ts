@@ -1,28 +1,28 @@
-// /// <reference no-default-lib="true"/>
+/// <reference no-default-lib="true"/>
 
-// import hr from '../src';
-// import camelcase from '../src/libs/camelcase';
+import hr from '../src';
+import camelcase from '../src/libs/camelcase';
 
-// describe('Sanity', function() {
-// 	it('Should throw an error for a bad input', function() {
-// 		try {
-// 			// eslint-disable-next-line no-unused-vars
-// 			const httpObj = new hr({});
-// 		} catch (err) {
-// 			expect(err.message).equal('The first parameter must be either a number or a string.');
-// 			expect(err instanceof Error);
-// 		}
-// 	});
-// 	it('Should test to see if the object is of http-responder type', function() {
-// 		const hrObj = hr.improve(new Error('Test error'));
-// 		expect(hrObj instanceof hr);
-// 	});
-// 	it('should change the status code', function() {
-// 		const error = new hr(500);
-// 		error.status = 501;
-// 		expect((error as any).statusCode).to.equal(501);
-// 	});
-// });
+describe('Sanity', function() {
+	it('Should throw an error for a bad input', function() {
+		try {
+			// eslint-disable-next-line no-unused-vars
+			const httpObj = new hr({});
+		} catch (err) {
+			expect(err.message).toEqual('The first parameter must be either a number or a string.');
+			expect(err instanceof Error);
+		}
+	});
+	// 	it('Should test to see if the object is of http-responder type', function() {
+	// 		const hrObj = hr.improve(new Error('Test error'));
+	// 		expect(hrObj instanceof hr);
+	// 	});
+	// 	it('should change the status code', function() {
+	// 		const error = new hr(500);
+	// 		error.status = 501;
+	// 		expect((error as any).statusCode).to.equal(501);
+	// 	});
+});
 
 // const payloadTestSuite = error => {
 // 	describe('test payload', function() {
