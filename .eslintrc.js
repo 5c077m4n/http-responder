@@ -8,6 +8,7 @@ module.exports = {
     },
     extends: 'eslint:recommended',
     rules: {
-        'no-console': 'off'
+        'no-console': 'off',
+        indent: ['warn', 'tab'],
     }
 };
