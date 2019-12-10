@@ -14,7 +14,7 @@
 		"build": "webpack",
 		"lint": "eslint ./src/**/*.ts",
 		"lint:staged": "lint-staged",
-		"test:all": "ts-mocha -p ./tsconfig.json ./__test__/**/* ./**/*.spec.ts",
+		"test:all": "ts-mocha -p './tsconfig.json' ./__test__/**/* ./**/*.spec.ts",
 		"prepare": "run-s lint clean build test:all"
 	},
 	"keywords": [
