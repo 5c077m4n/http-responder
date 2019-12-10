@@ -113,7 +113,7 @@ describe('The camelcase function', function() {
 
 	testStrings.forEach(testString =>
 		it(`should camelcase the sentence "${testString}" => "${correctStr}"`, function() {
-			expect(camelcase(testString)).to.deep.equal(correctStr);
+			expect(camelcase(testString)).toEqual(correctStr);
 		})
 	);
 });
