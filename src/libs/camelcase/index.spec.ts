@@ -1,4 +1,4 @@
-import camelcase from './camelcase';
+import camelcase from '.';
 
 describe('The camelcase function', function() {
 	const correctStr = 'iAmATeapot';
