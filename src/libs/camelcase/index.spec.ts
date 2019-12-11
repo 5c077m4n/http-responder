@@ -12,9 +12,9 @@ describe('The camelcase function', function() {
 		'I-aM~A`TeAPOT',
 	];
 
-	testStrings.forEach(testString =>
+	testStrings.forEach(testString => {
 		it(`should camelcase the sentence "${testString}" => "${correctStr}"`, function() {
 			expect(camelcase(testString)).toEqual(correctStr);
-		})
-	);
+		});
+	});
 });
