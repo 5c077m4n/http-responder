@@ -1,5 +1,4 @@
 import hr from '../src';
-import camelcase from '../src/libs/camelcase';
 
 describe('Sanity', function() {
 	it('Should throw an error for a bad input', function() {
@@ -107,23 +106,4 @@ describe('HttpResponder source', function() {
 	]
 		//@ts-ignore
 		.forEach(test => responseTestSuite(...test));
-});
-
-describe('The camelcase function', function() {
-	const correctStr = 'iAmATeapot';
-	const testStrings = [
-		'i am a teapot',
-		'I am a  teapot',
-		'i aM a teapot',
-		'i am a teaPot',
-		'I aM A teApoT',
-		'I aM A TeAPOT',
-		'I-aM~A`TeAPOT',
-	];
-
-	testStrings.forEach(testString =>
-		it(`should camelcase the sentence "${testString}" => "${correctStr}"`, function() {
-			expect(camelcase(testString)).toEqual(correctStr);
-		})
-	);
 });
