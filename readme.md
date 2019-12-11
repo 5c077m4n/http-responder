@@ -19,6 +19,12 @@ then into your code:
 const hr = require('http-responder');
 ```
 
+or:
+
+```javascript
+import hr from 'http-responder';
+```
+
 **and you're good to go!**
 
 To create a custom error: `new hr(statusCode [, optionsOrError]);`
@@ -27,9 +33,9 @@ To create a custom error: `new hr(statusCode [, optionsOrError]);`
 
 2. `optionsOrError: Error | {}` the options object may be a nodejs error, or include:
 
-	1. `message: string` your custom error message.
+    1. `message: string` your custom error message.
 
-	2. `data: any` whatever data you what to send (also shows up in the payload property) - has to be truthy.
+    2. `data: any` whatever data you what to send (also shows up in the payload property) - has to be truthy.
 
 Also, you can choose to use: `new hr(message [, options]);`
 
@@ -37,9 +43,9 @@ Also, you can choose to use: `new hr(message [, options]);`
 
 2. `options: {}` the options object may include:
 
-	1. `statusCode: number` the error's status code (you can use `status` instead)
+    1. `statusCode: number` the error's status code (you can use `status` instead)
 
-	2. `data: any` whatever data you what to send (also shows up in the payload property) - has to be truthy!
+    2. `data: any` whatever data you what to send (also shows up in the payload property) - has to be truthy!
 
 (`new hr();` on its own will give you a 500 status error default.)
 
@@ -57,17 +63,17 @@ And then, your imagination is the limit, i.e.: `hr.notFound().end(res);` (only i
 
 4. `payload` holds only a pretty version of the error (i.e., no stack), so no sensitive information will be leaked, including:
 
-	* `statusCode` - the original status code.
+    - `statusCode` - the original status code.
 
-	* `statusDesc` - the default status description.
+    - `statusDesc` - the default status description.
 
-	* `message` - the given message.
+    - `message` - the given message.
 
-	* `data` - the given data.
+    - `data` - the given data.
 
-	* `log()` - a function to console.log the payload - for testing.
+    - `log()` - a function to console.log the payload - for testing.
 
-4. All other Node.js's `Error` object properties.
+5. All other Node.js's `Error` object properties.
 
 ## Methods:
 
@@ -89,73 +95,73 @@ Each function here is used in the same manner: `hr.<functionName>(message: strin
 
 **A Reminder**: when using `hr.noContent(data).end(res);` express removes all fields from the response and returns only the status code (204)! So niether the data nor the default description will be returned.
 
-|			Static Function				|		Status Code		|
-|---------------------------------------|-----------------------|
-|`hr.continue()`						|			100			|
-|`hr.switchingProtocols()`				|			101			|
-|`hr.processing()`					 	|			102			|
-|`hr.earlyHints()`						|			103			|
-|`hr.ok()`								|			200			|
-|`hr.created()`							|			201			|
-|`hr.accepted()`						|			202			|
-|`hr.nonAuthoritativeInformation()`		|			203			|
-|`hr.noContent()`						|			204			|
-|`hr.resetContent()`					|			205			|
-|`hr.partialContent()`					|			206			|
-|`hr.multiStatus()`						|			207			|
-|`hr.alreadyReported()`					|			208			|
-|`hr.ImUsed()`							|			226			|
-|`hr.multipleChoices()`					|			300			|
-|`hr.movedPermanently()`				|			301			|
-|`hr.found()`							|			302			|
-|`hr.seeOther()`						|			303			|
-|`hr.notModified()`						|			304			|
-|`hr.useProxy()`						|			305			|
-|`hr.switchProxy()`						|			306			|
-|`hr.temporaryRedirect()`				|			307			|
-|`hr.permanentRedirect()`				|			308			|
-|`hr.badRequest()`						|			400			|
-|`hr.unauthorized()`					|			401			|
-|`hr.paymentRequired()`					|			402			|
-|`hr.forbidden()`						|			403			|
-|`hr.notFound()`						|			404			|
-|`hr.methodNotAllowed()`				|			405			|
-|`hr.notAcceptable()`					|			406			|
-|`hr.proxyAuthenticationRequired()`		|			407			|
-|`hr.requestTimeOut()`					|			408			|
-|`hr.conflict()`						|			409			|
-|`hr.gone()`							|			410			|
-|`hr.lengthRequired()`					|			411			|
-|`hr.preconditionFailed()`				|			412			|
-|`hr.payloadTooLarge()`					|			413			|
-|`hr.uriTooLong()`						|			414			|
-|`hr.unsupportedMediaType()`			|			415			|
-|`hr.requestedRangeNotSatisfiable()`	|			416			|
-|`hr.expectationFailed()`				|			417			|
-|`hr.iAmATeapot()`						|			418			|
-|`hr.misdirectedRequest()`				|			421			|
-|`hr.unprocessableEntity()`				|			422			|
-|`hr.locked()`							|			423			|
-|`hr.failedDependency()`				|			424			|
-|`hr.unorderedCollection()`				|			425			|
-|`hr.upgradeRequired()`					|			426			|
-|`hr.preconditionRequired()`			|			428			|
-|`hr.tooManyRequests()`					|			429			|
-|`hr.requestHeaderFieldsTooLarge()`		|			431			|
-|`hr.unavailableForLegalReasons()`		|			451			|
-|`hr.clientClosedRequest()`				|			499			|
-|`hr.internalServerError()`				|			500			|
-|`hr.notImplemented()`					|			501			|
-|`hr.badGateway()`						|			502			|
-|`hr.serviceUnavailable()`				|			503			|
-|`hr.gatewayTimeOut()`					|			504			|
-|`hr.httpVersionNotSupported()`			|			505			|
-|`hr.variantAlsoNegotiates()`			|			506			|
-|`hr.insufficientStorage()`				|			507			|
-|`hr.bandwidthLimitExceeded()`			|			509			|
-|`hr.notExtended()`						|			510			|
-|`hr.networkAuthenticationRequired()`	|			511			|
-|`hr.networkReadTimeoutError()`			|			598			|
-|`hr.networkConnectTimeoutError()`		|			599			|
+| Static Function                      | Status Code |
+| ------------------------------------ | ----------- |
+| `hr.continue()`                      | 100         |
+| `hr.switchingProtocols()`            | 101         |
+| `hr.processing()`                    | 102         |
+| `hr.earlyHints()`                    | 103         |
+| `hr.ok()`                            | 200         |
+| `hr.created()`                       | 201         |
+| `hr.accepted()`                      | 202         |
+| `hr.nonAuthoritativeInformation()`   | 203         |
+| `hr.noContent()`                     | 204         |
+| `hr.resetContent()`                  | 205         |
+| `hr.partialContent()`                | 206         |
+| `hr.multiStatus()`                   | 207         |
+| `hr.alreadyReported()`               | 208         |
+| `hr.ImUsed()`                        | 226         |
+| `hr.multipleChoices()`               | 300         |
+| `hr.movedPermanently()`              | 301         |
+| `hr.found()`                         | 302         |
+| `hr.seeOther()`                      | 303         |
+| `hr.notModified()`                   | 304         |
+| `hr.useProxy()`                      | 305         |
+| `hr.switchProxy()`                   | 306         |
+| `hr.temporaryRedirect()`             | 307         |
+| `hr.permanentRedirect()`             | 308         |
+| `hr.badRequest()`                    | 400         |
+| `hr.unauthorized()`                  | 401         |
+| `hr.paymentRequired()`               | 402         |
+| `hr.forbidden()`                     | 403         |
+| `hr.notFound()`                      | 404         |
+| `hr.methodNotAllowed()`              | 405         |
+| `hr.notAcceptable()`                 | 406         |
+| `hr.proxyAuthenticationRequired()`   | 407         |
+| `hr.requestTimeOut()`                | 408         |
+| `hr.conflict()`                      | 409         |
+| `hr.gone()`                          | 410         |
+| `hr.lengthRequired()`                | 411         |
+| `hr.preconditionFailed()`            | 412         |
+| `hr.payloadTooLarge()`               | 413         |
+| `hr.uriTooLong()`                    | 414         |
+| `hr.unsupportedMediaType()`          | 415         |
+| `hr.requestedRangeNotSatisfiable()`  | 416         |
+| `hr.expectationFailed()`             | 417         |
+| `hr.iAmATeapot()`                    | 418         |
+| `hr.misdirectedRequest()`            | 421         |
+| `hr.unprocessableEntity()`           | 422         |
+| `hr.locked()`                        | 423         |
+| `hr.failedDependency()`              | 424         |
+| `hr.unorderedCollection()`           | 425         |
+| `hr.upgradeRequired()`               | 426         |
+| `hr.preconditionRequired()`          | 428         |
+| `hr.tooManyRequests()`               | 429         |
+| `hr.requestHeaderFieldsTooLarge()`   | 431         |
+| `hr.unavailableForLegalReasons()`    | 451         |
+| `hr.clientClosedRequest()`           | 499         |
+| `hr.internalServerError()`           | 500         |
+| `hr.notImplemented()`                | 501         |
+| `hr.badGateway()`                    | 502         |
+| `hr.serviceUnavailable()`            | 503         |
+| `hr.gatewayTimeOut()`                | 504         |
+| `hr.httpVersionNotSupported()`       | 505         |
+| `hr.variantAlsoNegotiates()`         | 506         |
+| `hr.insufficientStorage()`           | 507         |
+| `hr.bandwidthLimitExceeded()`        | 509         |
+| `hr.notExtended()`                   | 510         |
+| `hr.networkAuthenticationRequired()` | 511         |
+| `hr.networkReadTimeoutError()`       | 598         |
+| `hr.networkConnectTimeoutError()`    | 599         |
 
 **Happy responding! ;)**
