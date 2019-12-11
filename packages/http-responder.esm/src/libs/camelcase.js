@@ -4,8 +4,8 @@
  * @returns a camelcased string.
  */
 export default function camelcase(str) {
-	let strOut = str.toLowerCase();
-	strOut = strOut.replace(/\W([a-z])/g, match => match.toUpperCase());
-	strOut = strOut.replace(/\W/gi, '');
-	return strOut;
+    let strOut = str.toLowerCase();
+    strOut = strOut.replace(/\W([a-z])/g, match => match.toUpperCase());
+    strOut = strOut.replace(/\W/gi, '');
+    return strOut;
 }
