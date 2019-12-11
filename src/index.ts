@@ -1,76 +1,5 @@
 import camelcase from './libs/camelcase';
-
-/**
- * @param codeMap - a complete map of status codes.
- */
-const codeMap = new Map([
-	[100, `Continue`],
-	[101, `Switching Protocols`],
-	[102, `Processing`],
-	[103, `Early Hints`],
-	[200, `OK`],
-	[201, `Created`],
-	[202, `Accepted`],
-	[203, `Non-Authoritative Information`],
-	[204, `No Content`],
-	[205, `Reset Content`],
-	[206, `Partial Content`],
-	[207, `Multi-Status`],
-	[208, `Already Reported`],
-	[226, `IM Used`],
-	[300, `Multiple Choices`],
-	[301, `Moved Permanently`],
-	[302, `Found`],
-	[303, `See Other`],
-	[304, `Not Modified`],
-	[305, `Use Proxy`],
-	[306, `Switch Proxy`],
-	[307, `Temporary Redirect`],
-	[308, `Permanent Redirect`],
-	[400, `Bad Request`],
-	[401, `Unauthorized`],
-	[402, `Payment Required`],
-	[403, `Forbidden`],
-	[404, `Not Found`],
-	[405, `Method Not Allowed`],
-	[406, `Not Acceptable`],
-	[407, `Proxy Authentication Required`],
-	[408, `Request Time-out`],
-	[409, `Conflict`],
-	[410, `Gone`],
-	[411, `Length Required`],
-	[412, `Precondition Failed`],
-	[413, `Payload Too Large`],
-	[414, `URI Too Long`],
-	[415, `Unsupported Media Type`],
-	[416, `Requested Range Not Satisfiable`],
-	[417, `Expectation Failed`],
-	[418, `I Am A Teapot`],
-	[421, `Misdirected Request`],
-	[422, `Unprocessable Entity`],
-	[423, `Locked`],
-	[424, `Failed Dependency`],
-	[425, `Unordered Collection`],
-	[426, `Upgrade Required`],
-	[428, `Precondition Required`],
-	[429, `Too Many Requests`],
-	[431, `Request Header Fields Too Large`],
-	[451, `Unavailable For Legal Reasons`],
-	[499, `Client Closed Request`],
-	[500, `Internal Server Error`],
-	[501, `Not Implemented`],
-	[502, `Bad Gateway`],
-	[503, `Service Unavailable`],
-	[504, `Gateway Time-out`],
-	[505, `HTTP Version Not Supported`],
-	[506, `Variant Also Negotiates`],
-	[507, `Insufficient Storage`],
-	[509, `Bandwidth Limit Exceeded`],
-	[510, `Not Extended`],
-	[511, `Network Authentication Required`],
-	[598, `Network Read Timeout Error`], // Informal convention
-	[599, `Network Connect Timeout Error`],
-]);
+import codeMap from './libs/code-map';
 
 /**
  * @class HttpResponder - a class containing all static
@@ -78,14 +7,18 @@ const codeMap = new Map([
  * setters.
  */
 class HttpResponder extends Error {
-	static improve(err) {
+	private _isHttpRes: boolean;
+	statusCode: number;
+	data: any;
+	static improve(err: Error) {
 		return new HttpResponder(500, err);
 	}
-	static isHR(res) {
+	static isHR(res: Error) {
+		//@ts-ignore
 		return res.constructor === HttpResponder && res._isHttpRes;
 	}
 
-	constructor(statusCodeOrMessage = 500, errorOrOptions = {}) {
+	constructor(statusCodeOrMessage: number | string = 500, errorOrOptions: Error | any = {}) {
 		super();
 
 		Object.assign(this, errorOrOptions);
@@ -103,16 +36,16 @@ class HttpResponder extends Error {
 	get status() {
 		return this.statusCode;
 	}
-	set status(code) {
+	set status(code: number) {
 		this.statusCode = code;
 	}
-	get statusDesc() {
-		return codeMap.has(this.statusCode) ? codeMap.get(this.statusCode) : 'Unknown Status Code';
+	get statusDesc(): string {
+		return codeMap.get(this.statusCode) ?? 'Unknown Status Code';
 	}
-	get statusText() {
+	get statusText(): string {
 		return this.statusDesc;
 	}
-	get body() {
+	get body(): any {
 		return this.data;
 	}
 	set body(data) {
@@ -132,17 +65,17 @@ class HttpResponder extends Error {
 	}
 
 	/** Append new responses to the exisisting HttpResponse */
-	appendError(err) {
+	appendError(err: Error | any) {
 		return Object.assign(this, err);
 	}
 	/** Return a response to the client (express 4.x) */
-	end(res) {
+	end(res: Error | any) {
 		return res.status(this.statusCode).json(this.payload);
 	}
-	send(res) {
+	send(res: Error | any) {
 		return this.end(res);
 	}
-	json(res) {
+	json(res: Error | any) {
 		return this.end(res);
 	}
 	log() {
@@ -158,7 +91,8 @@ class HttpResponder extends Error {
  */
 function build() {
 	codeMap.forEach((value, key) => {
-		HttpResponder[camelcase(value)] = function(msgOrData, data) {
+		//@ts-ignore
+		HttpResponder[camelcase(value)] = function(msgOrData: string | any, data: any): HttpResponder {
 			return new HttpResponder(key, {
 				statusCode: key,
 				message: msgOrData && msgOrData.constructor === String && msgOrData.length ? msgOrData : undefined,
