@@ -1,0 +1,10 @@
+{
+	"name": "http-responder.esm",
+	"type": "module",
+	"exports": {
+		"default": "./src/index.js"
+	},
+	"scripts": {
+		"clean": "rimraf ./src/**/*"
+	}
+}

@@ -1,10 +1,14 @@
+'use strict';
 /**
  * @function camelcase takes a string and returns its camelcased form.
  * @param str: string to transform.
+ * @returns a camelcased string.
  */
-module.exports = function (str) {
+Object.defineProperty(exports, '__esModule', { value: true });
+function camelcase(str) {
 	let strOut = str.toLowerCase();
 	strOut = strOut.replace(/\W([a-z])/g, match => match.toUpperCase());
 	strOut = strOut.replace(/\W/gi, '');
 	return strOut;
-};
+}
+exports.default = camelcase;

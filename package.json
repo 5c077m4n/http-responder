@@ -3,14 +3,22 @@
 	"version": "2.0.24",
 	"description": "A very simple way to create an error response and send it only showing what you choose to.",
 	"repository": "https://github.com/5c077m4n/http-responder/",
-	"main": "./dist/index.js",
+	"main": "./packages/http-responder.cjs/src/index.js",
+	"module": "./packages/http-responder.esm/src/index.js",
+	"exports": {
+		"default": "./packages/http-responder.esm/",
+		"require": "./packages/http-responder.cjs/"
+	},
 	"scripts": {
-		"clean": "rimraf ./.cache ./dist",
-		"build": "parcel build ./src/index.js --target node --out-dir ./dist/",
-		"lint": "eslint ./src/**/*.js",
+		"clean": "lerna run clean",
+		"build:esm": "tsc --project ./build-config-files/tsconfig.esm.json",
+		"build:cjs": "tsc --project ./build-config-files/tsconfig.cjs.json",
+		"build:umd": "tsc --project ./build-config-files/tsconfig.umd.json",
+		"build": "run-p build:*",
+		"lint": "eslint ./src/**/*.ts",
 		"lint:staged": "lint-staged",
-		"test": "mocha ./test/**/*.js",
-		"prepare": "run-s lint clean build test"
+		"test:all": "jest",
+		"prepare": "run-s lint clean build test:all"
 	},
 	"keywords": [
 		"http",
@@ -23,29 +31,36 @@
 	"author": "Roee Shapira",
 	"homepage": "https://5c077m4n.github.io/http-responder/",
 	"license": "MIT",
-	"dependencies": {},
 	"devDependencies": {
-		"@babel/core": "^7.7.5",
-		"@babel/plugin-proposal-class-properties": "^7.7.4",
-		"@babel/preset-env": "^7.7.6",
-		"chai": "^4.2.0",
+		"@types/jest": "^24.0.23",
+		"@typescript-eslint/eslint-plugin": "^2.11.0",
+		"@typescript-eslint/parser": "^2.11.0",
 		"eslint": "^6.7.2",
+		"eslint-config-prettier": "^6.7.0",
+		"eslint-plugin-prettier": "^3.1.1",
 		"husky": "^3.1.0",
+		"jest": "^24.9.0",
+		"lerna": "^3.19.0",
 		"lint-staged": "^9.5.0",
-		"mocha": "^6.2.2",
 		"npm-run-all": "^4.1.5",
-		"parcel-bundler": "^1.12.4",
-		"rimraf": "^3.0.0"
+		"prettier": "^1.19.1",
+		"rimraf": "^3.0.0",
+		"ts-jest": "^24.2.0",
+		"typescript": "^3.7.3"
 	},
 	"husky": {
 		"hooks": {
-			"pre-commit": "run-s lint:staged clean build",
-			"pre-push": "run-s lint test"
+			"pre-commit": "lint-staged",
+			"pre-push": "run-s lint test:all"
 		}
 	},
 	"lint-staged": {
-		"*.js": [
-			"eslint --fix --ignore-pattern 'dist/**'",
+		"*.{ts}": [
+			"eslint --fix --ignore-pattern **/*.spec.ts",
+			"git add"
+		],
+		"*.{ts,json,md}": [
+			"prettier --write",
 			"git add"
 		]
 	}

@@ -1,19 +1,13 @@
-/* eslint-disable no-undef */
-const { expect } = require('chai');
-const should = require('chai').should();
-
-const hr = require('../src');
-const camelcase = require('../src/libs/camelcase');
+import hr from '../src';
+import camelcase from '../src/libs/camelcase';
 
 describe('Sanity', function() {
 	it('Should throw an error for a bad input', function() {
 		try {
 			// eslint-disable-next-line no-unused-vars
-			const httpObj = new hr({});
+			const httpObj = new hr({} as any);
 		} catch (err) {
-			expect(err.message).equal(
-				'The first parameter must be either a number or a string.'
-			);
+			expect(err.message).toEqual('The first parameter must be either a number or a string.');
 			expect(err instanceof Error);
 		}
 	});
@@ -24,93 +18,82 @@ describe('Sanity', function() {
 	it('should change the status code', function() {
 		const error = new hr(500);
 		error.status = 501;
-		expect(error.statusCode).to.equal(501);
+		expect((error as any).statusCode).toEqual(501);
 	});
 });
 
-const payloadTestSuite = error => {
+const payloadTestSuite = (error: any) => {
 	describe('test payload', function() {
 		const payload = error.payload;
 		it('should exist.', function() {
-			should.exist(payload);
+			expect(!!payload);
 		});
 		it('should have a status code of the original object', function() {
-			expect(payload.statusCode).equal(error.statusCode);
+			expect(payload.statusCode).toEqual(error.statusCode);
 		});
 		it('should have the data of the original object', function() {
-			expect(payload.data).equal(error.data);
+			expect(payload.data).toEqual(error.data);
 		});
 		it('should have the message of the original object', function() {
-			expect(payload.message).equal(error.message);
+			expect(payload.message).toEqual(error.message);
 		});
 		it('should have the data of the original error', function() {
-			expect(payload.data).to.deep.equal(error.data);
+			expect(payload.data).toEqual(error.data);
 		});
 	});
 };
-const responseTestSuite = (
-	title,
-	error,
-	expectedStatus,
-	expectedDefaultMessage,
-	expectedMessage,
-	expectedData
-) => {
+function responseTestSuite(
+	title: string,
+	error: HttpResponder,
+	expectedStatus: number,
+	expectedDefaultMessage: string,
+	expectedMessage: string,
+	expectedData: any
+) {
 	describe(title, function() {
 		it('should exist', function() {
-			should.exist(error);
+			expect(!!error);
 		});
 		it('should be of type HttpResponse', function() {
-			expect(hr.isHR(new hr())).equal(true);
+			expect(hr.isHR(new hr())).toEqual(true);
 		});
 		it(`should have a status code of ${expectedStatus}`, function() {
-			error.should.have.property('statusCode').equal(expectedStatus);
+			expect(error.statusCode).toEqual(expectedStatus);
 		});
 		it('should check the default status description', function() {
-			error.should.have
-				.property('statusDesc')
-				.equal(expectedDefaultMessage);
+			expect(error.statusDesc).toEqual(expectedDefaultMessage);
 		});
 		it('should check the custom message', function() {
-			expect(error.message).equal(expectedMessage);
+			expect(error.message).toEqual(expectedMessage);
 		});
 		it('should have a status getter equal to statusCode', function() {
-			expect(error.statusCode).equal(error.status);
+			expect(error.statusCode).toEqual(error.status);
 		});
 		it('should have the same message for statusDesc and for statusText', function() {
-			expect(error.statusDesc).equal(error.statusText);
+			expect(error.statusDesc).toEqual(error.statusText);
 		});
 		it('should have the expected data', function() {
-			expect(error.data).to.deep.equal(expectedData);
+			expect(error.data).toEqual(expectedData);
 		});
 		it('should have a body with the expected data', function() {
-			expect(error.data).to.deep.equal(error.body);
+			expect(error.data).toEqual(error.body);
 		});
 	});
 	payloadTestSuite(error);
-};
+}
 
 describe('HttpResponder source', function() {
 	[
 		['the default error', new hr(), 500, 'Internal Server Error'],
-		[
-			'the default error',
-			new hr('Waka Waka!'),
-			500,
-			'Internal Server Error',
-			'Waka Waka!',
-		],
+		['the default error', new hr('Waka Waka!'), 500, 'Internal Server Error', 'Waka Waka!'],
 		['the custom error', new hr(490), 490, 'Unknown Status Code'],
+		//@ts-ignore
 		['the not found error', hr.notFound(), 404, 'Not Found'],
-		[
-			'the locked error',
-			hr.locked('Sorry, not today...'),
-			423,
-			'Locked',
-			'Sorry, not today...',
-		],
+		//@ts-ignore
+		['the locked error', hr.locked('Sorry, not today...'), 423, 'Locked', 'Sorry, not today...'],
 		[
 			'the server error with data',
+			//@ts-ignore
 			hr.internalServerError({
 				bcz: 'dunno...',
 			}),
@@ -121,7 +104,9 @@ describe('HttpResponder source', function() {
 				bcz: 'dunno...',
 			},
 		],
-	].forEach(test => responseTestSuite(...test));
+	]
+		//@ts-ignore
+		.forEach(test => responseTestSuite(...test));
 });
 
 describe('The camelcase function', function() {
@@ -138,7 +123,7 @@ describe('The camelcase function', function() {
 
 	testStrings.forEach(testString =>
 		it(`should camelcase the sentence "${testString}" => "${correctStr}"`, function() {
-			expect(camelcase(testString)).to.deep.equal(correctStr);
+			expect(camelcase(testString)).toEqual(correctStr);
 		})
 	);
 });
