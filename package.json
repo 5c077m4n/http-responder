@@ -9,6 +9,7 @@
 		"default": "./packages/http-responder.esm/",
 		"require": "./packages/http-responder.cjs/"
 	},
+	"sideEffects": false,
 	"scripts": {
 		"clean": "lerna run clean",
 		"build:esm": "tsc --project ./build-config-files/tsconfig.esm.json",
