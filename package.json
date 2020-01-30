@@ -2,25 +2,6 @@
 	"name": "http-responder",
 	"version": "2.1.5",
 	"description": "A very simple way to create an error response and send it only showing what you choose to.",
-	"repository": "https://github.com/5c077m4n/http-responder/",
-	"main": "./packages/http-responder.cjs/src/index.js",
-	"module": "./packages/http-responder.esm/src/index.js",
-	"exports": {
-		"default": "./packages/http-responder.esm/",
-		"require": "./packages/http-responder.cjs/"
-	},
-	"sideEffects": false,
-	"scripts": {
-		"clean": "lerna run clean",
-		"build:esm": "tsc --project ./build-config-files/tsconfig.esm.json",
-		"build:cjs": "tsc --project ./build-config-files/tsconfig.cjs.json",
-		"build:umd": "tsc --project ./build-config-files/tsconfig.umd.json",
-		"build": "run-p build:*",
-		"lint": "eslint ./src/**/*.ts",
-		"lint:staged": "lint-staged",
-		"test:all": "jest",
-		"prepare": "run-s lint clean build test:all"
-	},
 	"keywords": [
 		"http",
 		"response",
@@ -29,9 +10,48 @@
 		"status",
 		"statusCode"
 	],
-	"author": "Roee Shapira",
 	"homepage": "https://5c077m4n.github.io/http-responder/",
+	"repository": "https://github.com/5c077m4n/http-responder/",
 	"license": "MIT",
+	"author": "Roee Shapira",
+	"sideEffects": false,
+	"exports": {
+		"default": "./packages/http-responder.esm/",
+		"require": "./packages/http-responder.cjs/"
+	},
+	"main": "./packages/http-responder.cjs/src/index.js",
+	"module": "./packages/http-responder.esm/src/index.js",
+	"scripts": {
+		"build": "run-p build:*",
+		"build:cjs": "tsc --project ./build-config-files/tsconfig.cjs.json",
+		"build:esm": "tsc --project ./build-config-files/tsconfig.esm.json",
+		"build:umd": "tsc --project ./build-config-files/tsconfig.umd.json",
+		"clean": "lerna run clean",
+		"lint": "eslint ./src/**/*.ts",
+		"lint:staged": "lint-staged",
+		"prepare": "run-s lint clean build test:all",
+		"test:all": "jest"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged",
+			"pre-push": "run-s lint test:all"
+		}
+	},
+	"lint-staged": {
+		"**/package.json": [
+			"sort-package-json",
+			"git add"
+		],
+		"*.{ts,json,md}": [
+			"prettier --write",
+			"git add"
+		],
+		"*.{ts}": [
+			"eslint --fix --ignore-pattern **/*.spec.ts",
+			"git add"
+		]
+	},
 	"devDependencies": {
 		"@types/jest": "^25.1.1",
 		"@typescript-eslint/eslint-plugin": "^2.18.0",
@@ -46,23 +66,8 @@
 		"npm-run-all": "^4.1.5",
 		"prettier": "^1.19.1",
 		"rimraf": "^3.0.1",
+		"sort-package-json": "^1.39.1",
 		"ts-jest": "^25.1.0",
 		"typescript": "^3.7.5"
-	},
-	"husky": {
-		"hooks": {
-			"pre-commit": "lint-staged",
-			"pre-push": "run-s lint test:all"
-		}
-	},
-	"lint-staged": {
-		"*.{ts}": [
-			"eslint --fix --ignore-pattern **/*.spec.ts",
-			"git add"
-		],
-		"*.{ts,json,md}": [
-			"prettier --write",
-			"git add"
-		]
 	}
 }
