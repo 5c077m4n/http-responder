@@ -47,7 +47,7 @@ function responseTestSuite(
 	expectedStatus: number,
 	expectedDefaultMessage: string,
 	expectedMessage: string,
-	expectedData: any
+	expectedData: any,
 ) {
 	describe(title, function() {
 		it('should exist', function() {
@@ -88,6 +88,14 @@ describe('HttpResponder source', function() {
 		['the custom error', new hr(490), 490, 'Unknown Status Code'],
 		//@ts-ignore
 		['the not found error', hr.notFound(), 404, 'Not Found'],
+		[
+			'the not found error',
+			//@ts-ignore
+			hr.failedDependency('Error on external API'),
+			424,
+			'Failed Dependency',
+			'Error on external API',
+		],
 		//@ts-ignore
 		['the locked error', hr.locked('Sorry, not today...'), 423, 'Locked', 'Sorry, not today...'],
 		[
