@@ -13,7 +13,7 @@ class HttpResponder extends Error {
 	static improve(err: Error) {
 		return new HttpResponder(500, err);
 	}
-	static isHR(res: Error) {
+	static isHR(res: Error): boolean {
 		//@ts-ignore
 		return res.constructor === HttpResponder && res._isHttpRes;
 	}
@@ -29,11 +29,11 @@ class HttpResponder extends Error {
 		} else if (typeof statusCodeOrMessage === 'string') {
 			this.message = statusCodeOrMessage;
 			this.statusCode = errorOrOptions.statusCode || errorOrOptions.status || 500;
-		} else throw new Error('The first parameter must be either a number or a string.');
+		} else throw TypeError('The first parameter must be either a number or a string.');
 	}
 
 	/** Getters and setters */
-	get status() {
+	get status(): number {
 		return this.statusCode;
 	}
 	set status(code: number) {
@@ -78,7 +78,7 @@ class HttpResponder extends Error {
 	json(res: Error | any) {
 		return this.end(res);
 	}
-	log() {
+	log(): void {
 		console.log(JSON.stringify(this));
 	}
 }

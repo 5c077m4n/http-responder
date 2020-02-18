@@ -22,20 +22,17 @@
 	"main": "./packages/http-responder.cjs/src/index.js",
 	"module": "./packages/http-responder.esm/src/index.js",
 	"scripts": {
-		"build": "run-p build:*",
-		"build:cjs": "tsc --project ./build-config-files/tsconfig.cjs.json",
-		"build:esm": "tsc --project ./build-config-files/tsconfig.esm.json",
-		"build:umd": "tsc --project ./build-config-files/tsconfig.umd.json",
+		"build": "rollup -c ./rollup.config.js",
 		"clean": "lerna run clean",
 		"lint": "eslint ./src/**/*.ts",
 		"lint:staged": "lint-staged",
-		"prepare": "run-s lint clean build test:all",
-		"test:all": "jest"
+		"prepare": "run-s lint clean build test",
+		"test": "jest"
 	},
 	"husky": {
 		"hooks": {
 			"pre-commit": "lint-staged",
-			"pre-push": "run-s lint test:all"
+			"pre-push": "run-s lint build test"
 		}
 	},
 	"lint-staged": {
@@ -53,7 +50,8 @@
 		]
 	},
 	"devDependencies": {
-		"@types/jest": "^25.1.1",
+		"@rollup/plugin-typescript": "^3.0.0",
+		"@types/jest": "^25.1.2",
 		"@typescript-eslint/eslint-plugin": "^2.18.0",
 		"@typescript-eslint/parser": "^2.18.0",
 		"eslint": "^6.8.0",
@@ -66,8 +64,11 @@
 		"npm-run-all": "^4.1.5",
 		"prettier": "^1.19.1",
 		"rimraf": "^3.0.1",
+		"rollup": "^1.31.1",
+		"rollup-plugin-terser": "^5.2.0",
 		"sort-package-json": "^1.39.1",
 		"ts-jest": "^25.1.0",
+		"tslib": "^1.10.0",
 		"typescript": "^3.7.5"
 	}
 }
