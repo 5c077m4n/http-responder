@@ -89,7 +89,7 @@ describe('HttpResponder source', function() {
 		//@ts-ignore
 		['the not found error', hr.notFound(), 404, 'Not Found'],
 		[
-			'the not found error',
+			'the failed dep',
 			//@ts-ignore
 			hr.failedDependency('Error on external API'),
 			424,
