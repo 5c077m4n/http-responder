@@ -6,6 +6,6 @@
 		"test": "node ./src/index.js"
 	},
 	"dependencies": {
-		"http-responder": "^2.1.6"
+		"http-responder": "^2.2.0"
 	}
 }
