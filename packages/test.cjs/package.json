@@ -1,0 +1,11 @@
+{
+	"name": "http-responder.test.cjs",
+	"type": "commonjs",
+	"main": "./src/index.js",
+	"scripts": {
+		"test": "node ./src/index.js"
+	},
+	"dependencies": {
+		"http-responder": "^2.1.6"
+	}
+}
