@@ -16,7 +16,7 @@
 	"author": "Roee Shapira",
 	"sideEffects": false,
 	"exports": {
-		"default": "./packages/http-responder.esm/",
+		"import": "./packages/http-responder.esm/",
 		"require": "./packages/http-responder.cjs/"
 	},
 	"main": "./packages/http-responder.cjs/src/index.js",
