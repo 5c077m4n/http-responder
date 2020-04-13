@@ -22,7 +22,9 @@
 	"main": "./packages/http-responder.cjs/src/index.js",
 	"module": "./packages/http-responder.esm/src/index.js",
 	"files": [
-		"packages/**/*"
+		"packages/http-responder.esm/**/*",
+		"packages/http-responder.cjs/**/*",
+		"packages/http-responder.umd/**/*"
 	],
 	"scripts": {
 		"build": "rollup -c ./rollup.config.js",
