@@ -5,23 +5,24 @@ module.exports = {
 	input: './src/index.ts',
 	output: [
 		{
-			outDir: './packages/http-responder.esm/src/',
+			dir: './packages/http-responder.esm/src/',
+			sourcemap: true,
 			format: 'esm',
+			plugins: [typescript({ outDir: './packages/http-responder.esm/src/' })],
 		},
 		{
-			outDir: './packages/http-responder.cjs/src/',
+			dir: './packages/http-responder.cjs/src/',
+			sourcemap: true,
 			format: 'cjs',
+			plugins: [typescript({ outDir: './packages/http-responder.cjs/src/' })],
 		},
 		{
 			name: 'HttpResponder',
-			outDir: './packages/http-responder.umd/src/',
+			dir: './packages/http-responder.umd/src/',
+			sourcemap: true,
 			format: 'umd',
+			plugins: [typescript({ outDir: './packages/http-responder.umd/src/' })],
 		},
 	],
-	plugins: [
-		typescript({
-			typescript: require('typescript'),
-		}),
-		terser(),
-	],
+	plugins: [terser()],
 };

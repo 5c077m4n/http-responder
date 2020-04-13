@@ -7,22 +7,21 @@ import codeMap from './libs/code-map';
  * setters.
  */
 class HttpResponder extends Error {
-	private _isHttpRes: boolean;
+	private isHttpRes: boolean;
 	statusCode: number;
 	data: any;
 	static improve(err: Error) {
 		return new HttpResponder(500, err);
 	}
-	static isHR(res: Error): boolean {
-		//@ts-ignore
-		return res.constructor === HttpResponder && res._isHttpRes;
+	static isHR(res: unknown): boolean {
+		return res instanceof HttpResponder && res.isHttpRes;
 	}
 
 	constructor(statusCodeOrMessage: number | string = 500, errorOrOptions: Error | any = {}) {
 		super();
 
 		Object.assign(this, errorOrOptions);
-		this._isHttpRes = true;
+		this.isHttpRes = true;
 		if (typeof statusCodeOrMessage === 'number') {
 			this.statusCode = statusCodeOrMessage;
 			this.message = errorOrOptions.message ? errorOrOptions.message : undefined;
@@ -90,9 +89,8 @@ class HttpResponder extends Error {
  * attached.
  */
 function build() {
-	codeMap.forEach((value, key) => {
-		//@ts-ignore
-		HttpResponder[camelcase(value)] = function(msgOrData: string | any, data: any): HttpResponder {
+	codeMap.forEach((value: string, key: number) => {
+		(HttpResponder as any)[camelcase(value)] = function(msgOrData: string | any, data: any): HttpResponder {
 			return new HttpResponder(key, {
 				statusCode: key,
 				message: msgOrData && msgOrData.constructor === String && msgOrData.length ? msgOrData : undefined,
