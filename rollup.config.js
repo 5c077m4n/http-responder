@@ -5,16 +5,16 @@ module.exports = {
 	input: './src/index.ts',
 	output: [
 		{
-			outDir: './packages/http-responder.esm/src/',
+			dir: './packages/http-responder.esm/src/',
 			format: 'esm',
 		},
 		{
-			outDir: './packages/http-responder.cjs/src/',
+			dir: './packages/http-responder.cjs/src/',
 			format: 'cjs',
 		},
 		{
 			name: 'HttpResponder',
-			outDir: './packages/http-responder.umd/src/',
+			dir: './packages/http-responder.umd/src/',
 			format: 'umd',
 		},
 	],
