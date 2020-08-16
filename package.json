@@ -71,7 +71,7 @@
 		"rollup": "^2.26.2",
 		"rollup-plugin-terser": "^7.0.0",
 		"sort-package-json": "^1.44.0",
-		"ts-jest": "^25.5.1",
+		"ts-jest": "^26.2.0",
 		"tslib": "^1.13.0",
 		"typescript": "^3.9.7"
 	}
