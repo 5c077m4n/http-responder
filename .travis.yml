@@ -1,8 +1,8 @@
 dist: bionic
 language: node_js
 node_js:
-    - 'lts/*'
+  - node
+  - lts/*
 after_success:
-    - npm install -g nyc coveralls
-    - nyc npm test
-    - nyc report --reporter=text-lcov | coveralls
+  - npm install -g coveralls
+  - jest --coverage && coveralls < coverage/lcov.info
