@@ -2,8 +2,10 @@
 	"name": "http-responder.esm",
 	"type": "module",
 	"exports": {
-		"default": "./src/index.js"
+		"default": "./src/index.mjs",
+		"import": "./src/index.mjs"
 	},
+	"main": "./src/index.mjs",
 	"scripts": {
 		"clean": "rimraf ./src/**/*"
 	}

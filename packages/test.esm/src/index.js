@@ -1,9 +1,9 @@
-const { HttpResponder } = require('http-responder');
+import { HttpResponder } from 'http-responder';
 
-console.group('cjs');
+console.group('esm');
 
 console.log(HttpResponder);
 const objError = HttpResponder.failedDependency('Error on external API');
 console.log('objError', objError);
 
-console.groupEnd('cjs');
+console.groupEnd('esm');

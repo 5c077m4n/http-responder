@@ -1,27 +1,23 @@
 const { terser } = require('rollup-plugin-terser');
-const typescript = require('@rollup/plugin-typescript');
+const typescriptPlugin = require('@rollup/plugin-typescript');
+const typescript = require('typescript');
 
 module.exports = {
 	input: './src/index.ts',
 	output: [
 		{
-			dir: './packages/http-responder.esm/src/',
+			file: './packages/http-responder.esm/src/index.mjs',
 			format: 'esm',
 		},
 		{
-			dir: './packages/http-responder.cjs/src/',
+			file: './packages/http-responder.cjs/src/index.js',
 			format: 'cjs',
 		},
 		{
 			name: 'HttpResponder',
-			dir: './packages/http-responder.umd/src/',
+			file: './packages/http-responder.umd/src/index.js',
 			format: 'umd',
 		},
 	],
-	plugins: [
-		typescript({
-			typescript: require('typescript'),
-		}),
-		terser(),
-	],
+	plugins: [typescriptPlugin({ typescript }), terser()],
 };

@@ -1,7 +1,6 @@
 {
-	"name": "http-responder.test.cjs",
-	"type": "commonjs",
-	"main": "./src/index.js",
+	"name": "http-responder.test.esm",
+	"type": "module",
 	"scripts": {
 		"clean": "rimraf node_modules/",
 		"test": "node ./src/index.js"

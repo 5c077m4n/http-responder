@@ -16,18 +16,18 @@ $ npm install --save http-responder
 then into your code:
 
 ```javascript
-const hr = require('http-responder');
+const { HttpResponder } = require('http-responder');
 ```
 
 or:
 
 ```javascript
-import hr from 'http-responder';
+import { HttpResponder } from 'http-responder';
 ```
 
 **and you're good to go!**
 
-To create a custom error: `new hr(statusCode [, optionsOrError]);`
+To create a custom error: `new HttpResponder(statusCode [, optionsOrError]);`
 
 1. `statusCode: number` your error's status code or an error message.
 
@@ -37,7 +37,7 @@ To create a custom error: `new hr(statusCode [, optionsOrError]);`
 
     2. `data: any` whatever data you what to send (also shows up in the payload property) - has to be truthy.
 
-Also, you can choose to use: `new hr(message [, options]);`
+Also, you can choose to use: `new HttpResponder(message [, options]);`
 
 1. `message: string` your custom error message.
 
@@ -47,13 +47,13 @@ Also, you can choose to use: `new hr(message [, options]);`
 
     2. `data: any` whatever data you what to send (also shows up in the payload property) - has to be truthy!
 
-(`new hr();` on its own will give you a 500 status error default.)
+(`new HttpResponder();` on its own will give you a 500 status error default.)
 
-Or, you can create them by the pre-made static functions (`hr.notFound()`, for example, for code 404) - a full list below.
+Or, you can create them by the pre-made static functions (`HttpResponder.notFound()`, for example, for code 404) - a full list below.
 
-And then, your imagination is the limit, i.e.: `hr.notFound().end(res);` (only in express 4.x).
+And then, your imagination is the limit, i.e.: `HttpResponder.notFound().end(res);` (only in express 4.x).
 
-## Porperties:
+## Properties:
 
 1. `status | statusCode` the error's status code.
 
@@ -85,83 +85,83 @@ And then, your imagination is the limit, i.e.: `hr.notFound().end(res);` (only i
 
 ### Static methods:
 
-`hr.isHR(res)` checks if the res object is of type HttpResponder.
+`HttpResponder.isHR(res)` checks if the res object is of type HttpResponder.
 
-`hr.improve(err)` returns a new HttpResponder based on the `err: Error` param (with a status code of 500 unless different in the err object).
+`HttpResponder.improve(err)` returns a new HttpResponder based on the `err: Error` param (with a status code of 500 unless different in the err object).
 
 ### Static response methods:
 
-Each function here is used in the same manner: `hr.<functionName>(message: string | undefined, data: any);` or `hr.<functionName>(data: any);` (in the latter data cannot be of type string - otherwise the data will be inserted into the message param).
+Each function here is used in the same manner: `HttpResponder.<functionName>(message: string | undefined, data: any);` or `HttpResponder.<functionName>(data: any);` (in the latter data cannot be of type string - otherwise the data will be inserted into the message param).
 
-**A Reminder**: when using `hr.noContent(data).end(res);` express removes all fields from the response and returns only the status code (204)! So niether the data nor the default description will be returned.
+**A Reminder**: when using `HttpResponder.noContent(data).end(res);` express removes all fields from the response and returns only the status code (204)! So neither the data nor the default description will be returned.
 
-| Static Function                      | Status Code |
-| ------------------------------------ | ----------- |
-| `hr.continue()`                      | 100         |
-| `hr.switchingProtocols()`            | 101         |
-| `hr.processing()`                    | 102         |
-| `hr.earlyHints()`                    | 103         |
-| `hr.ok()`                            | 200         |
-| `hr.created()`                       | 201         |
-| `hr.accepted()`                      | 202         |
-| `hr.nonAuthoritativeInformation()`   | 203         |
-| `hr.noContent()`                     | 204         |
-| `hr.resetContent()`                  | 205         |
-| `hr.partialContent()`                | 206         |
-| `hr.multiStatus()`                   | 207         |
-| `hr.alreadyReported()`               | 208         |
-| `hr.ImUsed()`                        | 226         |
-| `hr.multipleChoices()`               | 300         |
-| `hr.movedPermanently()`              | 301         |
-| `hr.found()`                         | 302         |
-| `hr.seeOther()`                      | 303         |
-| `hr.notModified()`                   | 304         |
-| `hr.useProxy()`                      | 305         |
-| `hr.switchProxy()`                   | 306         |
-| `hr.temporaryRedirect()`             | 307         |
-| `hr.permanentRedirect()`             | 308         |
-| `hr.badRequest()`                    | 400         |
-| `hr.unauthorized()`                  | 401         |
-| `hr.paymentRequired()`               | 402         |
-| `hr.forbidden()`                     | 403         |
-| `hr.notFound()`                      | 404         |
-| `hr.methodNotAllowed()`              | 405         |
-| `hr.notAcceptable()`                 | 406         |
-| `hr.proxyAuthenticationRequired()`   | 407         |
-| `hr.requestTimeOut()`                | 408         |
-| `hr.conflict()`                      | 409         |
-| `hr.gone()`                          | 410         |
-| `hr.lengthRequired()`                | 411         |
-| `hr.preconditionFailed()`            | 412         |
-| `hr.payloadTooLarge()`               | 413         |
-| `hr.uriTooLong()`                    | 414         |
-| `hr.unsupportedMediaType()`          | 415         |
-| `hr.requestedRangeNotSatisfiable()`  | 416         |
-| `hr.expectationFailed()`             | 417         |
-| `hr.iAmATeapot()`                    | 418         |
-| `hr.misdirectedRequest()`            | 421         |
-| `hr.unprocessableEntity()`           | 422         |
-| `hr.locked()`                        | 423         |
-| `hr.failedDependency()`              | 424         |
-| `hr.unorderedCollection()`           | 425         |
-| `hr.upgradeRequired()`               | 426         |
-| `hr.preconditionRequired()`          | 428         |
-| `hr.tooManyRequests()`               | 429         |
-| `hr.requestHeaderFieldsTooLarge()`   | 431         |
-| `hr.unavailableForLegalReasons()`    | 451         |
-| `hr.clientClosedRequest()`           | 499         |
-| `hr.internalServerError()`           | 500         |
-| `hr.notImplemented()`                | 501         |
-| `hr.badGateway()`                    | 502         |
-| `hr.serviceUnavailable()`            | 503         |
-| `hr.gatewayTimeOut()`                | 504         |
-| `hr.httpVersionNotSupported()`       | 505         |
-| `hr.variantAlsoNegotiates()`         | 506         |
-| `hr.insufficientStorage()`           | 507         |
-| `hr.bandwidthLimitExceeded()`        | 509         |
-| `hr.notExtended()`                   | 510         |
-| `hr.networkAuthenticationRequired()` | 511         |
-| `hr.networkReadTimeoutError()`       | 598         |
-| `hr.networkConnectTimeoutError()`    | 599         |
+| Static Function                                 | Status Code |
+| :---------------------------------------------- | ----------: |
+| `HttpResponder.continue()`                      |         100 |
+| `HttpResponder.switchingProtocols()`            |         101 |
+| `HttpResponder.processing()`                    |         102 |
+| `HttpResponder.earlyHints()`                    |         103 |
+| `HttpResponder.ok()`                            |         200 |
+| `HttpResponder.created()`                       |         201 |
+| `HttpResponder.accepted()`                      |         202 |
+| `HttpResponder.nonAuthoritativeInformation()`   |         203 |
+| `HttpResponder.noContent()`                     |         204 |
+| `HttpResponder.resetContent()`                  |         205 |
+| `HttpResponder.partialContent()`                |         206 |
+| `HttpResponder.multiStatus()`                   |         207 |
+| `HttpResponder.alreadyReported()`               |         208 |
+| `HttpResponder.ImUsed()`                        |         226 |
+| `HttpResponder.multipleChoices()`               |         300 |
+| `HttpResponder.movedPermanently()`              |         301 |
+| `HttpResponder.found()`                         |         302 |
+| `HttpResponder.seeOther()`                      |         303 |
+| `HttpResponder.notModified()`                   |         304 |
+| `HttpResponder.useProxy()`                      |         305 |
+| `HttpResponder.switchProxy()`                   |         306 |
+| `HttpResponder.temporaryRedirect()`             |         307 |
+| `HttpResponder.permanentRedirect()`             |         308 |
+| `HttpResponder.badRequest()`                    |         400 |
+| `HttpResponder.unauthorized()`                  |         401 |
+| `HttpResponder.paymentRequired()`               |         402 |
+| `HttpResponder.forbidden()`                     |         403 |
+| `HttpResponder.notFound()`                      |         404 |
+| `HttpResponder.methodNotAllowed()`              |         405 |
+| `HttpResponder.notAcceptable()`                 |         406 |
+| `HttpResponder.proxyAuthenticationRequired()`   |         407 |
+| `HttpResponder.requestTimeOut()`                |         408 |
+| `HttpResponder.conflict()`                      |         409 |
+| `HttpResponder.gone()`                          |         410 |
+| `HttpResponder.lengthRequired()`                |         411 |
+| `HttpResponder.preconditionFailed()`            |         412 |
+| `HttpResponder.payloadTooLarge()`               |         413 |
+| `HttpResponder.uriTooLong()`                    |         414 |
+| `HttpResponder.unsupportedMediaType()`          |         415 |
+| `HttpResponder.requestedRangeNotSatisfiable()`  |         416 |
+| `HttpResponder.expectationFailed()`             |         417 |
+| `HttpResponder.iAmATeapot()`                    |         418 |
+| `HttpResponder.misdirectedRequest()`            |         421 |
+| `HttpResponder.unprocessableEntity()`           |         422 |
+| `HttpResponder.locked()`                        |         423 |
+| `HttpResponder.failedDependency()`              |         424 |
+| `HttpResponder.unorderedCollection()`           |         425 |
+| `HttpResponder.upgradeRequired()`               |         426 |
+| `HttpResponder.preconditionRequired()`          |         428 |
+| `HttpResponder.tooManyRequests()`               |         429 |
+| `HttpResponder.requestHeaderFieldsTooLarge()`   |         431 |
+| `HttpResponder.unavailableForLegalReasons()`    |         451 |
+| `HttpResponder.clientClosedRequest()`           |         499 |
+| `HttpResponder.internalServerError()`           |         500 |
+| `HttpResponder.notImplemented()`                |         501 |
+| `HttpResponder.badGateway()`                    |         502 |
+| `HttpResponder.serviceUnavailable()`            |         503 |
+| `HttpResponder.gatewayTimeOut()`                |         504 |
+| `HttpResponder.httpVersionNotSupported()`       |         505 |
+| `HttpResponder.variantAlsoNegotiates()`         |         506 |
+| `HttpResponder.insufficientStorage()`           |         507 |
+| `HttpResponder.bandwidthLimitExceeded()`        |         509 |
+| `HttpResponder.notExtended()`                   |         510 |
+| `HttpResponder.networkAuthenticationRequired()` |         511 |
+| `HttpResponder.networkReadTimeoutError()`       |         598 |
+| `HttpResponder.networkConnectTimeoutError()`    |         599 |
 
 **Happy responding! ;)**

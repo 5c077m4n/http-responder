@@ -1,21 +1,20 @@
-import camelcase from './libs/camelcase';
 import codeMap from './libs/code-map';
+import camelcase from './libs/camelcase';
 
 /**
  * @class HttpResponder - a class containing all static
  * functions that create the responses, with getters and
  * setters.
  */
-class HttpResponder extends Error {
+class HttpResponderBase extends Error {
 	private _isHttpRes: boolean;
 	statusCode: number;
 	data: any;
 	static improve(err: Error) {
-		return new HttpResponder(500, err);
+		return new HttpResponderBase(500, err);
 	}
-	static isHR(res: Error): boolean {
-		//@ts-ignore
-		return res.constructor === HttpResponder && res._isHttpRes;
+	static isHR(res: any): boolean {
+		return res instanceof HttpResponderBase && res._isHttpRes;
 	}
 
 	constructor(statusCodeOrMessage: number | string = 500, errorOrOptions: Error | any = {}) {
@@ -64,7 +63,7 @@ class HttpResponder extends Error {
 		throw new Error('This property is read-only.');
 	}
 
-	/** Append new responses to the exisisting HttpResponse */
+	/** Append new responses to the existing HttpResponse */
 	appendError(err: Error | any) {
 		return Object.assign(this, err);
 	}
@@ -91,16 +90,15 @@ class HttpResponder extends Error {
  */
 function build() {
 	codeMap.forEach((value, key) => {
-		//@ts-ignore
-		HttpResponder[camelcase(value)] = function(msgOrData: string | any, data: any): HttpResponder {
-			return new HttpResponder(key, {
+		(HttpResponderBase as any)[camelcase(value)] = function(msgOrData: string | any, data: any): HttpResponderBase {
+			return new HttpResponderBase(key, {
 				statusCode: key,
 				message: msgOrData && msgOrData.constructor === String && msgOrData.length ? msgOrData : undefined,
 				data: msgOrData && msgOrData.constructor !== String ? msgOrData : data,
 			});
 		};
 	});
-	return HttpResponder;
+	return HttpResponderBase;
 }
 
-export default build();
+export const HttpResponder = build();

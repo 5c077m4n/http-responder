@@ -1,21 +1,20 @@
-import hr from '../src';
+import { HttpResponder } from '../src';
 
 describe('Sanity', function() {
 	it('Should throw an error for a bad input', function() {
 		try {
-			// eslint-disable-next-line no-unused-vars
-			const httpObj = new hr({} as any);
+			new HttpResponder({} as any);
 		} catch (err) {
 			expect(err.message).toEqual('The first parameter must be either a number or a string.');
 			expect(err instanceof Error);
 		}
 	});
 	it('Should test to see if the object is of http-responder type', function() {
-		const hrObj = hr.improve(new Error('Test error'));
-		expect(hrObj instanceof hr);
+		const hrObj = HttpResponder.improve(new Error('Test error'));
+		expect(hrObj instanceof HttpResponder);
 	});
 	it('should change the status code', function() {
-		const error = new hr(500);
+		const error = new HttpResponder(500);
 		error.status = 501;
 		expect((error as any).statusCode).toEqual(501);
 	});
@@ -54,7 +53,7 @@ function responseTestSuite(
 			expect(!!error);
 		});
 		it('should be of type HttpResponse', function() {
-			expect(hr.isHR(new hr())).toEqual(true);
+			expect(HttpResponder.isHR(new HttpResponder())).toEqual(true);
 		});
 		it(`should have a status code of ${expectedStatus}`, function() {
 			expect(error.statusCode).toEqual(expectedStatus);
@@ -83,25 +82,25 @@ function responseTestSuite(
 
 describe('HttpResponder source', function() {
 	[
-		['the default error', new hr(), 500, 'Internal Server Error'],
-		['the default error', new hr('Waka Waka!'), 500, 'Internal Server Error', 'Waka Waka!'],
-		['the custom error', new hr(490), 490, 'Unknown Status Code'],
+		['the default error', new HttpResponder(), 500, 'Internal Server Error'],
+		['the default error', new HttpResponder('Waka Waka!'), 500, 'Internal Server Error', 'Waka Waka!'],
+		['the custom error', new HttpResponder(490), 490, 'Unknown Status Code'],
 		//@ts-ignore
-		['the not found error', hr.notFound(), 404, 'Not Found'],
+		['the not found error', HttpResponder.notFound(), 404, 'Not Found'],
 		[
 			'the failed dep',
 			//@ts-ignore
-			hr.failedDependency('Error on external API'),
+			HttpResponder.failedDependency('Error on external API'),
 			424,
 			'Failed Dependency',
 			'Error on external API',
 		],
 		//@ts-ignore
-		['the locked error', hr.locked('Sorry, not today...'), 423, 'Locked', 'Sorry, not today...'],
+		['the locked error', HttpResponder.locked('Sorry, not today...'), 423, 'Locked', 'Sorry, not today...'],
 		[
 			'the server error with data',
 			//@ts-ignore
-			hr.internalServerError({
+			HttpResponder.internalServerError({
 				bcz: 'dunno...',
 			}),
 			500,
