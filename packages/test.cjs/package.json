@@ -4,9 +4,12 @@
 	"main": "./src/index.js",
 	"scripts": {
 		"clean": "rimraf node_modules/",
-		"test": "node ./src/index.js"
+		"test": "jest"
 	},
 	"dependencies": {
 		"http-responder": "*"
+	},
+	"devDependencies": {
+		"jest": "^26.4.0"
 	}
 }

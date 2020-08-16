@@ -25,7 +25,7 @@
 		"packages/http-responder/**/*"
 	],
 	"scripts": {
-		"bootstrap": "lerna bootstrap --force-local",
+		"bootstrap": "lerna bootstrap --force-local --hoist",
 		"build": "rollup -c ./rollup.config.js",
 		"clean": "lerna run clean",
 		"lint": "eslint ./src/**/*.ts",
@@ -62,7 +62,7 @@
 		"eslint-config-prettier": "^6.11.0",
 		"eslint-plugin-prettier": "^3.1.4",
 		"husky": "^4.2.5",
-		"jest": "^25.5.4",
+		"jest": "^26.4.0",
 		"lerna": "^3.22.1",
 		"lint-staged": "^10.2.11",
 		"npm-run-all": "^4.1.5",
