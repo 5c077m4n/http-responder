@@ -6,7 +6,7 @@ module.exports = {
 	input: './src/index.ts',
 	output: [
 		{
-			file: './packages/http-responder.esm/src/index.mjs',
+			file: './packages/http-responder.esm/src/index.js',
 			format: 'esm',
 		},
 		{
