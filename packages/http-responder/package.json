@@ -1,0 +1,13 @@
+{
+	"name": "http-responder",
+	"type": "module",
+	"exports": {
+		"import": "./src/index.mjs",
+		"require": "./src/index.cjs"
+	},
+	"main": "./src/index.cjs",
+	"module": "./src/index.mjs",
+	"scripts": {
+		"clean": "rimraf ./src/**/*"
+	}
+}

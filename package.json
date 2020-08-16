@@ -16,18 +16,16 @@
 	"author": "Roee Shapira",
 	"sideEffects": false,
 	"exports": {
-		"import": "./packages/http-responder.esm/src/index.js",
-		"require": "./packages/http-responder.cjs/src/index.js"
+		"import": "./packages/http-responder/src/index.mjs",
+		"require": "./packages/http-responder/src/index.cjs"
 	},
-	"main": "./packages/http-responder.cjs/src/index.js",
-	"module": "./packages/http-responder.esm/src/index.js",
+	"main": "./packages/http-responder/src/index.cjs",
+	"module": "./packages/http-responder/src/index.mjs",
 	"files": [
-		"packages/http-responder.esm/**/*",
-		"packages/http-responder.cjs/**/*",
-		"packages/http-responder.umd/**/*"
+		"packages/http-responder/**/*"
 	],
 	"scripts": {
-		"bootstrap": "lerna bootstrap",
+		"bootstrap": "lerna bootstrap --force-local",
 		"build": "rollup -c ./rollup.config.js",
 		"clean": "lerna run clean",
 		"lint": "eslint ./src/**/*.ts",

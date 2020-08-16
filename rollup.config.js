@@ -6,17 +6,12 @@ module.exports = {
 	input: './src/index.ts',
 	output: [
 		{
-			file: './packages/http-responder.esm/src/index.js',
+			file: './packages/http-responder/src/index.mjs',
 			format: 'esm',
 		},
 		{
-			file: './packages/http-responder.cjs/src/index.js',
+			file: './packages/http-responder/src/index.cjs',
 			format: 'cjs',
-		},
-		{
-			name: 'HttpResponder',
-			file: './packages/http-responder.umd/src/index.js',
-			format: 'umd',
 		},
 	],
 	plugins: [typescriptPlugin({ typescript }), terser()],
